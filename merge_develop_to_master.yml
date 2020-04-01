@@ -1,0 +1,22 @@
+name: Mark stale issues and pull requests
+
+on:
+  schedule:
+  - cron: "0 0 * * *"
+
+jobs:
+  stale:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Nightly Merge
+        uses: robotology/gh-action-nightly-merge@v1.2.0
+        with:
+          # Name of the stable branch
+          stable_branch: develop
+          # Name of the development branch
+          development_branch: master
+          # Allow fast forward merge
+          allow_ff: true
+
