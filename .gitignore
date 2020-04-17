@@ -3,46 +3,46 @@
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff:
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/dictionaries
-.idea/vcs.xml
-.idea/jsLibraryMappings.xml
+**/.idea/workspace.xml
+**/.idea/tasks.xml
+**/.idea/dictionaries
+**/.idea/vcs.xml
+**/.idea/jsLibraryMappings.xml
 
 # Sensitive or high-churn files:
-.idea/dataSources.ids
-.idea/dataSources.xml
-.idea/dataSources.local.xml
-.idea/sqlDataSources.xml
-.idea/dynamic.xml
-.idea/uiDesigner.xml
+**/.idea/dataSources.ids
+**/.idea/dataSources.xml
+**/.idea/dataSources.local.xml
+**/.idea/sqlDataSources.xml
+**/.idea/dynamic.xml
+**/.idea/uiDesigner.xml
 
 # Gradle:
-.idea/gradle.xml
-.idea/libraries
+**/.idea/gradle.xml
+**/.idea/libraries
 
 # Mongo Explorer plugin:
-.idea/mongoSettings.xml
+**/.idea/mongoSettings.xml
 
 ## File-based project format:
-*.iws
+**/*.iws
 
 ## Plugin-specific files:
 
 # IntelliJ
-/out/
+**/out/
 
 # mpeltonen/sbt-idea plugin
-.idea_modules/
+**/.idea_modules/
 
 # JIRA plugin
-atlassian-ide-plugin.xml
+**/atlassian-ide-plugin.xml
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
-com_crashlytics_export_strings.xml
-crashlytics.properties
-crashlytics-build.properties
-fabric.properties
+**/com_crashlytics_export_strings.xml
+**/crashlytics.properties
+**/crashlytics-build.properties
+**/fabric.properties
 
 ### Intellij Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
@@ -50,38 +50,38 @@ fabric.properties
 # *.iml
 # modules.xml
 
-.gradle
-/build/
+**/.gradle
+**/build/
 
 # Ignore Gradle GUI config
-gradle-app.setting
+**/gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
+**/!gradle-wrapper.jar
 
 # Cache of project
-.gradletasknamecache
+**/.gradletasknamecache
 
 # Compiled class file
-*.class
+**/*.class
 
 # Log file
-*.log
+**/*.log
 
 # BlueJ files
-*.ctxt
+**/*.ctxt
 
 # Mobile Tools for Java (J2ME)
-.mtj.tmp/
+**/.mtj.tmp/
 
 # Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+**/*.jar
+**/*.war
+**/*.nar
+**/*.ear
+**/*.zip
+**/*.tar.gz
+**/*.rar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+**/hs_err_pid*
