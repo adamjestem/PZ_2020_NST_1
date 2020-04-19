@@ -1,8 +1,8 @@
 package org.budowa.flow.kanban;
 
-import entities.Building;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import org.budowa.entities.Building;
 
 public class KanbanController {
 

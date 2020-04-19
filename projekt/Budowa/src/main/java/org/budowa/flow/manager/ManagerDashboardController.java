@@ -1,16 +1,13 @@
 package org.budowa.flow.manager;
 
-import entities.Building;
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
-import org.budowa.entities.BuildingStatus;
+import org.budowa.entities.Building;
 import org.budowa.flow.shared.DashboardBaseController;
+import org.budowa.services.BuildingsService;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+public class ManagerDashboardController extends DashboardBaseController {
 
-public class ManagerDashboardController extends DashboardBaseController implements Initializable {
+    private BuildingsService buildingsService = BuildingsService.create();
 
     public void handleLogout(ActionEvent actionEvent) {
         System.out.println("logout");
@@ -20,18 +17,12 @@ public class ManagerDashboardController extends DashboardBaseController implemen
         System.out.println("close");
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        super.setBuildings(this.loadBuildings());
+    protected Building[] loadBuildings() {
+        // todo: get user id from session manager
+        return this.buildingsService.getManagerBuildings(0);
     }
 
-    private Building[] loadBuildings() {
-        // todo: select from repository
-        var buildings = new ArrayList<Building>();
-        var b = new Building();
-        b.setName("Budowa u Staszka");
-        b.setStatus(BuildingStatus.CEILING);
-        buildings.add(b);
-        return buildings.toArray(Building[]::new);
+    public void handleRefresh(ActionEvent actionEvent) {
+        this.setBuildings(this.loadBuildings());
     }
 }
