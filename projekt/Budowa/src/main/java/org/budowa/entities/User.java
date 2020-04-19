@@ -10,7 +10,7 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private int roleId;
+    private UserRole userRole;
     private String fullName;
     private Collection<Attachment> attachmentById;
     private Collection<Building> buildingById;
@@ -48,12 +48,12 @@ public class User {
 
     @Basic
     @Column(name = "role_id", nullable = false, insertable = false, updatable = false)
-    public int getRoleId() {
-        return roleId;
+    public UserRole getUserRole() {
+        return userRole;
     }
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 
     @Basic
@@ -72,7 +72,7 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
         User that = (User) o;
         return id == that.id &&
-                roleId == that.roleId &&
+                userRole == that.userRole &&
                 Objects.equals(username, that.username) &&
                 Objects.equals(password, that.password) &&
                 Objects.equals(fullName, that.fullName);
@@ -80,7 +80,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, roleId, fullName);
+        return Objects.hash(id, username, password, userRole, fullName);
     }
 
     @OneToMany(mappedBy = "usersByUserId")

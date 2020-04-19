@@ -15,7 +15,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         this.sceneManager.setStage(stage);
-        this.sceneManager.createDefaultScene();
+        this.sceneManager.createStartingScene();
     }
 
     public static void main(String[] args) throws Exception {

@@ -1,5 +1,7 @@
 package org.budowa.services;
 
+import org.budowa.entities.UserRole;
+
 // todo:
 public class SessionManager {
 
@@ -14,5 +16,15 @@ public class SessionManager {
 
     public void logout() {
         // todo: logout user
+    }
+
+    public boolean isLoggedIn() {
+        // todo: implement
+        return true;
+    }
+
+    public UserRole getUserRole() {
+        // todo
+        return UserRole.MANAGER;
     }
 }

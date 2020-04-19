@@ -5,6 +5,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.budowa.App;
+import org.budowa.flow.Flow;
+import org.budowa.flow.FlowsRegistry;
 
 import java.io.IOException;
 
@@ -57,8 +59,8 @@ public class SceneManager {
         this.stage.show();
     }
 
-    public void createDefaultScene() {
-        var defaultScene = "OwnerDashboardScene";
+    public void createStartingScene() {
+        var defaultScene = FlowsRegistry.getFXML(Flow.LOGIN);
         var defaultTitle = "Zarządzanie budowami";
         try {
             this.createScene(defaultScene, defaultTitle);
