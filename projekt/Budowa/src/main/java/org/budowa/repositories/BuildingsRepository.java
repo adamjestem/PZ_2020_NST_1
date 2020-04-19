@@ -6,6 +6,10 @@ import org.budowa.entities.BuildingStatus;
 // todo: add db connection
 public class BuildingsRepository {
 
+    public static BuildingsRepository inject() {
+        return new BuildingsRepository();
+    }
+
     private final Building[] fakeData;
 
     BuildingsRepository() {
@@ -30,9 +34,5 @@ public class BuildingsRepository {
 
     public Building[] getBuildingsByUserId(int userId) {
         return this.fakeData;
-    }
-
-    public static BuildingsRepository create() {
-        return new BuildingsRepository();
     }
 }

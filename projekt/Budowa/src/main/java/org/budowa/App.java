@@ -10,7 +10,7 @@ import java.io.IOException;
  * JavaFX App
  */
 public class App extends Application {
-    private SceneManager sceneManager = SceneManager.create();
+    private SceneManager sceneManager = SceneManager.inject();
 
     @Override
     public void start(Stage stage) throws IOException {

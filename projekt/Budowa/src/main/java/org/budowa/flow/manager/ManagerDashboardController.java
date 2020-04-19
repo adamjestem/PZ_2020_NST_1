@@ -4,17 +4,20 @@ import javafx.event.ActionEvent;
 import org.budowa.entities.Building;
 import org.budowa.flow.shared.DashboardBaseController;
 import org.budowa.services.BuildingsService;
+import org.budowa.services.SceneManager;
+import org.budowa.services.SessionManager;
 
 public class ManagerDashboardController extends DashboardBaseController {
-
-    private BuildingsService buildingsService = BuildingsService.create();
+    private final SessionManager sessionManager = SessionManager.inject();
+    private final BuildingsService buildingsService = BuildingsService.inject();
+    private final SceneManager sceneManager = SceneManager.inject();
 
     public void handleLogout(ActionEvent actionEvent) {
-        System.out.println("logout");
+        this.sessionManager.logout();
     }
 
     public void handleClose(ActionEvent actionEvent) {
-        System.out.println("close");
+        this.sceneManager.closeWindow();
     }
 
     protected Building[] loadBuildings() {

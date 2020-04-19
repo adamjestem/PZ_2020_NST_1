@@ -5,11 +5,11 @@ import org.budowa.repositories.BuildingsRepository;
 
 public class BuildingsService {
 
-    public static BuildingsService create() {
+    public static BuildingsService inject() {
         return new BuildingsService();
     }
 
-    private BuildingsRepository buildingsRepository = BuildingsRepository.create();
+    private BuildingsRepository buildingsRepository = BuildingsRepository.inject();
 
     public Building[] getManagerBuildings(int userId) {
         return this.buildingsRepository.getBuildingsByUserId(userId);

@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.budowa.flow.owner.OwnerDashboardController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.budowa.flow.owner.OwnerDashboardController">
+    <children>
+        <BorderPane prefHeight="100.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <MenuBar BorderPane.alignment="CENTER">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="Program">
+                            <items>
+                                <MenuItem onAction="#handleRefresh" mnemonicParsing="false" text="Odśwież" />
+                                <MenuItem onAction="#handleLogout" mnemonicParsing="false" text="Wyloguj" />
+                                <MenuItem onAction="#handleClose" mnemonicParsing="false" text="Zamknij" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </top>
+            <center>
+                <BorderPane fx:id="mainView">
+                    <center>
+                        <fx:include fx:id="kanban" source="KanbanScene.fxml" />
+                    </center>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </BorderPane>
+            </center>
+        </BorderPane>
+    </children>
 </AnchorPane>

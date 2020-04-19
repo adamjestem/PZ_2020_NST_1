@@ -14,11 +14,11 @@ import java.io.IOException;
 public class SceneManager {
     private static SceneManager sceneManager;
 
-    public static SceneManager create() {
+    public static SceneManager inject() {
         if (SceneManager.sceneManager == null) {
             SceneManager.sceneManager = new SceneManager();
         }
-        return new SceneManager();
+        return SceneManager.sceneManager;
     }
 
     /**

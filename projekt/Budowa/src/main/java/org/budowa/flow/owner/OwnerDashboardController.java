@@ -1,15 +1,31 @@
 package org.budowa.flow.owner;
 
+import javafx.event.ActionEvent;
 import org.budowa.entities.Building;
 import org.budowa.flow.shared.DashboardBaseController;
 import org.budowa.services.BuildingsService;
+import org.budowa.services.SceneManager;
+import org.budowa.services.SessionManager;
 
 public class OwnerDashboardController extends DashboardBaseController {
-
-    BuildingsService buildingsService = BuildingsService.create();
+    private final SessionManager sessionManager = SessionManager.inject();
+    private final BuildingsService buildingsService = BuildingsService.inject();
+    private final SceneManager sceneManager = SceneManager.inject();
 
     @Override
     protected Building[] loadBuildings() {
         return this.buildingsService.getAllBuildings();
+    }
+
+    public void handleRefresh(ActionEvent actionEvent) {
+        this.loadBuildings();
+    }
+
+    public void handleLogout(ActionEvent actionEvent) {
+        sessionManager.logout();
+    }
+
+    public void handleClose(ActionEvent actionEvent) {
+        this.sceneManager.closeWindow();
     }
 }
