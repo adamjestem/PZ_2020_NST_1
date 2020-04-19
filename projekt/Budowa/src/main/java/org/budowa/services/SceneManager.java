@@ -58,7 +58,7 @@ public class SceneManager {
     }
 
     public void createDefaultScene() {
-        var defaultScene = "ManagerDashboardScene";
+        var defaultScene = "OwnerDashboardScene";
         var defaultTitle = "Zarządzanie budowami";
         try {
             this.createScene(defaultScene, defaultTitle);

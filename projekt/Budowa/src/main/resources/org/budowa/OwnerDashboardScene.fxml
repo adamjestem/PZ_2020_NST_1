@@ -4,17 +4,34 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.budowa.flow.owner.OwnerDashboardController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.budowa.flow.owner.OwnerDashboardController">
     <children>
-        <BorderPane prefHeight="100.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane prefHeight="100.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="0.0">
             <top>
                 <MenuBar BorderPane.alignment="CENTER">
                     <menus>
                         <Menu mnemonicParsing="false" text="Program">
                             <items>
-                                <MenuItem onAction="#handleRefresh" mnemonicParsing="false" text="Odśwież" />
-                                <MenuItem onAction="#handleLogout" mnemonicParsing="false" text="Wyloguj" />
-                                <MenuItem onAction="#handleClose" mnemonicParsing="false" text="Zamknij" />
+                                <MenuItem onAction="#handleRefresh" mnemonicParsing="false" text="Odśwież"/>
+                                <MenuItem onAction="#handleLogout" mnemonicParsing="false" text="Wyloguj"/>
+                                <MenuItem onAction="#handleClose" mnemonicParsing="false" text="Zamknij"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Budowy">
+                            <items>
+                                <MenuItem onAction="#handleAddBuilding" mnemonicParsing="false" text="Dodaj"/>
+                                <MenuItem onAction="#handleEditBuilding" mnemonicParsing="false" text="Edytuj"/>
+                                <MenuItem onAction="#handleDeleteBuilding" mnemonicParsing="false" text="Usuń"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Użytkownicy">
+                            <items>
+                                <MenuItem onAction="#handleAddUser" mnemonicParsing="false" text="Dodaj nowego"/>
+                                <MenuItem onAction="#handleEditUser" mnemonicParsing="false" text="Edytuj"/>
+                                <MenuItem onAction="#handleDeleteUser" mnemonicParsing="false" text="Usuń"/>
+                                <MenuItem onAction="#handleShowAllUsers" mnemonicParsing="false" text="Pokaż wszystkich"/>
                             </items>
                         </Menu>
                     </menus>
@@ -23,10 +40,10 @@
             <center>
                 <BorderPane fx:id="mainView">
                     <center>
-                        <fx:include fx:id="kanban" source="KanbanScene.fxml" />
+                        <fx:include fx:id="kanban" source="KanbanScene.fxml"/>
                     </center>
                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
                     </padding>
                 </BorderPane>
             </center>

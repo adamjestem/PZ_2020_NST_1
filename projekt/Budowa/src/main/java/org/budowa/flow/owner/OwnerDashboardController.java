@@ -28,4 +28,32 @@ public class OwnerDashboardController extends DashboardBaseController {
     public void handleClose(ActionEvent actionEvent) {
         this.sceneManager.closeWindow();
     }
+
+    public void handleAddBuilding(ActionEvent actionEvent) {
+        // todo: redirect to add building scene
+    }
+
+    public void handleEditBuilding(ActionEvent actionEvent) {
+        // todo: redirect to edit building scene
+    }
+
+    public void handleDeleteBuilding(ActionEvent actionEvent) {
+        // todo: redirect to delete building
+    }
+
+    public void handleAddUser(ActionEvent actionEvent) {
+        // todo: redirect to add user
+    }
+
+    public void handleEditUser(ActionEvent actionEvent) {
+        // todo: redirect to edit user
+    }
+
+    public void handleDeleteUser(ActionEvent actionEvent) {
+        // todo: redirect to delete user
+    }
+
+    public void handleShowAllUsers(ActionEvent actionEvent) {
+        // todo: redirect to show all users
+    }
 }
