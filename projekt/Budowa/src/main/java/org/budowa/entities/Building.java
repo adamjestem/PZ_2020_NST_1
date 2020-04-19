@@ -11,7 +11,7 @@ public class Building {
     private int id;
     private String name;
     private String description;
-    private String status;
+    private BuildingStatus status;
     private int managerId;
     private Timestamp createdAt;
     private Collection<Attachment> attachmentById;
@@ -49,11 +49,11 @@ public class Building {
 
     @Basic
     @Column(name = "status", nullable = false, length = 45)
-    public String getStatus() {
+    public BuildingStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(BuildingStatus status) {
         this.status = status;
     }
 

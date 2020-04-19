@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="paneid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400" prefWidth="1000" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.budowa.flow.kanban.KanbanController">
+    <children>
+        <VBox layoutX="0" prefHeight="400.0" prefWidth="150">
+            <children>
+                <Label alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: DODGERBLUE;" text="Do zrobienia">
+                    <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                    </font>
+                </Label>
+                <ListView fx:id="toDoList" prefHeight="370" prefWidth="150" />
+            </children>
+        </VBox>
+        <VBox layoutX="170" prefHeight="400.0" prefWidth="150">
+            <children>
+                <Label alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: SPRINGGREEN;" text="Fundamenty">
+                    <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                    </font>
+                </Label>
+                <ListView fx:id="foundationList" prefHeight="370" prefWidth="150" />
+            </children>
+        </VBox>
+        <VBox layoutX="340" prefHeight="400.0" prefWidth="150">
+            <children>
+                <Label alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: aqua;" text="Mury">
+                    <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                    </font>
+                </Label>
+                <ListView fx:id="wallsList" prefHeight="370" prefWidth="150" />
+            </children>
+        </VBox>
+        <VBox layoutX="510" prefHeight="400.0" prefWidth="150">
+            <children>
+                <Label alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: blueviolet;" text="Strop">
+                    <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                    </font>
+                </Label>
+                <ListView fx:id="ceilingList" prefHeight="370" prefWidth="150" />
+            </children>
+        </VBox>
+        <VBox layoutX="680" prefHeight="400.0" prefWidth="150">
+            <children>
+                <Label alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: darkgreen;" text="Dach">
+                    <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                    </font>
+                </Label>
+                <ListView fx:id="roofList" prefHeight="370" prefWidth="150" />
+            </children>
+        </VBox>
+        <VBox layoutX="850" prefHeight="400.0" prefWidth="150">
+            <children>
+                <Label alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: tomato;" text="Gotowy">
+                    <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                    </font>
+                </Label>
+                <ListView fx:id="doneList" prefHeight="370" prefWidth="150" />
+            </children>
+        </VBox>
+    </children>
+</Pane>

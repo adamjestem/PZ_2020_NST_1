@@ -7,5 +7,8 @@ module org.budowa {
 
     opens org.budowa to javafx.fxml;
     opens org.budowa.flow.login to javafx.fxml;
+    opens org.budowa.flow.manager to javafx.fxml;
+    opens org.budowa.flow.kanban to javafx.fxml;
+    opens org.budowa.flow.shared to javafx.fxml;
     exports org.budowa;
 }
