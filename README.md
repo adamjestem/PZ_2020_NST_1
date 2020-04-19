@@ -3,7 +3,7 @@
 * Architektura aplikacji to aplikacja cebulowa https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/ 
 
 * Flow jest takie mniej wiecej:
-    1. Scena która jest w folderze flow wyświetla UI (plik fxml kończący się …Scene + klasa kończonąca się na …Controller) i komunikuje się z serwisami
+    1. Scena która jest w folderze flow wyświetla UI (plik fxml kończący się …Scene + klasa kończąca się na …Controller) i komunikuje się z serwisami
     2. Serwis albo wywołuje inne serwisy albo wywołuje plik repository
     3. Repository używa persistence albo SQL do komunikacji z baza danych
 * Jako, że w aplikacji nie ma DependecyContainer to każdy serwis, repository itp. musi mieć statyczna mętodę inject która zwraca instancję klasy (w kodzie który dodałem są przykłady jak robić singletony i jak robić serwisy które mają wiele instancji. singleton - Router.java, wiele - BuildingsService)
