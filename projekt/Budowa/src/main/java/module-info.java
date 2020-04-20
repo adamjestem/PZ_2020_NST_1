@@ -6,6 +6,11 @@ module org.budowa {
     requires org.hibernate.orm.core;
     requires java.naming;
 
+    requires net.bytebuddy;
+    requires java.xml.bind;
+    requires com.sun.xml.bind;
+    requires com.fasterxml.classmate;
+
     opens org.budowa to javafx.fxml;
     opens org.budowa.flow.login to javafx.fxml;
     opens org.budowa.flow.manager to javafx.fxml;
@@ -13,5 +18,7 @@ module org.budowa {
     opens org.budowa.flow.kanban to javafx.fxml;
     opens org.budowa.flow.shared to javafx.fxml;
     opens org.budowa.services to javafx.fxml;
+    exports org.budowa.entities to org.hibernate.orm.core;
+
     exports org.budowa;
 }

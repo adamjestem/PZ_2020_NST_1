@@ -19,7 +19,8 @@ class UsersRepositoryTest {
         User u = new User();
         u.setUsername("Test1");
         u.setPassword("password3834");
-        u.setUserRole(UserRole.OWNER);
+        u.setFullName("Adam Kowalski");
+        u.setRoleByRoleId(UserRole.OWNER);
 
         int id = usersRepository.insert(u);
 
