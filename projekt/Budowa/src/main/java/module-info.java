@@ -4,6 +4,7 @@ module org.budowa {
     requires java.persistence;
     requires java.sql;
     requires org.hibernate.orm.core;
+    requires java.naming;
 
     opens org.budowa to javafx.fxml;
     opens org.budowa.flow.login to javafx.fxml;

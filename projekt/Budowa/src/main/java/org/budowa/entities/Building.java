@@ -95,7 +95,7 @@ public class Building {
         return Objects.hash(id, name, description, status, managerId, createdAt);
     }
 
-    @OneToMany(mappedBy = "buildingsByBuildingId")
+    @OneToMany(mappedBy = "buildingId")
     public Collection<Attachment> getAttachmentById() {
         return attachmentById;
     }

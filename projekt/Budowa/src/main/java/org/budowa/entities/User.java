@@ -83,7 +83,7 @@ public class User {
         return Objects.hash(id, username, password, userRole, fullName);
     }
 
-    @OneToMany(mappedBy = "usersByUserId")
+    @OneToMany(mappedBy = "userId")
     public Collection<Attachment> getAttachmentById() {
         return attachmentById;
     }
@@ -92,7 +92,7 @@ public class User {
         this.attachmentById = attachmentById;
     }
 
-    @OneToMany(mappedBy = "usersByManagerId")
+    @OneToMany(mappedBy = "managerId")
     public Collection<Building> getBuildingById() {
         return buildingById;
     }
