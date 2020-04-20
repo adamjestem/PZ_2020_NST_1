@@ -3,8 +3,15 @@ package org.budowa.flow.login;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import org.budowa.router.Route;
+import org.budowa.router.Router;
+
+import java.io.IOException;
+import java.util.Random;
 
 public class LoginScene {
+
+    private final Router router = Router.inject();
 
     /* Views */
 
@@ -21,7 +28,18 @@ public class LoginScene {
 
     @FXML
     private void loginAction() {
-        displayError();
+        // todo: check if valid data if so then login
+        var random = new Random().nextFloat();
+        if (random > 0.5) {
+            displayError();
+        } else {
+            try {
+                this.router.goTo(Route.DASHBOARD);
+            } catch (IOException exception) {
+                // todo show some alert with an error
+                exception.printStackTrace();
+            }
+        }
     }
 
     @FXML
