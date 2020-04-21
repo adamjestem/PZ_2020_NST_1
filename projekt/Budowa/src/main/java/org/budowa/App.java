@@ -2,14 +2,7 @@ package org.budowa;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.budowa.database.DbConnector;
-import org.budowa.entities.Role;
 import org.budowa.services.SceneManager;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
-import java.io.IOException;
-import java.util.List;
 
 /**
  * JavaFX App

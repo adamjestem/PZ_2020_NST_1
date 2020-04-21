@@ -12,6 +12,7 @@ import org.budowa.flow.kanban.KanbanController;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 public abstract class DashboardBaseController implements Initializable {
@@ -24,9 +25,9 @@ public abstract class DashboardBaseController implements Initializable {
         this.setBuildings(this.loadBuildings());
     }
 
-    protected abstract Building[] loadBuildings();
+    protected abstract Collection<Building> loadBuildings();
 
-    public void setBuildings(Building[] buildings){
+    public void setBuildings(Collection<Building> buildings){
         this.kanbanController.toDoList.getItems().setAll(this.getFilteredLabels(buildings, BuildingStatus.TODO));
         this.kanbanController.foundationList.getItems().setAll(this.getFilteredLabels(buildings, BuildingStatus.FOUNDATIONS));
         this.kanbanController.wallsList.getItems().setAll(this.getFilteredLabels(buildings, BuildingStatus.WALLS));
@@ -35,7 +36,7 @@ public abstract class DashboardBaseController implements Initializable {
         this.kanbanController.doneList.getItems().setAll(this.getFilteredLabels(buildings, BuildingStatus.DONE));
     }
 
-    private Label[] getFilteredLabels(Building[] buildings, BuildingStatus status) {
+    private Label[] getFilteredLabels(Collection<Building> buildings, BuildingStatus status) {
         var filteredBuildings = new ArrayList<Label>();
         for (var building : buildings) {
             if(building.getStatus() != status) {

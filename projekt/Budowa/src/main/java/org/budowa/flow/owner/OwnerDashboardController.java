@@ -7,13 +7,15 @@ import org.budowa.services.BuildingsService;
 import org.budowa.services.SceneManager;
 import org.budowa.services.SessionManager;
 
+import java.util.Collection;
+
 public class OwnerDashboardController extends DashboardBaseController {
     private final SessionManager sessionManager = SessionManager.inject();
     private final BuildingsService buildingsService = BuildingsService.inject();
     private final SceneManager sceneManager = SceneManager.inject();
 
     @Override
-    protected Building[] loadBuildings() {
+    protected Collection<Building> loadBuildings() {
         return this.buildingsService.getAllBuildings();
     }
 

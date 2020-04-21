@@ -2,7 +2,6 @@ package org.budowa.database;
 
 import org.budowa.entities.Attachment;
 import org.budowa.entities.Building;
-import org.budowa.entities.Role;
 import org.budowa. entities.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -17,7 +16,6 @@ public class DbConnector {
 
     private  DbConnector() {
         Configuration configuration = new Configuration();
-        configuration.addAnnotatedClass(Role.class);
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Attachment.class);
         configuration.addAnnotatedClass(Building.class);

@@ -14,7 +14,6 @@
     <property name="hibernate.show_sql">true</property> <!-- do debugowania !-->
     <mapping class="org.budowa.entities.Attachment"/>
     <mapping class="org.budowa.entities.Building"/>
-    <mapping class="org.budowa.entities.Role"/>
     <mapping class="org.budowa.entities.User"/>
   </session-factory>
 </hibernate-configuration>
