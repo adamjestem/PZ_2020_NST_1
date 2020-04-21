@@ -7,6 +7,8 @@ import org.budowa.services.BuildingsService;
 import org.budowa.services.SceneManager;
 import org.budowa.services.SessionManager;
 
+import java.util.Collection;
+
 public class ManagerDashboardController extends DashboardBaseController {
     private final SessionManager sessionManager = SessionManager.inject();
     private final BuildingsService buildingsService = BuildingsService.inject();
@@ -20,7 +22,7 @@ public class ManagerDashboardController extends DashboardBaseController {
         this.sceneManager.closeWindow();
     }
 
-    protected Building[] loadBuildings() {
+    protected Collection<Building> loadBuildings() {
         // todo: get user id from session manager
         return this.buildingsService.getManagerBuildings(0);
     }

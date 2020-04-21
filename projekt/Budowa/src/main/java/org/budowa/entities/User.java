@@ -14,9 +14,9 @@ public class User {
     private String fullName;
     private Collection<Attachment> attachmentById;
     private Collection<Building> buildingById;
-    private Role roleByRoleId;
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -46,8 +46,8 @@ public class User {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "role_id", nullable = false, insertable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false, updatable = false)
     public UserRole getUserRole() {
         return userRole;
     }
@@ -101,13 +101,4 @@ public class User {
         this.buildingById = buildingById;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
-    public Role getRoleByRoleId() {
-        return roleByRoleId;
-    }
-
-    public void setRoleByRoleId(Role roleByRoleId) {
-        this.roleByRoleId = roleByRoleId;
-    }
 }

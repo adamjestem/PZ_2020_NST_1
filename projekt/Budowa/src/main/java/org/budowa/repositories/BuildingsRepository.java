@@ -1,38 +1,92 @@
 package org.budowa.repositories;
 
 import org.budowa.entities.Building;
-import org.budowa.entities.BuildingStatus;
 
-// todo: add db connection
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.Collection;
+
+
 public class BuildingsRepository {
+
+
+    @PersistenceContext
+    private EntityManager em;
+
+
+    public BuildingsRepository() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Budowa");
+        em = entityManagerFactory.createEntityManager();
+    }
 
     public static BuildingsRepository inject() {
         return new BuildingsRepository();
     }
 
-    private final Building[] fakeData;
 
-    BuildingsRepository() {
-        this.fakeData = new Building[3];
-        var b1 = new Building();
-        b1.setName("Budowa u Staszka");
-        b1.setStatus(BuildingStatus.CEILING);
-        fakeData[0] = b1;
-        var b2 = new Building();
-        b2.setName("Budowa u Zbyszka");
-        b2.setStatus(BuildingStatus.FOUNDATIONS);
-        fakeData[1] = b2;
-        var b3 = new Building();
-        b3.setName("Budowa u Janusza");
-        b3.setStatus(BuildingStatus.TODO);
-        fakeData[2] = b3;
+    /**
+     * find Building by User id
+     * @param managerId
+     * @return User
+     */
+    public Collection<Building>  findByUserid(int managerId) {
+        TypedQuery<Building> q = em.createQuery("SELECT b FROM Building b WHERE b.managerId = :managerId", Building.class);
+        q.setParameter("managerId", managerId);
+        return q.getResultList();
     }
 
-    public Building[] getAllBuildings() {
-        return this.fakeData;
+    /**
+     * Find Building by ID
+     * @param id
+     * @return Building
+     */
+    public Building findById(Integer id) {
+        return em.find(Building.class, id);
     }
 
-    public Building[] getBuildingsByUserId(int userId) {
-        return this.fakeData;
+
+    /**
+     * Find all Building records
+     * @return
+     */
+    public Collection<Building> findAll() {
+        Query query = em.createQuery("SELECT e FROM Building e");
+        return (Collection<Building>) query.getResultList();
     }
+
+    /**
+     * Insert new Building record
+     * @param building
+     * @return userId
+     */
+    public int insert(Building building){
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        building.setCreatedAt(timestamp);
+        em.getTransaction().begin();
+        em.persist(building);
+        em.getTransaction().commit();
+        return building.getId();
+    }
+
+    /**
+     * Update building record
+     * @param building
+     */
+    public void update(Building building){
+        em.getTransaction().begin();
+        em.merge(building);
+        em.getTransaction().commit();
+    }
+
+    /**
+     * Delete user record
+     * @param building
+     */
+    public void delete(Building building){
+        em.getTransaction().begin();
+        em.remove(building);
+        em.getTransaction().commit();
+    }
+
+
 }

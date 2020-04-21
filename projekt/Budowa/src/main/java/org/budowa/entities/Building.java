@@ -3,6 +3,7 @@ package org.budowa.entities;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +19,7 @@ public class Building {
     private User userByManagerId;
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -47,7 +49,7 @@ public class Building {
         this.description = description;
     }
 
-    @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 45)
     public BuildingStatus getStatus() {
         return status;
@@ -66,6 +68,7 @@ public class Building {
     public void setManagerId(int managerId) {
         this.managerId = managerId;
     }
+
 
     @Basic
     @Column(name = "created_at", nullable = false)
@@ -94,6 +97,7 @@ public class Building {
     public int hashCode() {
         return Objects.hash(id, name, description, status, managerId, createdAt);
     }
+
 
     @OneToMany
     public Collection<Attachment> getAttachmentById() {

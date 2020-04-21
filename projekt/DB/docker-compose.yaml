@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'budowa'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'Haslo12.'
+      MYSQL_ROOT_PASSWORD: 'Haslo12.'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - budowa-db:/var/lib/mysql
+
+  # FOR DEBUG
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '9000:80'
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: 'Haslo12.'
+
+volumes:
+  budowa-db:
+
