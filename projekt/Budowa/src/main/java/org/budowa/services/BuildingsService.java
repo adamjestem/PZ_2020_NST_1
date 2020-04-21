@@ -17,6 +17,10 @@ public class BuildingsService {
         return this.buildingsRepository.findByUserid(userId);
     }
 
+    public Collection<Building> getWorkerBuildings(int userId) {
+        return this.buildingsRepository.findByUserid(userId);
+    }
+
     public Collection<Building> getAllBuildings() {
         return this.buildingsRepository.findAll();
     }

@@ -21,6 +21,7 @@ module org.budowa {
 
 //    exports org.budowa.entities to org.hibernate.orm.core;
 
+    opens org.budowa.flow.worker to javafx.fxml;
     exports org.budowa;
     exports org.budowa.repositories;
     exports org.budowa.entities;
