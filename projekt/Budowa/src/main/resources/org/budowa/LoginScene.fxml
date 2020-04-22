@@ -17,7 +17,7 @@
             <TextField fx:id="textFieldUsername" onKeyPressed="#textFieldUsernameAction" promptText="Nazwa użytkownika" />
             <PasswordField fx:id="textFieldPassword"  onKeyPressed="#textFieldPasswordAction"  promptText="Hasło" />
             <Button fx:id="buttonLogin" mnemonicParsing="false" onAction="#loginAction" text="Zaloguj się" />
-            <Text fx:id="textErrorMessage" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Błędna nazwa użytkownika lub hasło" visible="false">
+            <Text fx:id="textErrorMessage" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" visible="false">
                <font>
                   <Font size="13.0" />
                </font>

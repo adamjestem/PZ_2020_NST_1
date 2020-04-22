@@ -3,15 +3,21 @@ package org.budowa.flow.login;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.budowa.entities.User;
+import org.budowa.repositories.UsersRepository;
 import org.budowa.router.Route;
 import org.budowa.router.Router;
+import org.budowa.services.AuthService;
+import org.budowa.services.SessionManager;
 
+import javax.persistence.NoResultException;
 import java.io.IOException;
 import java.util.Random;
 
 public class LoginScene {
 
-    private final Router router = Router.inject();
+    private final AuthService authService = AuthService.inject();
 
     /* Views */
 
@@ -28,17 +34,16 @@ public class LoginScene {
 
     @FXML
     private void loginAction() {
-        // todo: check if valid data if so then login
-        var random = new Random().nextFloat();
-        if (random > 0.5) {
-            displayError();
-        } else {
-            try {
-                this.router.goTo(Route.DASHBOARD);
-            } catch (IOException exception) {
-                // todo show some alert with an error
-                exception.printStackTrace();
-            }
+        try {
+            authService.login(
+                textFieldUsername.getText(),
+                textFieldPassword.getText()
+            );
+        } catch (NoResultException noResultException) {
+            displayError("Użytkownik nie insteje lub podano złe dane.");
+        } catch (Exception e) {
+            displayError("Coś poszło nie tak");
+            e.printStackTrace();
         }
     }
 
@@ -59,9 +64,10 @@ public class LoginScene {
         return true;
     }
 
-    private void displayError() {
+    private void displayError(String msg) {
         setErrorFor(textFieldUsername);
         setErrorFor(textFieldPassword);
+        textErrorMessage.setText(msg);
         textErrorMessage.setVisible(true);
     }
 

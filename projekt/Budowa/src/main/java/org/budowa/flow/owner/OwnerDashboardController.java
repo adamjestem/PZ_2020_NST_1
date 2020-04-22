@@ -3,14 +3,18 @@ package org.budowa.flow.owner;
 import javafx.event.ActionEvent;
 import org.budowa.entities.Building;
 import org.budowa.flow.shared.DashboardBaseController;
+import org.budowa.router.Route;
+import org.budowa.router.Router;
+import org.budowa.services.AuthService;
 import org.budowa.services.BuildingsService;
 import org.budowa.services.SceneManager;
 import org.budowa.services.SessionManager;
 
+import java.io.IOException;
 import java.util.Collection;
 
 public class OwnerDashboardController extends DashboardBaseController {
-    private final SessionManager sessionManager = SessionManager.inject();
+    private final AuthService authService = AuthService.inject();
     private final BuildingsService buildingsService = BuildingsService.inject();
     private final SceneManager sceneManager = SceneManager.inject();
 
@@ -23,8 +27,8 @@ public class OwnerDashboardController extends DashboardBaseController {
         this.loadBuildings();
     }
 
-    public void handleLogout(ActionEvent actionEvent) {
-        sessionManager.logout();
+    public void handleLogout(ActionEvent actionEvent) throws IOException {
+        this.authService.logout();
     }
 
     public void handleClose(ActionEvent actionEvent) {

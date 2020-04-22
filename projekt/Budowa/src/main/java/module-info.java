@@ -11,6 +11,8 @@ module org.budowa {
     requires com.sun.xml.bind;
     requires com.fasterxml.classmate;
 
+    requires commons.codec;
+
     opens org.budowa to javafx.fxml;
     opens org.budowa.flow.login to javafx.fxml;
     opens org.budowa.flow.manager to javafx.fxml;

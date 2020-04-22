@@ -49,7 +49,8 @@ public class Router {
                     // todo: throw unauthorized exception or some other custom exception
                     return;
                 }
-                var userRole = this.sessionManager.getUserRole();
+                var userRole = this.sessionManager.getUser().getUserRole();
+
                 var routeData = Routes.getRouteData(Route.DASHBOARD);
                 String fxml;
                 switch (userRole) {
