@@ -2,6 +2,7 @@ package org.budowa.router;
 
 import org.budowa.flow.Flow;
 import org.budowa.flow.FlowsRegistry;
+import org.budowa.flow.buildings.BuildingDetailController;
 import org.budowa.services.SceneManager;
 import org.budowa.services.SessionManager;
 
@@ -68,5 +69,12 @@ public class Router {
 
         }
         this.currentRoute = route;
+    }
+
+    public void goToBuildingDetail(int buildingId) throws IOException {
+        BuildingDetailController.selectedBuildingId = buildingId;
+        var fxml = FlowsRegistry.getFXML(Flow.BUILDING_DETAIL);
+        var routeData = Routes.getRouteData(Route.BUILDING_DETAIL);
+        this.sceneManager.createScene(fxml, routeData.title);
     }
 }

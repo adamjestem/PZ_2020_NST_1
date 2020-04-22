@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.budowa.flow.buildings.BuildingDetailController">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="330.0">
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+        <children>
+            <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <HBox prefWidth="200.0">
+                    <children>
+                        <Label text="Status">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="status" text="StatusValue">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox prefWidth="200.0">
+                    <children>
+                        <Label text="Priorytet">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="priority" text="High/Medium/Low">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox prefWidth="200.0">
+                    <children>
+                        <Label text="Data dodania">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="date" text="01.12.2017">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox prefWidth="200.0">
+                    <children>
+                        <Label text="Kierownik">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="managerName" text="Imię Nazwisko kierownika">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox prefWidth="200.0">
+                    <children>
+                        <Label text="Pracownicy">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <VBox fx:id="workers">
+
+                        </VBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </VBox.margin>
+                </HBox>
+            </VBox>
+        </children>
+    </AnchorPane>
+    <AnchorPane layoutX="335.0" minHeight="0.0" minWidth="0.0" prefHeight="606.0" prefWidth="470.0">
+        <VBox>
+            <Label fx:id="title" alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="44.0" prefWidth="469.0" text="Title" textAlignment="CENTER">
+                <font>
+                    <Font name="System Bold" size="36.0" />
+                </font>
+                <VBox.margin>
+                    <Insets top="10.0" />
+                </VBox.margin>
+            </Label>
+            <Label fx:id="description" alignment="TOP_LEFT" contentDisplay="BOTTOM" maxWidth="470.0" prefHeight="543.0" prefWidth="470.0" text="Lorem ipsum" textOverrun="CLIP" wrapText="true">
+                <VBox.margin>
+                    <Insets top="10.0" />
+                </VBox.margin>
+            </Label>
+        </VBox>
+    </AnchorPane>
+</AnchorPane>

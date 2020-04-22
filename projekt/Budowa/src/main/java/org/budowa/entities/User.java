@@ -10,13 +10,14 @@ public class User {
     private int id;
     private String username;
     private String password;
+    @Enumerated(EnumType.STRING)
     private UserRole userRole;
     private String fullName;
-    private Collection<Attachment> attachmentById;
-    private Collection<Building> buildingById;
+    private Collection<Attachment> attachments;
+    private Collection<Building> buildings;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -84,21 +85,21 @@ public class User {
     }
 
     @OneToMany
-    public Collection<Attachment> getAttachmentById() {
-        return attachmentById;
+    public Collection<Attachment> getAttachments() {
+        return attachments;
     }
 
-    public void setAttachmentById(Collection<Attachment> attachmentById) {
-        this.attachmentById = attachmentById;
+    public void setAttachments(Collection<Attachment> attachmentById) {
+        this.attachments = attachmentById;
     }
 
-    @OneToMany
-    public Collection<Building> getBuildingById() {
-        return buildingById;
+    @ManyToMany(mappedBy = "workers")
+    public Collection<Building> getBuildings() {
+        return buildings;
     }
 
-    public void setBuildingById(Collection<Building> buildingById) {
-        this.buildingById = buildingById;
+    public void setBuildings(Collection<Building> buildingById) {
+        this.buildings = buildingById;
     }
 
 }

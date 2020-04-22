@@ -10,6 +10,7 @@ public class FlowsRegistry {
             new AbstractMap.SimpleEntry<>(Flow.LOGIN, "LoginScene"),
             new AbstractMap.SimpleEntry<>(Flow.MANAGER_DASHBOARD, "ManagerDashboardScene"),
             new AbstractMap.SimpleEntry<>(Flow.OWNER_DASHBOARD, "OwnerDashboardScene"),
+            new AbstractMap.SimpleEntry<>(Flow.BUILDING_DETAIL, "BuildingDetailScene"),
             new AbstractMap.SimpleEntry<>(Flow.WORKER_DASHBOARD, WorkerDashboardScene.class.getSimpleName())
     );
 

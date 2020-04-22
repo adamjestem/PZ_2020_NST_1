@@ -8,7 +8,7 @@
     <children>
         <VBox layoutX="0" prefHeight="400.0" prefWidth="150">
             <children>
-                <Label alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: DODGERBLUE;" text="Do zrobienia">
+                <Label fx:id="todoLabel" alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: DODGERBLUE;" text="Do zrobienia">
                     <font>
                         <Font name="System Bold Italic" size="15.0" />
                     </font>
@@ -18,7 +18,7 @@
         </VBox>
         <VBox layoutX="170" prefHeight="400.0" prefWidth="150">
             <children>
-                <Label alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: SPRINGGREEN;" text="Fundamenty">
+                <Label fx:id="foundationsLabel" alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: SPRINGGREEN;" text="Fundamenty">
                     <font>
                         <Font name="System Bold Italic" size="15.0" />
                     </font>
@@ -28,7 +28,7 @@
         </VBox>
         <VBox layoutX="340" prefHeight="400.0" prefWidth="150">
             <children>
-                <Label alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: aqua;" text="Mury">
+                <Label fx:id="wallsLabel" alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: aqua;" text="Mury">
                     <font>
                         <Font name="System Bold Italic" size="15.0" />
                     </font>
@@ -38,7 +38,7 @@
         </VBox>
         <VBox layoutX="510" prefHeight="400.0" prefWidth="150">
             <children>
-                <Label alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: blueviolet;" text="Strop">
+                <Label fx:id="ceilingLabel" alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: blueviolet;"">
                     <font>
                         <Font name="System Bold Italic" size="15.0" />
                     </font>
@@ -48,7 +48,7 @@
         </VBox>
         <VBox layoutX="680" prefHeight="400.0" prefWidth="150">
             <children>
-                <Label alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: darkgreen;" text="Dach">
+                <Label fx:id="roofLabel" alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: darkgreen;">
                     <font>
                         <Font name="System Bold Italic" size="15.0" />
                     </font>
@@ -58,7 +58,7 @@
         </VBox>
         <VBox layoutX="850" prefHeight="400.0" prefWidth="150">
             <children>
-                <Label alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: tomato;" text="Gotowy">
+                <Label fx:id="doneLabel" alignment="CENTER" prefHeight="30.0" prefWidth="150" style="-fx-background-color: tomato;">
                     <font>
                         <Font name="System Bold Italic" size="15.0" />
                     </font>

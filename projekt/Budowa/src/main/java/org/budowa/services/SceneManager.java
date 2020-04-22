@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 import org.budowa.App;
 import org.budowa.flow.Flow;
 import org.budowa.flow.FlowsRegistry;
+import org.budowa.router.Route;
+import org.budowa.router.Routes;
 
 import java.io.IOException;
 
@@ -55,13 +57,14 @@ public class SceneManager {
     public void createScene(String fxmlName, String title) throws IOException {
         this.scene = new Scene(loadFXML(fxmlName));
         this.stage.setScene(scene);
+        this.stage.setResizable(false);
         this.stage.setTitle(title);
         this.stage.show();
     }
 
     public void createStartingScene() {
         var defaultScene = FlowsRegistry.getFXML(Flow.LOGIN);
-        var defaultTitle = "Zarządzanie budowami";
+        var defaultTitle = Routes.getRouteData(Route.LOGIN).title;
         try {
             this.createScene(defaultScene, defaultTitle);
         } catch (IOException exception) {

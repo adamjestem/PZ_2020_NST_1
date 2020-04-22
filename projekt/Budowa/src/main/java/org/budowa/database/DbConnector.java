@@ -14,7 +14,7 @@ public class DbConnector {
     private static StandardServiceRegistry serviceRegistry;
     private static DbConnector instance = null;
 
-    private  DbConnector() {
+    private DbConnector() {
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Attachment.class);
@@ -26,7 +26,7 @@ public class DbConnector {
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
     }
 
-    public static DbConnector getInstance(){
+    public static DbConnector inject(){
         if(instance == null){
             instance  = new DbConnector();
         }
