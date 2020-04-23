@@ -10,7 +10,8 @@ public class Routes {
      */
     private static final Map<Route, RouteData> routes = Map.ofEntries(
             new AbstractMap.SimpleEntry<>(Route.LOGIN, new RouteData().title("Logowanie")),
-            new AbstractMap.SimpleEntry<>(Route.DASHBOARD, new RouteData().title("Dashboard"))
+            new AbstractMap.SimpleEntry<>(Route.DASHBOARD, new RouteData().title("Dashboard")),
+            new AbstractMap.SimpleEntry<>(Route.BUILDING_DETAIL, new RouteData().title("Szczegóły budynku"))
     );
 
     /**

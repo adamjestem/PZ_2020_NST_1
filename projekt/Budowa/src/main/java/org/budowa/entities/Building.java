@@ -3,7 +3,6 @@ package org.budowa.entities;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -13,13 +12,15 @@ public class Building {
     private String name;
     private String description;
     private BuildingStatus status;
-    private int managerId;
+    private BuildingPriority priority;
+    private Integer managerId;
     private Timestamp createdAt;
-    private Collection<Attachment> attachmentById;
-    private User userByManagerId;
+    private Collection<Attachment> attachments;
+    private Collection<User> workers;
+    private User manager;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -40,7 +41,7 @@ public class Building {
     }
 
     @Basic
-    @Column(name = "description", nullable = false, length = 255)
+    @Column(name = "description", nullable = false, length = 1000)
     public String getDescription() {
         return description;
     }
@@ -59,13 +60,23 @@ public class Building {
         this.status = status;
     }
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "priority", nullable = false, length = 45)
+    public BuildingPriority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(BuildingPriority priority) {
+        this.priority = priority;
+    }
+
     @Basic
-    @Column(name = "manager_id", nullable = false, insertable = false, updatable = false)
-    public int getManagerId() {
+    @Column(name = "manager_id", insertable = false, updatable = false)
+    public Integer getManagerId() {
         return managerId;
     }
 
-    public void setManagerId(int managerId) {
+    public void setManagerId(Integer managerId) {
         this.managerId = managerId;
     }
 
@@ -100,21 +111,35 @@ public class Building {
 
 
     @OneToMany
-    public Collection<Attachment> getAttachmentById() {
-        return attachmentById;
+    public Collection<Attachment> getAttachments() {
+        return attachments;
     }
 
-    public void setAttachmentById(Collection<Attachment> attachmentById) {
-        this.attachmentById = attachmentById;
+    public void setAttachments(Collection<Attachment> attachmentById) {
+        this.attachments = attachmentById;
     }
 
     @ManyToOne
-    @JoinColumn(name = "manager_id", referencedColumnName = "id", nullable = false)
-    public User getUserByManagerId() {
-        return userByManagerId;
+    @JoinColumn(name = "manager_id", referencedColumnName = "id", nullable = true)
+    public User getManager() {
+        return manager;
     }
 
-    public void setUserByManagerId(User userByManagerId) {
-        this.userByManagerId = userByManagerId;
+    @ManyToMany
+    @JoinTable(
+            name = "workers_buildings",
+            joinColumns = @JoinColumn(name = "building_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    public Collection<User> getWorkers() {
+        return workers;
+    }
+
+    public void setWorkers(Collection<User> workers) {
+        this.workers = workers;
+    }
+
+    public void setManager(User userByManagerId) {
+        this.manager = userByManagerId;
     }
 }

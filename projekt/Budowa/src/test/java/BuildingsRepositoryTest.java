@@ -58,7 +58,7 @@ class BuildingsRepositoryTest {
         Building b = new Building();
         b.setDescription("Testowa budowla");
         b.setStatus(BuildingStatus.CEILING);
-        b.setUserByManagerId(usersRepository.findById(userId));
+        b.setManager(usersRepository.findById(userId));
         b.setName("Test!");
 
         int id = buildingsRepository.insert(b);

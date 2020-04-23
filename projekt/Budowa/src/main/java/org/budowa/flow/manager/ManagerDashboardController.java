@@ -3,12 +3,9 @@ package org.budowa.flow.manager;
 import javafx.event.ActionEvent;
 import org.budowa.entities.Building;
 import org.budowa.flow.shared.DashboardBaseController;
-import org.budowa.router.Route;
-import org.budowa.router.Router;
 import org.budowa.services.AuthService;
 import org.budowa.services.BuildingsService;
 import org.budowa.services.SceneManager;
-import org.budowa.services.SessionManager;
 
 import java.io.IOException;
 import java.util.Collection;

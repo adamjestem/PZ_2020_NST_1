@@ -24,4 +24,8 @@ public class BuildingsService {
     public Collection<Building> getAllBuildings() {
         return this.buildingsRepository.findAll();
     }
+
+    public Building getById(int id) {
+        return this.buildingsRepository.findById(id);
+    }
 }

@@ -10,12 +10,13 @@ public class Attachment {
     private int id;
     private int userId;
     private int buildingId;
+    private String path;
     private Timestamp createdAt;
-    private User userByUserId;
-    private Building buildingByBuildingId;
+    private User user;
+    private Building building;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -43,6 +44,17 @@ public class Attachment {
 
     public void setBuildingId(int buildingId) {
         this.buildingId = buildingId;
+    }
+
+
+    @Basic
+    @Column(name = "path", nullable = false, length=500)
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     @Basic
@@ -73,21 +85,21 @@ public class Attachment {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    public User getUserByUserId() {
-        return userByUserId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserByUserId(User userByUserId) {
-        this.userByUserId = userByUserId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @ManyToOne
     @JoinColumn(name = "building_id", referencedColumnName = "id", nullable = false)
-    public Building getBuildingByBuildingId() {
-        return buildingByBuildingId;
+    public Building getBuilding() {
+        return building;
     }
 
-    public void setBuildingByBuildingId(Building buildingByBuildingId) {
-        this.buildingByBuildingId = buildingByBuildingId;
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 }
