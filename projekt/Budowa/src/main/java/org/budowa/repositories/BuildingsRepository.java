@@ -26,10 +26,11 @@ public class BuildingsRepository {
 
     /**
      * find Building by User id
+     *
      * @param managerId
      * @return User
      */
-    public Collection<Building>  findByUserid(int managerId) {
+    public Collection<Building> findByUserid(int managerId) {
         TypedQuery<Building> q = em.createQuery("SELECT b FROM Building b WHERE b.managerId = :managerId", Building.class);
         q.setParameter("managerId", managerId);
         return q.getResultList();
@@ -37,6 +38,7 @@ public class BuildingsRepository {
 
     /**
      * Find Building by ID
+     *
      * @param id
      * @return Building
      */
@@ -47,6 +49,7 @@ public class BuildingsRepository {
 
     /**
      * Find all Building records
+     *
      * @return
      */
     public Collection<Building> findAll() {
@@ -56,10 +59,11 @@ public class BuildingsRepository {
 
     /**
      * Insert new Building record
+     *
      * @param building
      * @return userId
      */
-    public int insert(Building building){
+    public int insert(Building building) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         building.setCreatedAt(timestamp);
         em.getTransaction().begin();
@@ -70,9 +74,10 @@ public class BuildingsRepository {
 
     /**
      * Update building record
+     *
      * @param building
      */
-    public void update(Building building){
+    public void update(Building building) {
         em.getTransaction().begin();
         em.merge(building);
         em.getTransaction().commit();
@@ -80,13 +85,19 @@ public class BuildingsRepository {
 
     /**
      * Delete user record
+     *
      * @param building
      */
-    public void delete(Building building){
+    public void delete(Building building) {
         em.getTransaction().begin();
         em.remove(building);
         em.getTransaction().commit();
     }
 
 
+    public Building[] getWorkerBuildings(int userId) {
+        Query query = em.createNativeQuery("select * from buildings right join workers_buildings wb on buildings.id = wb.building_id where wb.user_id =" + userId, Building.class);
+        var list = query.getResultList();
+        return (Building[]) list.toArray(new Building[0]);
+    }
 }

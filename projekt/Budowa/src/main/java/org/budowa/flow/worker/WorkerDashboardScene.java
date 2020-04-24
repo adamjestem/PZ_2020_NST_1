@@ -16,6 +16,7 @@ public class WorkerDashboardScene extends DashboardBaseController {
     private final BuildingsService buildingsService = BuildingsService.inject();
     private final SceneManager sceneManager = SceneManager.inject();
     private final ErrorService errorService = ErrorService.inject();
+    private final SessionManager sessionManager = SessionManager.inject();
 
     /* Actions */
 
@@ -38,8 +39,8 @@ public class WorkerDashboardScene extends DashboardBaseController {
     /* Methods [protected] */
 
     @Override
-    protected Collection<Building> loadBuildings() {
-        // todo: get user id from session manager
-        return this.buildingsService.getWorkerBuildings(0);
+    protected Building[] loadBuildings() {
+        var userId = this.sessionManager.getUser().getId();
+        return this.buildingsService.getWorkerBuildings(userId);
     }
 }

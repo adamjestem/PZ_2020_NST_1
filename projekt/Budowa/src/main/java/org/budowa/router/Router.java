@@ -76,5 +76,6 @@ public class Router {
         var fxml = FlowsRegistry.getFXML(Flow.BUILDING_DETAIL);
         var routeData = Routes.getRouteData(Route.BUILDING_DETAIL);
         this.sceneManager.createScene(fxml, routeData.title);
+        this.currentRoute = Route.BUILDING_DETAIL;
     }
 }

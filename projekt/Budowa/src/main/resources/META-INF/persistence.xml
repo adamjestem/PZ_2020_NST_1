@@ -17,6 +17,7 @@
             <property name="javax.persistence.jdbc.password" value="Haslo12." />
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
             <property name="hibernate.dialect.storage_engine" value="innodb"/>
+            <property name="hibernate.globally_quoted_identifiers" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.connection.autocommit" value="true"/>
             <property name="show_sql" value="true"/>
