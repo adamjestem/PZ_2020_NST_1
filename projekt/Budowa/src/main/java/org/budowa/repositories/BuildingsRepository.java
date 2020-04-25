@@ -5,6 +5,7 @@ import org.budowa.entities.Building;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.List;
 
 
 public class BuildingsRepository {
@@ -97,7 +98,7 @@ public class BuildingsRepository {
 
     public Building[] getWorkerBuildings(int userId) {
         Query query = em.createNativeQuery("select * from buildings right join workers_buildings wb on buildings.id = wb.building_id where wb.user_id =" + userId, Building.class);
-        var list = query.getResultList();
-        return (Building[]) list.toArray(new Building[0]);
+        List<Building> list = query.getResultList();
+        return list.toArray(new Building[0]);
     }
 }
