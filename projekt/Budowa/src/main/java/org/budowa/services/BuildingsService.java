@@ -3,8 +3,6 @@ package org.budowa.services;
 import org.budowa.entities.Building;
 import org.budowa.repositories.BuildingsRepository;
 
-import java.util.Collection;
-
 public class BuildingsService {
 
     public static BuildingsService inject() {
@@ -13,16 +11,16 @@ public class BuildingsService {
 
     private BuildingsRepository buildingsRepository = BuildingsRepository.inject();
 
-    public Collection<Building> getManagerBuildings(int userId) {
-        return this.buildingsRepository.findByUserid(userId);
+    public Building[] getManagerBuildings(int userId) {
+        return this.buildingsRepository.findByUserid(userId).toArray(Building[]::new);
     }
 
-    public Collection<Building> getWorkerBuildings(int userId) {
-        return this.buildingsRepository.findByUserid(userId);
+    public Building[] getWorkerBuildings(int userId) {
+        return this.buildingsRepository.getWorkerBuildings(userId);
     }
 
-    public Collection<Building> getAllBuildings() {
-        return this.buildingsRepository.findAll();
+    public Building[] getAllBuildings() {
+        return this.buildingsRepository.findAll().toArray(Building[]::new);
     }
 
     public Building getById(int id) {

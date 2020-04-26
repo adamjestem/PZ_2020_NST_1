@@ -33,9 +33,9 @@ public abstract class DashboardBaseController implements Initializable {
         this.setBuildings(this.loadBuildings());
     }
 
-    protected abstract Collection<Building> loadBuildings();
+    protected abstract Building[] loadBuildings();
 
-    public void setBuildings(Collection<Building> buildings) {
+    public void setBuildings(Building[] buildings) {
         this.kanbanController.toDoList.getItems().setAll(this.getFilteredLabels(buildings, BuildingStatus.TODO));
         this.kanbanController.foundationList.getItems().setAll(this.getFilteredLabels(buildings, BuildingStatus.FOUNDATIONS));
         this.kanbanController.wallsList.getItems().setAll(this.getFilteredLabels(buildings, BuildingStatus.WALLS));
@@ -44,7 +44,7 @@ public abstract class DashboardBaseController implements Initializable {
         this.kanbanController.doneList.getItems().setAll(this.getFilteredLabels(buildings, BuildingStatus.DONE));
     }
 
-    private Label[] getFilteredLabels(Collection<Building> buildings, BuildingStatus status) {
+    private Label[] getFilteredLabels(Building[] buildings, BuildingStatus status) {
         var filteredBuildings = new ArrayList<Label>();
         for (var building : buildings) {
             if (building.getStatus() != status) {

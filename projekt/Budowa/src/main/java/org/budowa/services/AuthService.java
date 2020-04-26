@@ -22,10 +22,11 @@ public class AuthService {
 	}
 
 	public void login(String username, String password) throws IOException {
-		String encryptedPassword = DigestUtils.md5Hex( password );
+		// todo: in sprint 3 add password hashing
+//		String encryptedPassword = DigestUtils.md5Hex( password );
 		User user = usersRepository.findByUsernameAndPassword(
 				username,
-				encryptedPassword
+				password
 		);
 
 		this.sessionManager.setUser(user);

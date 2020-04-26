@@ -5,10 +5,7 @@ import org.budowa.entities.Building;
 import org.budowa.flow.shared.DashboardBaseController;
 import org.budowa.router.Route;
 import org.budowa.router.Router;
-import org.budowa.services.AuthService;
-import org.budowa.services.BuildingsService;
-import org.budowa.services.SceneManager;
-import org.budowa.services.SessionManager;
+import org.budowa.services.*;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -17,9 +14,10 @@ public class OwnerDashboardController extends DashboardBaseController {
     private final AuthService authService = AuthService.inject();
     private final BuildingsService buildingsService = BuildingsService.inject();
     private final SceneManager sceneManager = SceneManager.inject();
+    private final ErrorService errorService = ErrorService.inject();
 
     @Override
-    protected Collection<Building> loadBuildings() {
+    protected Building[] loadBuildings() {
         return this.buildingsService.getAllBuildings();
     }
 
@@ -27,8 +25,12 @@ public class OwnerDashboardController extends DashboardBaseController {
         this.loadBuildings();
     }
 
-    public void handleLogout(ActionEvent actionEvent) throws IOException {
-        this.authService.logout();
+    public void handleLogout(ActionEvent actionEvent) {
+        try {
+            this.authService.logout();
+        } catch (IOException ex) {
+            this.errorService.showError("Coś poszło nie tak");
+        }
     }
 
     public void handleClose(ActionEvent actionEvent) {

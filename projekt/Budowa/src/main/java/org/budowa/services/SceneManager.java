@@ -57,7 +57,6 @@ public class SceneManager {
     public void createScene(String fxmlName, String title) throws IOException {
         this.scene = new Scene(loadFXML(fxmlName));
         this.stage.setScene(scene);
-        this.stage.setResizable(false);
         this.stage.setTitle(title);
         this.stage.show();
     }

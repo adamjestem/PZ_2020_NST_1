@@ -12,6 +12,11 @@
         </padding>
         <children>
             <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane prefHeight="37.0" prefWidth="310.0">
+               <children>
+                  <Button fx:id="returnButton" mnemonicParsing="false" text="Powrót" textAlignment="CENTER" />
+               </children>
+            </Pane>
                 <HBox prefWidth="200.0">
                     <children>
                         <Label text="Status">
