@@ -14,6 +14,7 @@ public class OwnerDashboardController extends DashboardBaseController {
     private final AuthService authService = AuthService.inject();
     private final BuildingsService buildingsService = BuildingsService.inject();
     private final SceneManager sceneManager = SceneManager.inject();
+    private final Router router = Router.inject();
     private final ErrorService errorService = ErrorService.inject();
 
     @Override
@@ -38,7 +39,11 @@ public class OwnerDashboardController extends DashboardBaseController {
     }
 
     public void handleAddBuilding(ActionEvent actionEvent) {
-        // todo: redirect to add building scene
+        try {
+            this.router.goTo(Route.ADD_CONSTRUCTION);
+        } catch (IOException exception) {
+            errorService.showError("Coś poszło nie tak");
+        }
     }
 
     public void handleEditBuilding(ActionEvent actionEvent) {

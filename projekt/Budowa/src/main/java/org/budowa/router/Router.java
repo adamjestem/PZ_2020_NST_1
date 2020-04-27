@@ -65,10 +65,12 @@ public class Router {
                         fxml = FlowsRegistry.getFXML(Flow.WORKER_DASHBOARD);
                 }
                 this.sceneManager.createScene(fxml, routeData.title);
+                break;
             }
             case ADD_CONSTRUCTION: {
                 this.sceneManager.createScene(FlowsRegistry.getFXML(Flow.ADD_CONSTRUCTION), Routes.getRouteData(Route.ADD_CONSTRUCTION).title);
                 this.currentRoute = Route.ADD_CONSTRUCTION;
+                break;
             }
 
         }
