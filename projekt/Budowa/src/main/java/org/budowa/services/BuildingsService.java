@@ -26,4 +26,8 @@ public class BuildingsService {
     public Building getById(int id) {
         return this.buildingsRepository.findById(id);
     }
+
+    public void add(Building building) {
+        buildingsRepository.insert(building);
+    }
 }

@@ -1,8 +1,10 @@
 package org.budowa.repositories;
 import org.budowa.entities.User;
+import org.budowa.entities.UserRole;
 import org.budowa.services.SessionManager;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -51,6 +53,14 @@ public class UsersRepository {
         return em.find(User.class, id);
     }
 
+    public ArrayList<User> findByRole(UserRole role) {
+        TypedQuery<User> q = em.createQuery(
+                "SELECT b FROM User b WHERE role = :role",
+                User.class
+        );
+        q.setParameter("role", role.toString());
+        return (ArrayList<User>) q.getResultList();
+    }
 
     /**
      * Find all User records
@@ -66,7 +76,7 @@ public class UsersRepository {
      * @param user
      * @return userId
      */
-    public int insert(User user){
+    public int insert(User user) {
         em.getTransaction().begin();
         em.persist(user);
         em.getTransaction().commit();
@@ -77,7 +87,7 @@ public class UsersRepository {
      * Update user record
      * @param user
      */
-    public void update(User user){
+    public void update(User user) {
         em.getTransaction().begin();
         em.merge(user);
         em.getTransaction().commit();
@@ -87,11 +97,9 @@ public class UsersRepository {
      * Delete user record
      * @param user
      */
-    public void delete(User user){
+    public void delete(User user) {
         em.getTransaction().begin();
         em.remove(user);
         em.getTransaction().commit();
     }
-
-
 }

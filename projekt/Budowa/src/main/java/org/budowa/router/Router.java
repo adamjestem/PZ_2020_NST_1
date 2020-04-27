@@ -66,6 +66,10 @@ public class Router {
                 }
                 this.sceneManager.createScene(fxml, routeData.title);
             }
+            case ADD_CONSTRUCTION: {
+                this.sceneManager.createScene(FlowsRegistry.getFXML(Flow.ADD_CONSTRUCTION), Routes.getRouteData(Route.ADD_CONSTRUCTION).title);
+                this.currentRoute = Route.ADD_CONSTRUCTION;
+            }
 
         }
         this.currentRoute = route;

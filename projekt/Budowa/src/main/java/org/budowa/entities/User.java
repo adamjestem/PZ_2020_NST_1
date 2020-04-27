@@ -1,6 +1,7 @@
 package org.budowa.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 

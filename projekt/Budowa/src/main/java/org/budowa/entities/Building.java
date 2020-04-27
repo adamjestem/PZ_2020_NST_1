@@ -10,7 +10,12 @@ import java.util.Objects;
 public class Building {
     private int id;
     private String name;
+    private String customer;
+    private String startDate;
+    private String endDate;
     private String description;
+    private String additionalNotes;
+    private String address;
     private BuildingStatus status;
     private BuildingPriority priority;
     private Integer managerId;
@@ -80,6 +85,55 @@ public class Building {
         this.managerId = managerId;
     }
 
+    @Basic
+    @Column(name = "customer", nullable = false, length = 1000)
+    public String getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+
+    @Basic
+    @Column(name = "start_date", nullable = false, length = 1000)
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    @Basic
+    @Column(name = "end_date", nullable = false, length = 1000)
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    @Basic
+    @Column(name = "address", nullable = false, length = 1000)
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Basic
+    @Column(name = "additional_notes", nullable = false, length = 1000)
+    public String getAdditionalNotes() {
+        return additionalNotes;
+    }
+
+    public void setAdditionalNotes(String additionalNotes) {
+        this.additionalNotes = additionalNotes;
+    }
 
     @Basic
     @Column(name = "created_at", nullable = false)
@@ -142,4 +196,5 @@ public class Building {
     public void setManager(User userByManagerId) {
         this.manager = userByManagerId;
     }
+
 }
