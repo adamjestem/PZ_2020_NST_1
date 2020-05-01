@@ -1,7 +1,6 @@
 package org.budowa.repositories;
 import org.budowa.entities.User;
 import org.budowa.entities.UserRole;
-import org.budowa.services.SessionManager;
 
 import javax.persistence.*;
 import java.util.ArrayList;

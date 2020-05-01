@@ -8,11 +8,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import org.budowa.entities.Building;
 import org.budowa.entities.User;
+import org.budowa.entities.UserRole;
 import org.budowa.router.Route;
 import org.budowa.router.Router;
-import org.budowa.services.BuildingsService;
-import org.budowa.services.ErrorService;
-import org.budowa.services.UsersService;
+import org.budowa.services.*;
 
 import javax.persistence.Basic;
 import java.io.IOException;
@@ -27,6 +26,7 @@ public class BuildingDetailController implements Initializable {
     private final UsersService usersService = UsersService.inject();
     private final Router router = Router.inject();
     private final ErrorService errorService = ErrorService.inject();
+    private final SessionManager sessionManager = SessionManager.inject();
     //endregion
 
     // region template controls
@@ -40,6 +40,7 @@ public class BuildingDetailController implements Initializable {
     public Label priority;
     public Label status;
     public Button returnButton;
+    public Button deleteButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,6 +51,17 @@ public class BuildingDetailController implements Initializable {
         this.setPriority(building);
         this.setManagerName(building);
         this.setWorkers(building);
+        if (this.sessionManager.getUser().getUserRole() == UserRole.OWNER) {
+            this.deleteButton.setStyle("visibility: visible");
+            this.deleteButton.setOnMouseClicked(event -> {
+                try {
+                    this.buildingsService.delete(building);
+                    this.router.goTo(Route.DASHBOARD);
+                } catch (IOException exception) {
+                    errorService.showError("Coś poszło nie tak");
+                }
+            });
+        }
 
         this.returnButton.setOnMouseClicked(event -> {
             try {

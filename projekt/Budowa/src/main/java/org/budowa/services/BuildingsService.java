@@ -23,6 +23,8 @@ public class BuildingsService {
         return this.buildingsRepository.findAll().toArray(Building[]::new);
     }
 
+    public void delete (Building building) { this.buildingsRepository.delete(building); };
+
     public Building getById(int id) {
         return this.buildingsRepository.findById(id);
     }
