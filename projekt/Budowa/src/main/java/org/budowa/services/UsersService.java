@@ -21,4 +21,6 @@ public class UsersService {
     public ArrayList<User> getByRole(UserRole role) {
         return usersRepository.findByRole(role);
     }
+
+    public void create (User user) { usersRepository.insert(user); }
 }

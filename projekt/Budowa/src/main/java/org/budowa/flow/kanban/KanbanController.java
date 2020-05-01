@@ -28,7 +28,6 @@ public class KanbanController implements Initializable {
     public Label todoLabel;
 
     public void addBuildings(Building[] building) {
-        System.out.printf(building.toString());
     }
 
     @Override

@@ -6,7 +6,6 @@ import org.budowa.flow.shared.*;
 import org.budowa.services.*;
 
 import java.io.IOException;
-import java.util.Collection;
 
 public class WorkerDashboardScene extends DashboardBaseController {
 
@@ -15,7 +14,7 @@ public class WorkerDashboardScene extends DashboardBaseController {
     private final AuthService authService = AuthService.inject();
     private final BuildingsService buildingsService = BuildingsService.inject();
     private final SceneManager sceneManager = SceneManager.inject();
-    private final ErrorService errorService = ErrorService.inject();
+    private final DialogService dialogService = DialogService.inject();
     private final SessionManager sessionManager = SessionManager.inject();
 
     /* Actions */
@@ -24,7 +23,7 @@ public class WorkerDashboardScene extends DashboardBaseController {
         try {
             this.authService.logout();
         } catch (IOException e) {
-            this.errorService.showError("Coś poszło nie tak.");
+            this.dialogService.showErrorDialog("Coś poszło nie tak.");
         }
     }
 

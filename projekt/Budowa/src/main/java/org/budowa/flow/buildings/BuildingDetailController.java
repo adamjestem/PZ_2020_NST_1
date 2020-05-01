@@ -13,7 +13,6 @@ import org.budowa.router.Route;
 import org.budowa.router.Router;
 import org.budowa.services.*;
 
-import javax.persistence.Basic;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,7 +24,7 @@ public class BuildingDetailController implements Initializable {
 
     private final UsersService usersService = UsersService.inject();
     private final Router router = Router.inject();
-    private final ErrorService errorService = ErrorService.inject();
+    private final DialogService dialogService = DialogService.inject();
     private final SessionManager sessionManager = SessionManager.inject();
     //endregion
 
@@ -58,7 +57,7 @@ public class BuildingDetailController implements Initializable {
                     this.buildingsService.delete(building);
                     this.router.goTo(Route.DASHBOARD);
                 } catch (IOException exception) {
-                    errorService.showError("Coś poszło nie tak");
+                    dialogService.showErrorDialog("Coś poszło nie tak");
                 }
             });
         }
@@ -67,7 +66,7 @@ public class BuildingDetailController implements Initializable {
             try {
                 this.router.goTo(Route.DASHBOARD);
             } catch (IOException exception) {
-                errorService.showError("Coś poszło nie tak");
+                dialogService.showErrorDialog("Coś poszło nie tak");
             }
         });
     }

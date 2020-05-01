@@ -4,19 +4,16 @@ import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
 import org.budowa.entities.*;
 import org.budowa.router.Route;
 import org.budowa.router.Router;
 import org.budowa.services.BuildingsService;
-import org.budowa.services.ErrorService;
+import org.budowa.services.DialogService;
 import org.budowa.services.UsersService;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddBuildingScene implements Initializable {
@@ -26,7 +23,7 @@ public class AddBuildingScene implements Initializable {
     private ArrayList<User> managers;
     private Building building = new Building();
     private final Router router = Router.inject();
-    private final ErrorService errorService = ErrorService.inject();
+    private final DialogService dialogService = DialogService.inject();
 
     @FXML
     private TextField textFieldName;
@@ -81,7 +78,7 @@ public class AddBuildingScene implements Initializable {
         try {
             this.router.goTo(Route.DASHBOARD);
         } catch (IOException exception) {
-            errorService.showError("Coś poszło nie tak");
+            dialogService.showErrorDialog("Coś poszło nie tak");
         }
     }
 

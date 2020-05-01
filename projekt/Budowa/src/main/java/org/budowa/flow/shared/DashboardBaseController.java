@@ -3,27 +3,22 @@ package org.budowa.flow.shared;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import org.budowa.entities.Building;
 import org.budowa.entities.BuildingStatus;
-import org.budowa.flow.buildings.BuildingDetailController;
 import org.budowa.flow.kanban.KanbanController;
-import org.budowa.router.Route;
 import org.budowa.router.Router;
-import org.budowa.services.ErrorService;
+import org.budowa.services.DialogService;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.ResourceBundle;
 
 public abstract class DashboardBaseController implements Initializable {
 
     private final Router router = Router.inject();
-    private final ErrorService errorService = ErrorService.inject();
+    private final DialogService dialogService = DialogService.inject();
 
     @FXML
     public KanbanController kanbanController;
@@ -63,7 +58,7 @@ public abstract class DashboardBaseController implements Initializable {
             try {
                 this.router.goToBuildingDetail(building.getId());
             } catch (IOException e) {
-                this.errorService.showError("Coś poszło nie tak.");
+                this.dialogService.showErrorDialog("Coś poszło nie tak.");
             }
         });
         return label;

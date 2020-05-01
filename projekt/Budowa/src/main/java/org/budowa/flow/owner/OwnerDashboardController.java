@@ -8,14 +8,13 @@ import org.budowa.router.Router;
 import org.budowa.services.*;
 
 import java.io.IOException;
-import java.util.Collection;
 
 public class OwnerDashboardController extends DashboardBaseController {
     private final AuthService authService = AuthService.inject();
     private final BuildingsService buildingsService = BuildingsService.inject();
     private final SceneManager sceneManager = SceneManager.inject();
     private final Router router = Router.inject();
-    private final ErrorService errorService = ErrorService.inject();
+    private final DialogService dialogService = DialogService.inject();
 
     @Override
     protected Building[] loadBuildings() {
@@ -30,7 +29,7 @@ public class OwnerDashboardController extends DashboardBaseController {
         try {
             this.authService.logout();
         } catch (IOException ex) {
-            this.errorService.showError("Coś poszło nie tak");
+            this.dialogService.showErrorDialog("Coś poszło nie tak");
         }
     }
 
@@ -42,7 +41,7 @@ public class OwnerDashboardController extends DashboardBaseController {
         try {
             this.router.goTo(Route.ADD_CONSTRUCTION);
         } catch (IOException exception) {
-            errorService.showError("Coś poszło nie tak");
+            dialogService.showErrorDialog("Coś poszło nie tak");
         }
     }
 
@@ -55,7 +54,12 @@ public class OwnerDashboardController extends DashboardBaseController {
     }
 
     public void handleAddUser(ActionEvent actionEvent) {
-        // todo: redirect to add user
+        try {
+            this.router.goTo(Route.ADD_USER);
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            dialogService.showErrorDialog("Coś poszło nie tak");
+        }
     }
 
     public void handleEditUser(ActionEvent actionEvent) {
