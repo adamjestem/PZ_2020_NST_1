@@ -18,4 +18,5 @@
          // show some alert
     }
     ```
-* Wszystkie dane dot. sesji tego czy user jest zalogowany trzymane jest (lub ma być) w klasie SessionManager
+* Wszystkie dane dot. sesji tego, czy user jest zalogowany. Trzymane jest (lub ma być) w klasie SessionManager
+* Jeżeli robi się zmianę w jednym z modeli domenowych TRZEBA zmienić też `dump.sql` i `dane.sql`
