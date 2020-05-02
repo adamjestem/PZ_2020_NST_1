@@ -6,6 +6,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import org.budowa.entities.Building;
 import org.budowa.entities.User;
 import org.budowa.entities.UserRole;
 import org.budowa.router.Route;
@@ -16,6 +17,7 @@ import org.budowa.services.UsersService;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class UsersListScene implements Initializable {
@@ -30,6 +32,7 @@ public class UsersListScene implements Initializable {
     public TableColumn<User, String> fullNameColumn;
     public TableColumn<User, String> actionsColumn;
     public TableColumn<User, UserRole> userRoleColumn;
+    public TableColumn<User, String> assignedBuildingsColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -37,6 +40,37 @@ public class UsersListScene implements Initializable {
         loginColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         userRoleColumn.setCellValueFactory(new PropertyValueFactory<>("userRole"));
+
+        assignedBuildingsColumn.setCellFactory((user) -> new TableCell<>() {
+            final Button showButton = new Button("Pokaż");
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setText(null);
+                    return;
+                }
+                User user = getTableView().getItems().get(getIndex());
+                if (user.getUserRole() == UserRole.OWNER) {
+                    setText("Nie obowiązuje");
+                    return;
+                }
+                var assignedBuildings = user.getUserRole() == UserRole.MANAGER ? user.getManagedBuildings() : user.getBuildings();
+                String buildingNames;
+                if(assignedBuildings.size() > 0) {
+                    buildingNames = String.join(", ", assignedBuildings.stream().map(Building::getName).toArray(String[]::new));
+                } else {
+                    buildingNames = "Brak";
+                }
+
+                showButton.setOnAction(event -> {
+                    dialogService.showInfoDialog("Przypisane budowy:", buildingNames);
+                });
+                setGraphic(showButton);
+            }
+        });
+
         actionsColumn.setCellFactory((user) -> new TableCell<>() {
             final Button editButton = new Button("Edytuj");
             final Button deleteButton = new Button("Usuń");

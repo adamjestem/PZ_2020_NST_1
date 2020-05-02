@@ -21,6 +21,14 @@ public class DialogService {
         alert.showAndWait();
     }
 
+    public void showInfoDialog(String title, String description) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(title);
+        alert.setContentText(description);
+        alert.showAndWait();
+    }
+
     public Optional<ButtonType> showConfirmDialog(String message) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(message);
