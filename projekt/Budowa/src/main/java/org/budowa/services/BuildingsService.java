@@ -1,6 +1,7 @@
 package org.budowa.services;
 
 import org.budowa.entities.Building;
+import org.budowa.entities.User;
 import org.budowa.repositories.BuildingsRepository;
 
 public class BuildingsService {
@@ -11,8 +12,8 @@ public class BuildingsService {
 
     private BuildingsRepository buildingsRepository = BuildingsRepository.inject();
 
-    public Building[] getManagerBuildings(int userId) {
-        return this.buildingsRepository.findByUserid(userId).toArray(Building[]::new);
+    public Building[] getManagerBuildings(User manager) {
+        return this.buildingsRepository.findByManager(manager).toArray(Building[]::new);
     }
 
     public Building[] getWorkerBuildings(int userId) {
