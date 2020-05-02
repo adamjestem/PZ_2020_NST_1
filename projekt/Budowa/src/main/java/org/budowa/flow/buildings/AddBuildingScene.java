@@ -111,7 +111,6 @@ public class AddBuildingScene implements Initializable {
         building.setDescription(textAreaDescription.getText());
         building.setAdditionalNotes(textAreaAdditionalNotes.getText());
         building.setManager(managers.get(choiceBoxManager.getSelectionModel().getSelectedIndex()));
-        building.setManagerId(managers.get(choiceBoxManager.getSelectionModel().getSelectedIndex()).getId());
         building.setStartDate(datePickerStartDate.getValue().toString());
         building.setEndDate(datePickerEndDate.getValue().toString());
         building.setStatus(BuildingStatus.FOUNDATIONS);

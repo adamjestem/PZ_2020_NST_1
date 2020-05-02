@@ -28,10 +28,10 @@ public class UsersListScene implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        idColumn.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
-        loginColumn.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
-        fullNameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("fullName"));
-        actionsColumn.setCellFactory((user) -> new TableCell<User, String>() {
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        loginColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        actionsColumn.setCellFactory((user) -> new TableCell<>() {
             final Button editButton = new Button("Edytuj");
             final Button deleteButton = new Button("Usuń");
 
@@ -60,6 +60,7 @@ public class UsersListScene implements Initializable {
                         if (decision.isPresent() && decision.get() == ButtonType.OK) {
                             usersService.removeUser(user.getId());
                             dialogService.showInfoDialog("Użytkownik usunięty");
+                            loadUsers();
                         }
                     });
 
@@ -71,8 +72,11 @@ public class UsersListScene implements Initializable {
             }
 
         });
+        this.loadUsers();
+    }
+
+    private void loadUsers() {
         var users = this.usersService.getAll();
         userTable.getItems().setAll(users);
-
     }
 }

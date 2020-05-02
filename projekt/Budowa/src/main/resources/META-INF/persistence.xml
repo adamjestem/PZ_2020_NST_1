@@ -6,7 +6,6 @@
         <!-- Persistence provider -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!-- Entity classes -->
-        <class>org.budowa.entities.Attachment</class>
         <class>org.budowa.entities.Building</class>
         <class>org.budowa.entities.User</class>
 

@@ -99,12 +99,12 @@ public class BuildingDetailController implements Initializable {
     }
 
     private void setManagerName(Building building) {
-        var managerId = building.getManagerId();
-        if (managerId == null) {
+        var manager = building.getManager();
+        if (manager == null) {
             this.managerName.setText("Nieprzypisany");
+        } else {
+            this.managerName.setText(manager.getFullName());
         }
-        var manager = this.usersService.getById(managerId);
-        this.managerName.setText(manager.getFullName());
     }
 
     private void setWorkers(Building building) {
