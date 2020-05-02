@@ -1,23 +1,23 @@
 insert into users (id, full_name, password, role, username)
-values (10, 'Marian Cebula', 'owner', 'OWNER', 'owner');
+values (10, 'Marian Cebula', '72122ce96bfec66e2396d2e25225d70a', 'OWNER', 'owner');
 insert into users (id, full_name, password, role, username)
-values (1, 'Andrzej Strzelba', 'manager1', 'MANAGER', 'manager1');
+values (1, 'Andrzej Strzelba', 'c240642ddef994358c96da82c0361a58', 'MANAGER', 'manager1');
 insert into users (id, full_name, password, role, username)
-values (2, 'Janusz Januszowski', 'manager2', 'MANAGER', 'manager2');
+values (2, 'Janusz Januszowski', '8df5127cd164b5bc2d2b78410a7eea0c', 'MANAGER', 'manager2');
 insert into users (id, full_name, password, role, username)
-values (3, 'Janusz Głowica', 'worker1', 'WORKER', 'worker1');
+values (3, 'Janusz Głowica', 'ebad64149cc767ba26ef069819279fd5', 'WORKER', 'worker1');
 insert into users (id, full_name, password, role, username)
-values (4, 'Adam Mysz', 'worker2', 'WORKER', 'worker2');
+values (4, 'Adam Mysz', '01925b7892e2ca194993afdd20a7c761', 'WORKER', 'worker2');
 insert into users (id, full_name, password, role, username)
-values (5, 'Adam Nowak', 'worker3', 'WORKER', 'worker3');
+values (5, 'Adam Nowak', 'b504f5a746deafd3e78b9c85c20ca653', 'WORKER', 'worker3');
 insert into users (id, full_name, password, role, username)
-values (6, 'Jan Kowalski', 'worker4', 'WORKER', 'worker4');
+values (6, 'Jan Kowalski', '221393135bcf2a755b8ac9da40365c67', 'WORKER', 'worker4');
 insert into users (id, full_name, password, role, username)
-values (7, 'Mariusz Betoniara', 'worker5', 'WORKER', 'worker5');
+values (7, 'Mariusz Betoniara', '6a21db8adb7572cb5d1b15dfaa4469e4', 'WORKER', 'worker5');
 insert into users (id, full_name, password, role, username)
-values (8, 'Zdzisław Ceglarz', 'worker6', 'WORKER', 'worker6');
+values (8, 'Zdzisław Ceglarz', '16b7e21c964d2e0b98a5a4712a0df241', 'WORKER', 'worker6');
 insert into users (id, full_name, password, role, username)
-values (9, 'Józef Zaprawa', 'worker7', 'WORKER', 'worker7');
+values (9, 'Józef Zaprawa', 'e2954e1abf0b7138d9dd7a3c13f5aaec', 'WORKER', 'worker7');
 
 insert into buildings (id, created_at, description, manager_id, name, status, priority, end_date, start_date,
                        additional_notes, address, customer)
