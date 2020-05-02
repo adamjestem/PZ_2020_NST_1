@@ -23,20 +23,20 @@ public class UsersListScene implements Initializable {
     private final UsersService usersService = UsersService.inject();
     private final Router router = Router.inject();
     private final DialogService dialogService = DialogService.inject();
-    private final SessionManager sessionManager = SessionManager.inject();
 
     public TableView<User> userTable;
     public TableColumn<User, Integer> idColumn;
     public TableColumn<User, String> loginColumn;
     public TableColumn<User, String> fullNameColumn;
     public TableColumn<User, String> actionsColumn;
+    public TableColumn<User, UserRole> userRoleColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        var loggedInUser = this.sessionManager.getLoggedInUser();
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         loginColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        userRoleColumn.setCellValueFactory(new PropertyValueFactory<>("userRole"));
         actionsColumn.setCellFactory((user) -> new TableCell<>() {
             final Button editButton = new Button("Edytuj");
             final Button deleteButton = new Button("Usuń");
@@ -47,9 +47,9 @@ public class UsersListScene implements Initializable {
                 if (empty) {
                     setGraphic(null);
                 } else {
+                    User user = getTableView().getItems().get(getIndex());
                     editButton.setCursor(Cursor.HAND);
                     editButton.setOnAction(event -> {
-                        User user = getTableView().getItems().get(getIndex());
                         try {
                             router.goToEditUser(user.getId());
                         } catch (IOException ex) {
@@ -61,7 +61,6 @@ public class UsersListScene implements Initializable {
                     deleteButton.setStyle("-fx-text-fill: white; -fx-background-color: indianred;");
                     deleteButton.setCursor(Cursor.HAND);
                     deleteButton.setOnAction(event -> {
-                        User user = getTableView().getItems().get(getIndex());
                         var decision = dialogService.showConfirmDialog("Czy na pewno chcesz usunąć użytkownika " + user.getFullName());
                         if (decision.isPresent() && decision.get() == ButtonType.OK) {
                             usersService.removeUser(user.getId());
@@ -70,7 +69,7 @@ public class UsersListScene implements Initializable {
                         }
                     });
 
-                    if (loggedInUser.getUserRole() == UserRole.OWNER) {
+                    if (user.getUserRole().equals(UserRole.OWNER)) {
                         deleteButton.setVisible(false);
                     }
 
@@ -93,6 +92,15 @@ public class UsersListScene implements Initializable {
     public void onBackButton(ActionEvent actionEvent) {
         try {
             this.router.goTo(Route.DASHBOARD);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            dialogService.showErrorDialog("Coś poszło nie tak");
+        }
+    }
+
+    public void onAddUser(ActionEvent actionEvent) {
+        try {
+            this.router.goTo(Route.ADD_USER);
         } catch (IOException ex) {
             ex.printStackTrace();
             dialogService.showErrorDialog("Coś poszło nie tak");
