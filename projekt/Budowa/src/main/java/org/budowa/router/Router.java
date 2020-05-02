@@ -3,6 +3,7 @@ package org.budowa.router;
 import org.budowa.flow.Flow;
 import org.budowa.flow.FlowsRegistry;
 import org.budowa.flow.buildings.BuildingDetailController;
+import org.budowa.flow.buildings.EditBuildingScene;
 import org.budowa.services.SceneManager;
 import org.budowa.services.SessionManager;
 
@@ -87,5 +88,13 @@ public class Router {
         var routeData = Routes.getRouteData(Route.BUILDING_DETAIL);
         this.sceneManager.createScene(fxml, routeData.title);
         this.currentRoute = Route.BUILDING_DETAIL;
+    }
+
+    public void goToEditBuildingDetail(int buildingId) throws IOException {
+        EditBuildingScene.selectedBuildingId = buildingId;
+        var fxml = FlowsRegistry.getFXML(Flow.EDIT_BUILDING);
+        var routeData = Routes.getRouteData(Route.EDIT_BUILDING);
+        this.sceneManager.createScene(fxml, routeData.title);
+        this.currentRoute = Route.EDIT_BUILDING;
     }
 }

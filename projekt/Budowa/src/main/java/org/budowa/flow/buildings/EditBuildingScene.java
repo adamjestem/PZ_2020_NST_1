@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import org.budowa.entities.*;
-import org.budowa.router.Route;
 import org.budowa.router.Router;
 import org.budowa.services.BuildingsService;
 import org.budowa.services.DialogService;
@@ -14,10 +13,13 @@ import org.budowa.services.UsersService;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class AddBuildingScene implements Initializable {
+import static java.util.stream.Collectors.toCollection;
+
+public class EditBuildingScene implements Initializable {
 
     private final UsersService usersService = UsersService.inject();
     private final BuildingsService buildingsService = BuildingsService.inject();
@@ -30,6 +32,7 @@ public class AddBuildingScene implements Initializable {
     private Building building = new Building();
     private final Router router = Router.inject();
     private final DialogService dialogService = DialogService.inject();
+    public static int selectedBuildingId;
 
     @FXML
     private TextField textFieldName;
@@ -97,9 +100,7 @@ public class AddBuildingScene implements Initializable {
     private void addWorkerAction() {
         selectedWorkersNames.add(workers.get(choiceBoxWorkers.getSelectionModel().getSelectedIndex()).getFullName());
         selectedWorkers.add(workers.get(choiceBoxWorkers.getSelectionModel().getSelectedIndex()));
-        workers.removeAll(selectedWorkers);
-        mapToItems();
-        choiceBoxWorkers.getItems().setAll(workersItems);
+        reloadWorkers();
     }
 
     @FXML
@@ -117,11 +118,12 @@ public class AddBuildingScene implements Initializable {
         building.setStatus(BuildingStatus.FOUNDATIONS);
         building.setPriority(BuildingPriority.values()[choiceBoxPriority.getSelectionModel().getSelectedIndex()]);
         building.setWorkers(selectedWorkers);
-        buildingsService.add(building);
+        buildingsService.update(building);
         back();
     }
 
     private void setup() {
+        building = buildingsService.getById(selectedBuildingId);
         selectedWorkersNames = FXCollections.observableArrayList();
         workersList.setItems(selectedWorkersNames);
         managers = usersService.getByRole(UserRole.MANAGER);
@@ -130,6 +132,7 @@ public class AddBuildingScene implements Initializable {
         choiceBoxManager.getItems().setAll(managersItems);
         choiceBoxPriority.getItems().setAll(BuildingPriority.values());
         choiceBoxWorkers.getItems().setAll(workersItems);
+        setupBuildingInfo();
     }
 
     private boolean isValid() {
@@ -176,9 +179,24 @@ public class AddBuildingScene implements Initializable {
         return text == null || text.isEmpty();
     }
 
+    private void setupBuildingInfo() {
+        textFieldName.setText(building.getName());
+        textFieldCustomer.setText(building.getCustomer());
+        textFieldAddress.setText(building.getAddress());
+        datePickerStartDate.setValue(LocalDate.parse(building.getStartDate()));
+        datePickerEndDate.setValue(LocalDate.parse(building.getEndDate()));
+        choiceBoxPriority.setValue(building.getPriority());
+        choiceBoxManager.setValue(building.getManager().getFullName());
+        textAreaDescription.setText(building.getDescription());
+        textAreaAdditionalNotes.setText(building.getAdditionalNotes());
+        selectedWorkers = building.getWorkers().stream().collect(toCollection(ArrayList::new));
+        selectedWorkers.forEach( worker -> selectedWorkersNames.add(worker.getFullName()));
+        reloadWorkers();
+    }
+
     private void back() {
         try {
-            this.router.goTo(Route.DASHBOARD);
+            this.router.goToBuildingDetail(selectedBuildingId);
         } catch (IOException exception) {
             dialogService.showErrorDialog("Coś poszło nie tak");
         }
@@ -191,6 +209,12 @@ public class AddBuildingScene implements Initializable {
         workersItems =  workers.stream()
                 .map(worker -> worker.getFullName())
                 .toArray();
+    }
+
+    private void reloadWorkers() {
+        workers.removeAll(selectedWorkers);
+        mapToItems();
+        choiceBoxWorkers.getItems().setAll(workersItems);
     }
 
     private void setErrorFor(Control control) {

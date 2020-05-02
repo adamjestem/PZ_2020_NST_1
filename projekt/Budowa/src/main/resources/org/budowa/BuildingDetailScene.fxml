@@ -14,8 +14,9 @@
             <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <Pane prefHeight="37.0" prefWidth="310.0">
                <children>
-                  <Button fx:id="returnButton" mnemonicParsing="false" text="Powrót" textAlignment="CENTER" />
-                  <Button fx:id="deleteButton" layoutX="255.0" mnemonicParsing="false" style="-fx-background-color: red; visibility: hidden;" text="Usuń" textFill="#d70202" />
+                   <Button fx:id="returnButton" mnemonicParsing="false" text="Powrót" textAlignment="CENTER" />
+                   <Button fx:id="deleteButton" layoutX="255.0" mnemonicParsing="false" style="-fx-background-color: red; visibility: hidden;" text="Usuń" textFill="#d70202" />
+                   <Button fx:id="editButton" layoutX="203.0" mnemonicParsing="false" onAction="#editAction" text="Edytuj" visible="false" />
                </children>
             </Pane>
                 <HBox prefWidth="200.0">

@@ -4,9 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.budowa.flow.buildings.AddBuildingScene">
+<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.budowa.flow.buildings.AddBuildingScene">
    <children>
-      <VBox id="vBoxContainer" layoutX="275.0" prefHeight="500.0" prefWidth="250.0" spacing="4.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="16.0">
+      <VBox id="vBoxContainer" layoutX="275.0" prefHeight="500.0" prefWidth="250.0" spacing="4.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="275.0" AnchorPane.topAnchor="16.0">
          <children>
             <Label text="Nazwa" />
             <TextField fx:id="textFieldName" onKeyPressed="#controlAction">
@@ -45,6 +45,12 @@
                   <Insets top="4.0" />
                </VBox.margin></Label>
             <ChoiceBox fx:id="choiceBoxManager" onInputMethodTextChanged="#controlAction" onKeyPressed="#controlAction" onMouseClicked="#controlAction" prefHeight="25.0" prefWidth="250.0" />
+            <Label text="Pracownicy">
+               <padding>
+                  <Insets top="4.0" />
+               </padding>
+            </Label>
+            <ChoiceBox fx:id="choiceBoxWorkers" prefHeight="25.0" prefWidth="251.0" />
             <Label text="Opis" />
             <TextArea fx:id="textAreaDescription" wrapText="true">
                <VBox.margin>
@@ -64,5 +70,7 @@
             <Insets bottom="8.0" top="8.0" />
          </padding></VBox>
       <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButtonAction" text="Powrót" />
+      <Button fx:id="addWorkerButton" layoutX="536.0" layoutY="428.0" mnemonicParsing="false" onAction="#addWorkerAction" text="Dodaj Pracownika" AnchorPane.leftAnchor="536.0" />
+      <ListView fx:id="workersList" layoutX="658.0" layoutY="428.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="658.0" AnchorPane.rightAnchor="42.0" />
    </children>
 </AnchorPane>

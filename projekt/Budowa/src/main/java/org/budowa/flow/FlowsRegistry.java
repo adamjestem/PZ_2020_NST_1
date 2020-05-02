@@ -1,5 +1,6 @@
 package org.budowa.flow;
 
+import org.budowa.flow.buildings.EditBuildingScene;
 import org.budowa.flow.users.AddUserScene;
 import org.budowa.flow.worker.WorkerDashboardScene;
 import org.budowa.flow.buildings.AddBuildingScene;
@@ -15,7 +16,8 @@ public class FlowsRegistry {
             new AbstractMap.SimpleEntry<>(Flow.BUILDING_DETAIL, "BuildingDetailScene"),
             new AbstractMap.SimpleEntry<>(Flow.WORKER_DASHBOARD, WorkerDashboardScene.class.getSimpleName()),
             new AbstractMap.SimpleEntry<>(Flow.ADD_CONSTRUCTION, AddBuildingScene.class.getSimpleName()),
-            new AbstractMap.SimpleEntry<>(Flow.ADD_USER, AddUserScene.class.getSimpleName())
+            new AbstractMap.SimpleEntry<>(Flow.ADD_USER, AddUserScene.class.getSimpleName()),
+            new AbstractMap.SimpleEntry<>(Flow.EDIT_BUILDING, EditBuildingScene.class.getSimpleName())
     );
 
     public static String getFXML(Flow flow) {

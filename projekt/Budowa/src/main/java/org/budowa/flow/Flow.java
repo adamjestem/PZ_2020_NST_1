@@ -7,5 +7,6 @@ public enum Flow {
     WORKER_DASHBOARD,
     BUILDING_DETAIL,
     ADD_CONSTRUCTION,
-    ADD_USER
+    ADD_USER,
+    EDIT_BUILDING,
 }

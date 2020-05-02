@@ -32,4 +32,8 @@ public class BuildingsService {
     public void add(Building building) {
         buildingsRepository.insert(building);
     }
+
+    public void update(Building building) {
+        buildingsRepository.update(building);
+    }
 }

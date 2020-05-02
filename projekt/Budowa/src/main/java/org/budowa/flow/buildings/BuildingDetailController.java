@@ -40,6 +40,7 @@ public class BuildingDetailController implements Initializable {
     public Label status;
     public Button returnButton;
     public Button deleteButton;
+    public Button editButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,6 +53,7 @@ public class BuildingDetailController implements Initializable {
         this.setWorkers(building);
         if (this.sessionManager.getUser().getUserRole() == UserRole.OWNER) {
             this.deleteButton.setStyle("visibility: visible");
+            this.editButton.setStyle("visibility: visible");
             this.deleteButton.setOnMouseClicked(event -> {
                 try {
                     this.buildingsService.delete(building);
@@ -69,6 +71,15 @@ public class BuildingDetailController implements Initializable {
                 dialogService.showErrorDialog("Coś poszło nie tak");
             }
         });
+    }
+
+    public void editAction() {
+        var building = this.buildingsService.getById(BuildingDetailController.selectedBuildingId);
+        try {
+            router.goToEditBuildingDetail(building.getId());
+        } catch (IOException e) {
+            dialogService.showErrorDialog("Coś poszło nie tak");
+        }
     }
 
     private void setTitle(Building building) {
