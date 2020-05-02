@@ -4,7 +4,9 @@ import org.budowa.entities.User;
 import org.budowa.entities.UserRole;
 import org.budowa.repositories.UsersRepository;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UsersService {
 
@@ -27,4 +29,13 @@ public class UsersService {
         var encryptedPassword = this.authService.encryptPassword(user.getPassword());
         user.setPassword(encryptedPassword);
         usersRepository.insert(user); }
+
+    public ArrayList<User> getAll() {
+        return new ArrayList<>(this.usersRepository.findAll());
+    }
+
+    public void removeUser(int userId) {
+        var user = this.usersRepository.findById(userId);
+        this.usersRepository.delete(user);
+    }
 }

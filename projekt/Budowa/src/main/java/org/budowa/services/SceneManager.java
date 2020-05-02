@@ -62,8 +62,8 @@ public class SceneManager {
     }
 
     public void createStartingScene() {
-        var defaultScene = FlowsRegistry.getFXML(Flow.LOGIN);
-        var defaultTitle = Routes.getRouteData(Route.LOGIN).title;
+        var defaultScene = FlowsRegistry.getFXML(Flow.USERS_LIST);
+        var defaultTitle = Routes.getRouteData(Route.USERS_LIST).title;
         try {
             this.createScene(defaultScene, defaultTitle);
         } catch (IOException exception) {
