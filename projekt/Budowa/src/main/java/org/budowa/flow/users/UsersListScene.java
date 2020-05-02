@@ -1,13 +1,17 @@
 package org.budowa.flow.users;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import org.budowa.entities.User;
+import org.budowa.entities.UserRole;
+import org.budowa.router.Route;
 import org.budowa.router.Router;
 import org.budowa.services.DialogService;
+import org.budowa.services.SessionManager;
 import org.budowa.services.UsersService;
 
 import java.io.IOException;
@@ -19,6 +23,7 @@ public class UsersListScene implements Initializable {
     private final UsersService usersService = UsersService.inject();
     private final Router router = Router.inject();
     private final DialogService dialogService = DialogService.inject();
+    private final SessionManager sessionManager = SessionManager.inject();
 
     public TableView<User> userTable;
     public TableColumn<User, Integer> idColumn;
@@ -28,6 +33,7 @@ public class UsersListScene implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        var loggedInUser = this.sessionManager.getLoggedInUser();
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         loginColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
@@ -64,6 +70,10 @@ public class UsersListScene implements Initializable {
                         }
                     });
 
+                    if (loggedInUser.getUserRole() == UserRole.OWNER) {
+                        deleteButton.setVisible(false);
+                    }
+
                     var hBox = new HBox(5);
                     hBox.getChildren().addAll(editButton, deleteButton);
                     setGraphic(hBox);
@@ -78,5 +88,14 @@ public class UsersListScene implements Initializable {
     private void loadUsers() {
         var users = this.usersService.getAll();
         userTable.getItems().setAll(users);
+    }
+
+    public void onBackButton(ActionEvent actionEvent) {
+        try {
+            this.router.goTo(Route.DASHBOARD);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            dialogService.showErrorDialog("Coś poszło nie tak");
+        }
     }
 }

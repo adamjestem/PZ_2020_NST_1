@@ -39,7 +39,7 @@ public class WorkerDashboardScene extends DashboardBaseController {
 
     @Override
     protected Building[] loadBuildings() {
-        var userId = this.sessionManager.getUser().getId();
+        var userId = this.sessionManager.getLoggedInUser().getId();
         return this.buildingsService.getWorkerBuildings(userId);
     }
 }

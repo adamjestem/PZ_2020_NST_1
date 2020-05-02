@@ -51,7 +51,7 @@ public class BuildingDetailController implements Initializable {
         this.setPriority(building);
         this.setManagerName(building);
         this.setWorkers(building);
-        if (this.sessionManager.getUser().getUserRole() == UserRole.OWNER) {
+        if (this.sessionManager.getLoggedInUser().getUserRole() == UserRole.OWNER) {
             this.deleteButton.setStyle("visibility: visible");
             this.editButton.setStyle("visibility: visible");
             this.deleteButton.setOnMouseClicked(event -> {
