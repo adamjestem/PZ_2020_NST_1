@@ -1,7 +1,6 @@
 package org.budowa.entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -14,7 +13,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
     private String fullName;
-    private Collection<Attachment> attachments;
+    private Collection<Building> managedBuildings;
     private Collection<Building> buildings;
 
     @Id
@@ -85,16 +84,16 @@ public class User {
         return Objects.hash(id, username, password, userRole, fullName);
     }
 
-    @OneToMany
-    public Collection<Attachment> getAttachments() {
-        return attachments;
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.DETACH)
+    public Collection<Building> getManagedBuildings() {
+        return managedBuildings;
     }
 
-    public void setAttachments(Collection<Attachment> attachmentById) {
-        this.attachments = attachmentById;
+    public void setManagedBuildings(Collection<Building> managedBuildings) {
+        this.managedBuildings = managedBuildings;
     }
 
-    @ManyToMany(mappedBy = "workers")
+    @ManyToMany(mappedBy = "workers", cascade = CascadeType.DETACH)
     public Collection<Building> getBuildings() {
         return buildings;
     }
@@ -102,5 +101,4 @@ public class User {
     public void setBuildings(Collection<Building> buildingById) {
         this.buildings = buildingById;
     }
-
 }

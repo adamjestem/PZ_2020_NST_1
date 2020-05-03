@@ -18,9 +18,7 @@ public class Building {
     private String address;
     private BuildingStatus status;
     private BuildingPriority priority;
-    private Integer managerId;
     private Timestamp createdAt;
-    private Collection<Attachment> attachments;
     private Collection<User> workers;
     private User manager;
 
@@ -73,16 +71,6 @@ public class Building {
 
     public void setPriority(BuildingPriority priority) {
         this.priority = priority;
-    }
-
-    @Basic
-    @Column(name = "manager_id", insertable = false, updatable = false)
-    public Integer getManagerId() {
-        return managerId;
-    }
-
-    public void setManagerId(Integer managerId) {
-        this.managerId = managerId;
     }
 
     @Basic
@@ -151,7 +139,6 @@ public class Building {
         if (o == null || getClass() != o.getClass()) return false;
         Building that = (Building) o;
         return id == that.id &&
-                managerId == that.managerId &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(description, that.description) &&
                 Objects.equals(status, that.status) &&
@@ -160,23 +147,17 @@ public class Building {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, status, managerId, createdAt);
-    }
-
-
-    @OneToMany
-    public Collection<Attachment> getAttachments() {
-        return attachments;
-    }
-
-    public void setAttachments(Collection<Attachment> attachmentById) {
-        this.attachments = attachmentById;
+        return Objects.hash(id, name, description, status, createdAt);
     }
 
     @ManyToOne
-    @JoinColumn(name = "manager_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "manager_id", referencedColumnName = "id")
     public User getManager() {
         return manager;
+    }
+
+    public void setManager(User manager) {
+        this.manager = manager;
     }
 
     @ManyToMany
@@ -192,9 +173,4 @@ public class Building {
     public void setWorkers(Collection<User> workers) {
         this.workers = workers;
     }
-
-    public void setManager(User userByManagerId) {
-        this.manager = userByManagerId;
-    }
-
 }

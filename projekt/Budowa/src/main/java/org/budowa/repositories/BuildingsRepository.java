@@ -1,6 +1,7 @@
 package org.budowa.repositories;
 
 import org.budowa.entities.Building;
+import org.budowa.entities.User;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -28,12 +29,12 @@ public class BuildingsRepository {
     /**
      * find Building by User id
      *
-     * @param managerId
-     * @return User
+     * @param manager - manager to to buildings be searched with
+     * @return Collection<Building> - collections of building managed by given manager
      */
-    public Collection<Building> findByUserid(int managerId) {
-        TypedQuery<Building> q = em.createQuery("SELECT b FROM Building b WHERE b.managerId = :managerId", Building.class);
-        q.setParameter("managerId", managerId);
+    public Collection<Building> findByManager(User manager) {
+        TypedQuery<Building> q = em.createQuery("SELECT b FROM Building b WHERE b.manager = :manager", Building.class);
+        q.setParameter("manager", manager);
         return q.getResultList();
     }
 

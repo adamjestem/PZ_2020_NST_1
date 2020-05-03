@@ -51,7 +51,7 @@ public class Router {
                     // todo: throw unauthorized exception or some other custom exception
                     return;
                 }
-                var userRole = this.sessionManager.getUser().getUserRole();
+                var userRole = this.sessionManager.getLoggedInUser().getUserRole();
 
                 var routeData = Routes.getRouteData(Route.DASHBOARD);
                 String fxml;
@@ -77,6 +77,12 @@ public class Router {
             case ADD_USER: {
                 this.sceneManager.createScene(FlowsRegistry.getFXML(Flow.ADD_USER), Routes.getRouteData(Route.ADD_USER).title);
                 this.currentRoute = Route.ADD_USER;
+                break;
+            }
+
+            case USERS_LIST: {
+                this.sceneManager.createScene(FlowsRegistry.getFXML(Flow.USERS_LIST), Routes.getRouteData(Route.USERS_LIST).title);
+                this.currentRoute = Route.USERS_LIST;
             }
         }
         this.currentRoute = route;
@@ -96,5 +102,9 @@ public class Router {
         var routeData = Routes.getRouteData(Route.EDIT_BUILDING);
         this.sceneManager.createScene(fxml, routeData.title);
         this.currentRoute = Route.EDIT_BUILDING;
+    }
+
+    public void goToEditUser(int userId) throws IOException {
+        // todo: go to edit user
     }
 }

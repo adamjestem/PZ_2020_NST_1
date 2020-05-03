@@ -9,7 +9,6 @@ import org.budowa.services.SceneManager;
 import org.budowa.services.SessionManager;
 
 import java.io.IOException;
-import java.util.Collection;
 
 public class ManagerDashboardController extends DashboardBaseController {
     private final AuthService authService = AuthService.inject();
@@ -26,8 +25,8 @@ public class ManagerDashboardController extends DashboardBaseController {
     }
 
     protected Building[] loadBuildings() {
-        var userId = this.sessionManager.getUser().getId();
-        return this.buildingsService.getManagerBuildings(userId);
+        var manager = this.sessionManager.getLoggedInUser();
+        return this.buildingsService.getManagerBuildings(manager);
     }
 
     public void handleRefresh(ActionEvent actionEvent) {

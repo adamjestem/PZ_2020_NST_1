@@ -78,69 +78,6 @@ values (9, NOW(),
         1, 'Hala Sklepu GS', 'DONE', 'HIGH', STR_TO_DATE('1-01-2020', '%d-%m-%Y'),
         STR_TO_DATE('1-01-2021', '%d-%m-%Y'), 'some notes', 'Zgłobień 10', 'Delikatesy GS');
 
-insert into attachments (id, building_id, created_at, path, user_id)
-values (10, 10, NOW(), 'https://media.giphy.com/media/bjfv14wZU7PiM/giphy.gif', 10);
-insert into attachments (id, building_id, created_at, path, user_id)
-values (1, 1, NOW(), 'https://media.giphy.com/media/bjfv14wZU7PiM/giphy.gif', 2);
-insert into attachments (id, building_id, created_at, path, user_id)
-values (2, 10, NOW(), 'https://media.giphy.com/media/bjfv14wZU7PiM/giphy.gif', 4);
-insert into attachments (id, building_id, created_at, path, user_id)
-values (3, 3, NOW(), 'https://media.giphy.com/media/bjfv14wZU7PiM/giphy.gif', 10);
-insert into attachments (id, building_id, created_at, path, user_id)
-values (4, 4, NOW(), 'https://media.giphy.com/media/bjfv14wZU7PiM/giphy.gif', 5);
-insert into attachments (id, building_id, created_at, path, user_id)
-values (5, 4, NOW(), 'https://media.giphy.com/media/bjfv14wZU7PiM/giphy.gif', 10);
-insert into attachments (id, building_id, created_at, path, user_id)
-values (6, 5, NOW(), 'https://media.giphy.com/media/bjfv14wZU7PiM/giphy.gif', 5);
-insert into attachments (id, building_id, created_at, path, user_id)
-values (7, 6, NOW(), 'https://media.giphy.com/media/bjfv14wZU7PiM/giphy.gif', 7);
-insert into attachments (id, building_id, created_at, path, user_id)
-values (8, 9, NOW(), 'https://media.giphy.com/media/bjfv14wZU7PiM/giphy.gif', 8);
-insert into attachments (id, building_id, created_at, path, user_id)
-values (9, 9, NOW(), 'https://media.giphy.com/media/bjfv14wZU7PiM/giphy.gif', 9);
-
-insert into buildings_attachments (Building_id, attachments_id)
-values (10, 10);
-insert into buildings_attachments (Building_id, attachments_id)
-values (1, 1);
-insert into buildings_attachments (Building_id, attachments_id)
-values (2, 2);
-insert into buildings_attachments (Building_id, attachments_id)
-values (3, 3);
-insert into buildings_attachments (Building_id, attachments_id)
-values (4, 4);
-insert into buildings_attachments (Building_id, attachments_id)
-values (5, 5);
-insert into buildings_attachments (Building_id, attachments_id)
-values (6, 6);
-insert into buildings_attachments (Building_id, attachments_id)
-values (7, 7);
-insert into buildings_attachments (Building_id, attachments_id)
-values (8, 8);
-insert into buildings_attachments (Building_id, attachments_id)
-values (8, 9);
-
-insert into users_attachments (User_id, attachments_id)
-values (10, 10);
-insert into users_attachments (User_id, attachments_id)
-values (10, 1);
-insert into users_attachments (User_id, attachments_id)
-values (2, 2);
-insert into users_attachments (User_id, attachments_id)
-values (2, 3);
-insert into users_attachments (User_id, attachments_id)
-values (4, 4);
-insert into users_attachments (User_id, attachments_id)
-values (5, 5);
-insert into users_attachments (User_id, attachments_id)
-values (6, 6);
-insert into users_attachments (User_id, attachments_id)
-values (7, 7);
-insert into users_attachments (User_id, attachments_id)
-values (8, 8);
-insert into users_attachments (User_id, attachments_id)
-values (8, 9);
-
 insert into workers_buildings(User_id, building_id) value (3, 1);
 insert into workers_buildings(User_id, building_id) value (3, 5);
 insert into workers_buildings(User_id, building_id) value (4, 2);

@@ -112,7 +112,6 @@ public class EditBuildingScene implements Initializable {
         building.setDescription(textAreaDescription.getText());
         building.setAdditionalNotes(textAreaAdditionalNotes.getText());
         building.setManager(managers.get(choiceBoxManager.getSelectionModel().getSelectedIndex()));
-        building.setManagerId(managers.get(choiceBoxManager.getSelectionModel().getSelectedIndex()).getId());
         building.setStartDate(datePickerStartDate.getValue().toString());
         building.setEndDate(datePickerEndDate.getValue().toString());
         building.setStatus(BuildingStatus.FOUNDATIONS);
@@ -186,7 +185,8 @@ public class EditBuildingScene implements Initializable {
         datePickerStartDate.setValue(LocalDate.parse(building.getStartDate()));
         datePickerEndDate.setValue(LocalDate.parse(building.getEndDate()));
         choiceBoxPriority.setValue(building.getPriority());
-        choiceBoxManager.setValue(building.getManager().getFullName());
+        var manager = building.getManager();
+        choiceBoxManager.setValue(manager != null ? manager.getFullName() : "Brak");
         textAreaDescription.setText(building.getDescription());
         textAreaAdditionalNotes.setText(building.getAdditionalNotes());
         selectedWorkers = building.getWorkers().stream().collect(toCollection(ArrayList::new));

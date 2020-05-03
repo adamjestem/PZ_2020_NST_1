@@ -29,9 +29,7 @@
                         <Menu mnemonicParsing="false" text="Użytkownicy">
                             <items>
                                 <MenuItem onAction="#handleAddUser" mnemonicParsing="false" text="Dodaj nowego"/>
-                                <MenuItem onAction="#handleEditUser" mnemonicParsing="false" text="Edytuj"/>
-                                <MenuItem onAction="#handleDeleteUser" mnemonicParsing="false" text="Usuń"/>
-                                <MenuItem onAction="#handleShowAllUsers" mnemonicParsing="false" text="Pokaż wszystkich"/>
+                                <MenuItem onAction="#handleShowAllUsers" mnemonicParsing="false" text="Lista użytkowników"/>
                             </items>
                         </Menu>
                     </menus>

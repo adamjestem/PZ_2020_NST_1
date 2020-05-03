@@ -10,7 +10,6 @@
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.connection.autocommit">true</property>
     <property name="hibernate.show_sql">true</property>
-    <mapping class="org.budowa.entities.Attachment"/>
     <mapping class="org.budowa.entities.Building"/>
     <mapping class="org.budowa.entities.User"/>
   </session-factory>

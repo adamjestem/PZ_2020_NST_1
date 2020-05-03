@@ -19,11 +19,11 @@ public class SessionManager {
         return this.user != null;
     }
 
-    public void setUser (User user) {
-    	this.user = user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public User getUser () {
-    	return this.user;
-		}
+    public User getLoggedInUser() {
+        return this.user;
+    }
 }

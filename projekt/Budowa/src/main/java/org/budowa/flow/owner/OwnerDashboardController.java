@@ -62,15 +62,11 @@ public class OwnerDashboardController extends DashboardBaseController {
         }
     }
 
-    public void handleEditUser(ActionEvent actionEvent) {
-        // todo: redirect to edit user
-    }
-
-    public void handleDeleteUser(ActionEvent actionEvent) {
-        // todo: redirect to delete user
-    }
-
     public void handleShowAllUsers(ActionEvent actionEvent) {
-        // todo: redirect to show all users
+        try {
+            this.router.goTo(Route.USERS_LIST);
+        } catch (IOException exception) {
+            dialogService.showErrorDialog("Coś poszło nie tak");
+        }
     }
 }
