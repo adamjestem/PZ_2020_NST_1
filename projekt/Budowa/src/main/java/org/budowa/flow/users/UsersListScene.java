@@ -40,10 +40,8 @@ public class UsersListScene implements Initializable {
         loginColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         userRoleColumn.setCellValueFactory(new PropertyValueFactory<>("userRole"));
-
         assignedBuildingsColumn.setCellFactory((user) -> new TableCell<>() {
             final Button showButton = new Button("Pokaż");
-
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -57,17 +55,16 @@ public class UsersListScene implements Initializable {
                     return;
                 }
                 var assignedBuildings = user.getUserRole() == UserRole.MANAGER ? user.getManagedBuildings() : user.getBuildings();
-                String buildingNames;
-                if(assignedBuildings.size() > 0) {
-                    buildingNames = String.join(", ", assignedBuildings.stream().map(Building::getName).toArray(String[]::new));
+                if (assignedBuildings != null && assignedBuildings.size() > 0) {
+                    String buildingNames = String.join(", ", assignedBuildings.stream().map(Building::getName).toArray(String[]::new));
+                    showButton.setOnAction(event -> {
+                        dialogService.showInfoDialog("Przypisane budowy:", buildingNames);
+                    });
+                    setGraphic(showButton);
+                    setText(null);
                 } else {
-                    buildingNames = "Brak";
+                    setText("Brak");
                 }
-
-                showButton.setOnAction(event -> {
-                    dialogService.showInfoDialog("Przypisane budowy:", buildingNames);
-                });
-                setGraphic(showButton);
             }
         });
 
@@ -119,6 +116,7 @@ public class UsersListScene implements Initializable {
     }
 
     private void loadUsers() {
+        userTable.getItems().clear();
         var users = this.usersService.getAll();
         userTable.getItems().setAll(users);
     }
@@ -134,6 +132,7 @@ public class UsersListScene implements Initializable {
 
     public void onAddUser(ActionEvent actionEvent) {
         try {
+            AddUserScene.isEditing = false;
             this.router.goTo(Route.ADD_USER);
         } catch (IOException ex) {
             ex.printStackTrace();

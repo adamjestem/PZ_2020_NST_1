@@ -22,7 +22,6 @@ public class AddUserScene implements Initializable {
 	private final Router router = Router.inject();
 	private final DialogService dialogService = DialogService.inject();
 	private final UsersService usersService = UsersService.inject();
-	private final PasswordEncryptor passwordEncryptor = PasswordEncryptor.inject();
 	private User user = new User();
 	public static int selectedUserId;
 	public static boolean isEditing = false;
@@ -112,6 +111,11 @@ public class AddUserScene implements Initializable {
 			textFieldLogin.setText(user.getUsername());
 			choiceBoxRole.setValue(user.getUserRole());
 			buttonAdd.setText("Edytuj");
+		} else {
+			textFieldName.setText("");
+			textFieldLogin.setText("");
+			choiceBoxRole.setValue(UserRole.MANAGER);
+			buttonAdd.setText("Dodaj");
 		}
 	}
 

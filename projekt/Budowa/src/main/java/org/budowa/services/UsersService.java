@@ -45,13 +45,19 @@ public class UsersService {
     public void removeUser(int userId) {
         var user = this.usersRepository.findById(userId);
         var buildings = user.getBuildings();
-        for(var building : buildings) {
-            building.getWorkers().remove(user);
+        if (buildings != null) {
+            for(var building : buildings) {
+                building.getWorkers().remove(user);
+            }
         }
+
         var managedBuildings = user.getManagedBuildings();
-        for(var building : managedBuildings) {
-            building.setManager(null);
+        if (managedBuildings != null) {
+            for(var building : managedBuildings) {
+                building.setManager(null);
+            }
         }
+
         this.usersRepository.delete(user);
     }
 }

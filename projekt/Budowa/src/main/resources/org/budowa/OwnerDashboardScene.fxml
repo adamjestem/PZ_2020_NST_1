@@ -22,8 +22,6 @@
                         <Menu mnemonicParsing="false" text="Budowy">
                             <items>
                                 <MenuItem onAction="#handleAddBuilding" mnemonicParsing="false" text="Dodaj"/>
-                                <MenuItem onAction="#handleEditBuilding" mnemonicParsing="false" text="Edytuj"/>
-                                <MenuItem onAction="#handleDeleteBuilding" mnemonicParsing="false" text="Usuń"/>
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Użytkownicy">

@@ -5,7 +5,6 @@ public enum UserRole {
     MANAGER,
     OWNER;
 
-
     @Override
     public String toString() {
         switch (this) {

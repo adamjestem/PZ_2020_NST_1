@@ -54,10 +54,10 @@ public class UsersRepository {
 
     public ArrayList<User> findByRole(UserRole role) {
         TypedQuery<User> q = em.createQuery(
-                "SELECT b FROM User b WHERE role = :role",
+                "SELECT b FROM User b WHERE b.userRole = :role",
                 User.class
         );
-        q.setParameter("role", role.toString());
+        q.setParameter("role", role);
         return (ArrayList<User>) q.getResultList();
     }
 
