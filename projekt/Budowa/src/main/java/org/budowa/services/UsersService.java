@@ -34,6 +34,14 @@ public class UsersService {
         return new ArrayList<>(this.usersRepository.findAll());
     }
 
+    public void update(User user, boolean newPassword) {
+        if (newPassword) {
+            var encryptedPassword = this.authService.encryptPassword(user.getPassword());
+            user.setPassword(encryptedPassword);
+        }
+        usersRepository.update(user);
+    }
+
     public void removeUser(int userId) {
         var user = this.usersRepository.findById(userId);
         var buildings = user.getBuildings();

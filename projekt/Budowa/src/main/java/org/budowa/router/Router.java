@@ -2,8 +2,10 @@ package org.budowa.router;
 
 import org.budowa.flow.Flow;
 import org.budowa.flow.FlowsRegistry;
+import org.budowa.flow.buildings.AddBuildingScene;
 import org.budowa.flow.buildings.BuildingDetailController;
 import org.budowa.flow.buildings.EditBuildingScene;
+import org.budowa.flow.users.AddUserScene;
 import org.budowa.services.SceneManager;
 import org.budowa.services.SessionManager;
 
@@ -105,6 +107,11 @@ public class Router {
     }
 
     public void goToEditUser(int userId) throws IOException {
-        // todo: go to edit user
+        AddUserScene.isEditing = true;
+        AddUserScene.selectedUserId = userId;
+        var fxml = FlowsRegistry.getFXML(Flow.EDIT_USER);
+        var routeData = Routes.getRouteData(Route.EDIT_USER);
+        this.sceneManager.createScene(fxml, routeData.title);
+        this.currentRoute = Route.EDIT_USER;
     }
 }

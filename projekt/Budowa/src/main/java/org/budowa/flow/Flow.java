@@ -9,5 +9,6 @@ public enum Flow {
     ADD_CONSTRUCTION,
     ADD_USER,
     EDIT_BUILDING,
-    USERS_LIST
+    USERS_LIST,
+    EDIT_USER
 }

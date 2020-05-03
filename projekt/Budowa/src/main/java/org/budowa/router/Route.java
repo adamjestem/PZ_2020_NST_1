@@ -7,5 +7,6 @@ public enum Route {
     ADD_USER,
     BUILDING_DETAIL,
     EDIT_BUILDING,
-    USERS_LIST
+    USERS_LIST,
+    EDIT_USER
 }

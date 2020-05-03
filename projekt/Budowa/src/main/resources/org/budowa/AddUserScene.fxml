@@ -20,10 +20,10 @@
                   <Insets bottom="4.0" />
                </VBox.margin></TextField>
             <Label text="Hasło" />
-            <TextField fx:id="textFieldPassword" onKeyPressed="#controlAction">
+            <PasswordField fx:id="textFieldPassword" onKeyPressed="#controlAction">
                <VBox.margin>
                   <Insets bottom="4.0" />
-               </VBox.margin></TextField>
+               </VBox.margin></PasswordField>
             <Label text="Rola" />
             <ChoiceBox fx:id="choiceBoxRole" onInputMethodTextChanged="#controlAction" onKeyPressed="#controlAction" onMouseClicked="#controlAction" prefHeight="25.0" prefWidth="262.0">
                <VBox.margin>

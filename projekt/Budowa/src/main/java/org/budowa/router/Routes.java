@@ -15,7 +15,8 @@ public class Routes {
             new AbstractMap.SimpleEntry<>(Route.ADD_CONSTRUCTION, new RouteData().title("Dodaj budowle")),
             new AbstractMap.SimpleEntry<>(Route.ADD_USER, new RouteData().title("Dodaj użytkownika")),
             new AbstractMap.SimpleEntry<>(Route.EDIT_BUILDING, new RouteData().title("Edytuj Budowe")),
-            new AbstractMap.SimpleEntry<>(Route.USERS_LIST, new RouteData().title("Lista użytkowników"))
+            new AbstractMap.SimpleEntry<>(Route.USERS_LIST, new RouteData().title("Lista użytkowników")),
+            new AbstractMap.SimpleEntry<>(Route.EDIT_USER, new RouteData().title("Edytuj użytkownika"))
     );
 
     /**

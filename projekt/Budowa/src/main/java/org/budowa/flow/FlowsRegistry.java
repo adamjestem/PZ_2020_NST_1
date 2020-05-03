@@ -19,7 +19,8 @@ public class FlowsRegistry {
             new AbstractMap.SimpleEntry<>(Flow.ADD_CONSTRUCTION, AddBuildingScene.class.getSimpleName()),
             new AbstractMap.SimpleEntry<>(Flow.ADD_USER, AddUserScene.class.getSimpleName()),
             new AbstractMap.SimpleEntry<>(Flow.EDIT_BUILDING, EditBuildingScene.class.getSimpleName()),
-            new AbstractMap.SimpleEntry<>(Flow.USERS_LIST, UsersListScene.class.getSimpleName())
+            new AbstractMap.SimpleEntry<>(Flow.USERS_LIST, UsersListScene.class.getSimpleName()),
+            new AbstractMap.SimpleEntry<>(Flow.EDIT_USER, AddUserScene.class.getSimpleName())
     );
 
     public static String getFXML(Flow flow) {

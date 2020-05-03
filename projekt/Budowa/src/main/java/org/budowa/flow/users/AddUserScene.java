@@ -2,6 +2,7 @@ package org.budowa.flow.users;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
@@ -10,6 +11,7 @@ import org.budowa.entities.UserRole;
 import org.budowa.router.Route;
 import org.budowa.router.Router;
 import org.budowa.services.DialogService;
+import org.budowa.services.PasswordEncryptor;
 import org.budowa.services.UsersService;
 
 import java.io.IOException;
@@ -20,7 +22,10 @@ public class AddUserScene implements Initializable {
 	private final Router router = Router.inject();
 	private final DialogService dialogService = DialogService.inject();
 	private final UsersService usersService = UsersService.inject();
+	private final PasswordEncryptor passwordEncryptor = PasswordEncryptor.inject();
 	private User user = new User();
+	public static int selectedUserId;
+	public static boolean isEditing = false;
 
 	@FXML
 	private TextField textFieldName;
@@ -34,8 +39,12 @@ public class AddUserScene implements Initializable {
 	@FXML
 	private ChoiceBox<UserRole> choiceBoxRole;
 
+	@FXML
+	private Button buttonAdd;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		setup();
 		choiceBoxRole.getItems().setAll(UserRole.values());
 	}
 
@@ -56,8 +65,13 @@ public class AddUserScene implements Initializable {
 				user.setPassword(textFieldPassword.getText());
 				user.setUserRole(choiceBoxRole.getSelectionModel().getSelectedItem());
 
-				usersService.create(user);
-				dialogService.showInfoDialog("Udało się stworzyć użytkownika!");
+				if (isEditing) {
+					usersService.update(user, !textFieldPassword.getText().isEmpty() || textFieldPassword.getText() != null);
+					dialogService.showInfoDialog("Udało się edytować użytkownika!");
+				} else {
+					usersService.create(user);
+					dialogService.showInfoDialog("Udało się stworzyć użytkownika!");
+				}
 			}
 		} catch (Exception e) {
 			dialogService.showErrorDialog("Coś poszło nie tak");
@@ -76,9 +90,11 @@ public class AddUserScene implements Initializable {
 			isValid = false;
 		}
 
-		if (isTextValid(textFieldPassword.getText())) {
-			setErrorFor(textFieldPassword);
-			isValid = false;
+		if (!isEditing) {
+			if (isTextValid(textFieldPassword.getText())) {
+				setErrorFor(textFieldPassword);
+				isValid = false;
+			}
 		}
 
 		if (choiceBoxRole.getValue() == null) {
@@ -87,6 +103,16 @@ public class AddUserScene implements Initializable {
 		}
 
 		return isValid;
+	}
+
+	private void setup() {
+		if (isEditing) {
+			user = usersService.getById(selectedUserId);
+			textFieldName.setText(user.getFullName());
+			textFieldLogin.setText(user.getUsername());
+			choiceBoxRole.setValue(user.getUserRole());
+			buttonAdd.setText("Edytuj");
+		}
 	}
 
 	private boolean isTextValid(String text) {
