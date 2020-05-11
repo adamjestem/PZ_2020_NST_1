@@ -6,7 +6,7 @@ use budowa;
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: May 02, 2020 at 04:10 PM
+-- Generation Time: May 11, 2020 at 04:00 PM
 -- Server version: 8.0.19
 -- PHP Version: 7.4.1
 
@@ -38,7 +38,7 @@ CREATE TABLE `buildings` (
   `created_at` datetime(6) NOT NULL,
   `customer` varchar(1000) NOT NULL,
   `description` varchar(1000) NOT NULL,
-  `end_date` varchar(1000) NOT NULL,
+  `end_date` varchar(1000) DEFAULT NULL,
   `name` varchar(45) NOT NULL,
   `priority` varchar(45) NOT NULL,
   `start_date` varchar(1000) NOT NULL,
@@ -59,7 +59,6 @@ CREATE TABLE `users` (
   `role` varchar(255) NOT NULL,
   `username` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 
 -- --------------------------------------------------------
 
@@ -104,13 +103,13 @@ ALTER TABLE `workers_buildings`
 -- AUTO_INCREMENT for table `buildings`
 --
 ALTER TABLE `buildings`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

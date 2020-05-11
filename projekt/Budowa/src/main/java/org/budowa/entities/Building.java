@@ -94,7 +94,7 @@ public class Building {
     }
 
     @Basic
-    @Column(name = "end_date", nullable = false, length = 1000)
+    @Column(name = "end_date", length = 1000)
     public String getEndDate() {
         return endDate;
     }

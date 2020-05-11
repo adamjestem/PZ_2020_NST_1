@@ -1,5 +1,6 @@
 package org.budowa.flow.buildings;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,6 +27,7 @@ public class BuildingDetailController implements Initializable {
     private final Router router = Router.inject();
     private final DialogService dialogService = DialogService.inject();
     private final SessionManager sessionManager = SessionManager.inject();
+    private final PdfBuilder pdfBuilder = PdfBuilder.inject();
     //endregion
 
     // region template controls
@@ -41,15 +43,20 @@ public class BuildingDetailController implements Initializable {
     public Button returnButton;
     public Button deleteButton;
     public Button editButton;
+    public Label startDate;
+    public Label endDate;
+
+    private Building building;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        var building = this.buildingsService.getById(BuildingDetailController.selectedBuildingId);
+        building = this.buildingsService.getById(BuildingDetailController.selectedBuildingId);
         this.setTitle(building);
         this.setDescription(building);
         this.setStatus(building);
         this.setPriority(building);
         this.setManagerName(building);
+        this.setDates(building);
         this.setWorkers(building);
         if (this.sessionManager.getLoggedInUser().getUserRole() == UserRole.OWNER) {
             this.deleteButton.setStyle("visibility: visible");
@@ -99,12 +106,7 @@ public class BuildingDetailController implements Initializable {
     }
 
     private void setManagerName(Building building) {
-        var manager = building.getManager();
-        if (manager == null) {
-            this.managerName.setText("Nieprzypisany");
-        } else {
-            this.managerName.setText(manager.getFullName());
-        }
+        this.managerName.setText(this.getManagerName(building.getManager()));
     }
 
     private void setWorkers(Building building) {
@@ -114,5 +116,37 @@ public class BuildingDetailController implements Initializable {
             label.setFont(Font.font("System", FontWeight.BOLD, 14));
             this.workers.getChildren().add(label);
         }
+    }
+
+    private void setDates(Building building) {
+        this.startDate.setText(this.getDataValue(building.getStartDate()));
+        this.endDate.setText(this.getDataValue(building.getEndDate()));
+    }
+
+    public void printRaport(ActionEvent mouseEvent) {
+        try {
+            pdfBuilder.create(this.building.getName())
+                    .addDataBlock("Nazwa budynku:", building.getName())
+                    .addDataBlock("Status:", this.building.getStatus().toString())
+                    .addDataBlock("Priorytet:", this.building.getPriority().toString())
+                    .addDataBlock("Data dodania:", this.getDataValue(this.building.getStartDate()))
+                    .addDataBlock("Data zakończenia:", this.getDataValue(this.building.getEndDate()))
+                    .addDataBlock("Kierownik:", this.getManagerName(building.getManager()))
+                    .addList("Pracownicy:", this.building.getWorkers().stream().map(User::getFullName).toArray(String[]::new))
+                    .addDataBlock("Opis:", this.building.getDescription())
+                    .save();
+
+            this.dialogService.showInfoDialog("Poprawnie zapisano PDF.");
+        } catch (Exception ex) {
+            this.dialogService.showErrorDialog("Coś poszło nie tak.");
+        }
+    }
+
+    private String getManagerName(User manager) {
+        return manager != null ? manager.getFullName() : "Nieprzypisany";
+    }
+
+    private String getDataValue(String date) {
+        return date == null || date.equals("") ? "Brak" : date;
     }
 }

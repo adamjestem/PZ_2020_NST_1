@@ -14,9 +14,14 @@
             <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <Pane prefHeight="37.0" prefWidth="310.0">
                <children>
-                   <Button fx:id="returnButton" mnemonicParsing="false" text="Powrót" textAlignment="CENTER" />
-                   <Button fx:id="deleteButton" layoutX="255.0" mnemonicParsing="false" style="-fx-background-color: red; visibility: hidden;" text="Usuń" textFill="#d70202" />
-                   <Button fx:id="editButton" layoutX="203.0" mnemonicParsing="false" onAction="#editAction" text="Edytuj" visible="false" />
+                   <Button fx:id="returnButton" layoutY="5.0" mnemonicParsing="false" text="Powrót" textAlignment="CENTER" />
+                  <HBox alignment="CENTER_RIGHT" layoutX="90.0" prefHeight="37.0" prefWidth="220.0" spacing="3.0">
+                     <children>
+                         <Button fx:id="deleteButton" mnemonicParsing="false" style="-fx-background-color: red; visibility: hidden;" text="Usuń" textFill="#d70202" />
+                         <Button fx:id="editButton" mnemonicParsing="false" onAction="#editAction" text="Edytuj" visible="false" />
+                         <Button mnemonicParsing="false" onAction="#printRaport" text="Raport" />
+                     </children>
+                  </HBox>
                </children>
             </Pane>
                 <HBox prefWidth="200.0">
@@ -63,7 +68,25 @@
                             </font>
                         </Label>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Label fx:id="date" text="01.12.2017">
+                        <Label fx:id="startDate">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox prefWidth="200.0">
+                    <children>
+                        <Label text="Data zakończenia">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="endDate">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
