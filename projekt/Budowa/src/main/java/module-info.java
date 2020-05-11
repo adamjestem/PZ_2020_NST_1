@@ -10,6 +10,7 @@ module org.budowa {
     requires java.xml.bind;
     requires com.sun.xml.bind;
     requires com.fasterxml.classmate;
+    requires itextpdf;
 
     requires commons.codec;
 
