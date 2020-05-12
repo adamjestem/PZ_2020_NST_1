@@ -4,7 +4,9 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.List;
@@ -15,14 +17,31 @@ public class PdfBuilder {
         return new PdfBuilder();
     }
 
+    private final SceneManager sceneManager = SceneManager.inject();
+
     private Document document;
 
     public PdfBuilder create(String name) throws FileNotFoundException, DocumentException {
-        this.document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(String.format("%s.pdf", name)));
+        var fileChooser = new FileChooser();
 
-        document.open();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setInitialFileName(addPdfToTheNameIfNotAddedAlready(name));
+
+        File file = fileChooser.showSaveDialog(sceneManager.getStage());
+
+        if (file != null) {
+            var path = file.getAbsolutePath();
+            this.document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(path));
+
+            document.open();
+        }
         return this;
+    }
+
+    private String addPdfToTheNameIfNotAddedAlready(String path) {
+        return path.endsWith(".pdf") ? path : path + ".pdf";
     }
 
     public void save() {

@@ -79,6 +79,7 @@ public abstract class DashboardBaseController implements Initializable {
             }
             builder.save();
             this.dialogService.showInfoDialog(Translations.SUCCESSFULLY_SAVED_PDF);
+        } catch (NullPointerException ignored) {
         } catch (Exception ex) {
             this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
