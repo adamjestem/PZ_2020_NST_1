@@ -43,4 +43,8 @@ public class WorkerDashboardScene extends DashboardBaseController {
         var userId = this.sessionManager.getLoggedInUser().getId();
         return this.buildingsService.getWorkerBuildings(userId);
     }
+
+    public void handleRaportStatus(ActionEvent actionEvent) {
+        super.printRaport(Translations.ASSIGNED_BUILDINGS);
+    }
 }

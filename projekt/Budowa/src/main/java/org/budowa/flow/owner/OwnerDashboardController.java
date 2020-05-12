@@ -16,7 +16,6 @@ public class OwnerDashboardController extends DashboardBaseController {
     private final SceneManager sceneManager = SceneManager.inject();
     private final Router router = Router.inject();
     private final DialogService dialogService = DialogService.inject();
-    private final PdfBuilder pdfBuilder = PdfBuilder.inject();
 
     @Override
     protected Building[] loadBuildings() {
@@ -65,19 +64,6 @@ public class OwnerDashboardController extends DashboardBaseController {
     }
 
     public void handleRaportStatus(ActionEvent actionEvent) {
-        try {
-            var buildings = this.loadBuildings();
-
-            var builder = this.pdfBuilder.create("Status").addText("Status pracy").addEmptyLine();
-            for (var building : buildings) {
-                builder = builder.addDataBlock("Nazwa:", building.getName())
-                        .addDataBlock("Status:", building.getStatus().toString())
-                        .addEmptyLine();
-            }
-            builder.save();
-            this.dialogService.showInfoDialog(Translations.SUCCESSFULLY_SAVED_PDF);
-        } catch (Exception ex) {
-            this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
-        }
+        super.printRaport("Status pracy");
     }
 }
