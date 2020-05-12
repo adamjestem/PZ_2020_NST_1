@@ -10,6 +10,7 @@ import org.budowa.router.Router;
 import org.budowa.services.BuildingsService;
 import org.budowa.services.DialogService;
 import org.budowa.services.UsersService;
+import org.budowa.texts.Translations;
 
 import java.io.IOException;
 import java.net.URL;
@@ -198,7 +199,7 @@ public class EditBuildingScene implements Initializable {
         try {
             this.router.goToBuildingDetail(selectedBuildingId);
         } catch (IOException exception) {
-            dialogService.showErrorDialog("Coś poszło nie tak");
+            dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
     }
 

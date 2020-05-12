@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import org.budowa.entities.Building;
 import org.budowa.flow.shared.*;
 import org.budowa.services.*;
+import org.budowa.texts.Translations;
 
 import java.io.IOException;
 
@@ -23,7 +24,7 @@ public class WorkerDashboardScene extends DashboardBaseController {
         try {
             this.authService.logout();
         } catch (IOException e) {
-            this.dialogService.showErrorDialog("Coś poszło nie tak.");
+            this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
     }
 

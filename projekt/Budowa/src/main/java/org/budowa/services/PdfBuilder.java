@@ -7,7 +7,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -69,7 +68,12 @@ public class PdfBuilder {
         }));
     }
 
-    public PdfBuilder addNewLine() throws DocumentException {
+    public PdfBuilder addEmptyLine() throws DocumentException {
+        this.document.add(new Paragraph("\n"));
+        return this;
+    }
+
+    public PdfBuilder addParagraph() throws DocumentException {
         this.document.add(new Paragraph());
         return this;
     }
@@ -88,10 +92,10 @@ public class PdfBuilder {
 
     public PdfBuilder addDataBlock(String title, String value) throws DocumentException {
         return this.addText(title)
-                .addNewLine()
+                .addParagraph()
                 .addTab()
                 .addText(value)
-                .addNewLine();
+                .addParagraph();
     }
 
     public PdfBuilder addList(String title, String[] data) throws DocumentException {
@@ -99,12 +103,12 @@ public class PdfBuilder {
 
         if (data.length > 0) {
             for (var d : data) {
-                this.addNewLine().addTab().addText(d);
+                this.addParagraph().addTab().addText(d);
             }
         } else {
-            this.addNewLine().addTab().addText("Brak");
+            this.addParagraph().addTab().addText("Brak");
         }
-        this.addNewLine();
+        this.addParagraph();
 
         return this;
     }

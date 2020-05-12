@@ -13,6 +13,7 @@ import org.budowa.entities.UserRole;
 import org.budowa.router.Route;
 import org.budowa.router.Router;
 import org.budowa.services.*;
+import org.budowa.texts.Translations;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,9 +32,6 @@ public class BuildingDetailController implements Initializable {
     //endregion
 
     // region template controls
-
-    //endregion
-    public static int selectedBuildingId;
     public Label title;
     public Label description;
     public VBox workers;
@@ -45,7 +43,9 @@ public class BuildingDetailController implements Initializable {
     public Button editButton;
     public Label startDate;
     public Label endDate;
+    //endregion
 
+    public static int selectedBuildingId;
     private Building building;
 
     @Override
@@ -66,7 +66,7 @@ public class BuildingDetailController implements Initializable {
                     this.buildingsService.delete(building);
                     this.router.goTo(Route.DASHBOARD);
                 } catch (IOException exception) {
-                    dialogService.showErrorDialog("Coś poszło nie tak");
+                    dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
                 }
             });
         }
@@ -75,7 +75,7 @@ public class BuildingDetailController implements Initializable {
             try {
                 this.router.goTo(Route.DASHBOARD);
             } catch (IOException exception) {
-                dialogService.showErrorDialog("Coś poszło nie tak");
+                dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
             }
         });
     }
@@ -85,7 +85,7 @@ public class BuildingDetailController implements Initializable {
         try {
             router.goToEditBuildingDetail(building.getId());
         } catch (IOException e) {
-            dialogService.showErrorDialog("Coś poszło nie tak");
+            dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
     }
 
@@ -136,9 +136,9 @@ public class BuildingDetailController implements Initializable {
                     .addDataBlock("Opis:", this.building.getDescription())
                     .save();
 
-            this.dialogService.showInfoDialog("Poprawnie zapisano PDF.");
+            this.dialogService.showInfoDialog(Translations.SUCCESSFULLY_SAVED_PDF);
         } catch (Exception ex) {
-            this.dialogService.showErrorDialog("Coś poszło nie tak.");
+            this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
     }
 

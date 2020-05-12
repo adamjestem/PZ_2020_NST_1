@@ -14,6 +14,7 @@ import org.budowa.router.Router;
 import org.budowa.services.DialogService;
 import org.budowa.services.SessionManager;
 import org.budowa.services.UsersService;
+import org.budowa.texts.Translations;
 
 import java.io.IOException;
 import java.net.URL;
@@ -84,7 +85,7 @@ public class UsersListScene implements Initializable {
                         try {
                             router.goToEditUser(user.getId());
                         } catch (IOException ex) {
-                            dialogService.showErrorDialog("Coś poszło nie tak");
+                            dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
                         }
 
                     });
@@ -126,7 +127,7 @@ public class UsersListScene implements Initializable {
             this.router.goTo(Route.DASHBOARD);
         } catch (IOException ex) {
             ex.printStackTrace();
-            dialogService.showErrorDialog("Coś poszło nie tak");
+            dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
     }
 
@@ -136,7 +137,7 @@ public class UsersListScene implements Initializable {
             this.router.goTo(Route.ADD_USER);
         } catch (IOException ex) {
             ex.printStackTrace();
-            dialogService.showErrorDialog("Coś poszło nie tak");
+            dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
     }
 }

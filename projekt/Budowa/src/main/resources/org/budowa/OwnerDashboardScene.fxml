@@ -30,6 +30,11 @@
                                 <MenuItem onAction="#handleShowAllUsers" mnemonicParsing="false" text="Lista użytkowników"/>
                             </items>
                         </Menu>
+                        <Menu mnemonicParsing="false" text="Raporty">
+                            <items>
+                                <MenuItem onAction="#handleRaportStatus" mnemonicParsing="false" text="Status"/>
+                            </items>
+                        </Menu>
                     </menus>
                 </MenuBar>
             </top>
