@@ -1,12 +1,16 @@
 package org.budowa.flow.shared;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import org.budowa.App;
 import org.budowa.entities.Building;
 import org.budowa.entities.BuildingStatus;
 import org.budowa.flow.kanban.KanbanController;
+import org.budowa.flow.kanban.KanbanItemController;
 import org.budowa.router.Router;
 import org.budowa.services.DialogService;
 import org.budowa.services.PdfBuilder;
@@ -34,37 +38,44 @@ public abstract class DashboardBaseController implements Initializable {
     protected abstract Building[] loadBuildings();
 
     public void setBuildings(Building[] buildings) {
-        this.kanbanController.toDoList.getItems().setAll(this.getFilteredLabels(buildings, BuildingStatus.TODO));
-        this.kanbanController.foundationList.getItems().setAll(this.getFilteredLabels(buildings, BuildingStatus.FOUNDATIONS));
-        this.kanbanController.wallsList.getItems().setAll(this.getFilteredLabels(buildings, BuildingStatus.WALLS));
-        this.kanbanController.ceilingList.getItems().setAll(this.getFilteredLabels(buildings, BuildingStatus.CEILING));
-        this.kanbanController.roofList.getItems().setAll(this.getFilteredLabels(buildings, BuildingStatus.ROOF));
-        this.kanbanController.doneList.getItems().setAll(this.getFilteredLabels(buildings, BuildingStatus.DONE));
+        try {
+            this.kanbanController.toDoList.getItems().setAll(this.getBuildingNodes(buildings, BuildingStatus.TODO));
+            this.kanbanController.foundationList.getItems().setAll(this.getBuildingNodes(buildings, BuildingStatus.FOUNDATIONS));
+            this.kanbanController.wallsList.getItems().setAll(this.getBuildingNodes(buildings, BuildingStatus.WALLS));
+            this.kanbanController.ceilingList.getItems().setAll(this.getBuildingNodes(buildings, BuildingStatus.CEILING));
+            this.kanbanController.roofList.getItems().setAll(this.getBuildingNodes(buildings, BuildingStatus.ROOF));
+            this.kanbanController.doneList.getItems().setAll(this.getBuildingNodes(buildings, BuildingStatus.DONE));
+        } catch (Exception ex) {
+            this.dialogService.showErrorDialog(Translations.ERROR_LOADING_BUILDINGS);
+        }
     }
 
-    private Label[] getFilteredLabels(Building[] buildings, BuildingStatus status) {
-        var filteredBuildings = new ArrayList<Label>();
+    private Node[] getBuildingNodes(Building[] buildings, BuildingStatus status) throws IOException {
+        var filteredBuildings = new ArrayList<Node>();
         for (var building : buildings) {
             if (building.getStatus() != status) {
                 continue;
             }
-            var label = getBuildingLabel(building);
-            filteredBuildings.add(label);
+            filteredBuildings.add(getBuildingNode(building));
         }
-        return filteredBuildings.toArray(Label[]::new);
+        return filteredBuildings.toArray(Node[]::new);
     }
 
-    private Label getBuildingLabel(Building building) {
-        var label = new Label(building.getName());
-        label.setCursor(Cursor.HAND);
-        label.setOnMouseClicked(mouseEvent -> {
+    private Node getBuildingNode(Building building) throws IOException {
+        var controller = new KanbanItemController(building);
+        var loader = new FXMLLoader(App.class.getResource("KanbanItem.fxml"));
+        loader.setController(controller);
+        Node node = loader.load();
+        node.setCursor(Cursor.HAND);
+        node.setOnMouseClicked(mouseEvent -> {
             try {
                 this.router.goToBuildingDetail(building.getId());
             } catch (IOException e) {
                 this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
             }
         });
-        return label;
+
+        return node;
     }
 
     protected void printRaport(String title) {
