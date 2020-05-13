@@ -1,17 +1,18 @@
 package org.budowa.flow.shared;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import org.budowa.App;
 import org.budowa.entities.Building;
 import org.budowa.entities.BuildingStatus;
 import org.budowa.flow.kanban.KanbanController;
 import org.budowa.flow.kanban.KanbanItemController;
 import org.budowa.router.Router;
+import org.budowa.services.BuildingsService;
 import org.budowa.services.DialogService;
 import org.budowa.services.PdfBuilder;
 import org.budowa.texts.Translations;
@@ -26,12 +27,22 @@ public abstract class DashboardBaseController implements Initializable {
     private final Router router = Router.inject();
     private final DialogService dialogService = DialogService.inject();
     private final PdfBuilder pdfBuilder = PdfBuilder.inject();
+    protected final BuildingsService buildingsService = BuildingsService.inject();
+
+    protected KanbanItemController selectedNodeController;
 
     @FXML
-    public KanbanController kanbanController;
+    protected KanbanController kanbanController;
+    protected Building selectedBuilding;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.rerender();
+    }
+
+    protected void rerender() {
+        this.selectedNodeController = null;
+        this.selectedBuilding = null;
         this.setBuildings(this.loadBuildings());
     }
 
@@ -47,6 +58,7 @@ public abstract class DashboardBaseController implements Initializable {
             this.kanbanController.doneList.getItems().setAll(this.getBuildingNodes(buildings, BuildingStatus.DONE));
         } catch (Exception ex) {
             this.dialogService.showErrorDialog(Translations.ERROR_LOADING_BUILDINGS);
+            ex.printStackTrace();
         }
     }
 
@@ -68,10 +80,21 @@ public abstract class DashboardBaseController implements Initializable {
         Node node = loader.load();
         node.setCursor(Cursor.HAND);
         node.setOnMouseClicked(mouseEvent -> {
-            try {
-                this.router.goToBuildingDetail(building.getId());
-            } catch (IOException e) {
-                this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
+            if (mouseEvent.getClickCount() == 1) {
+                if (this.selectedNodeController != null) {
+                    this.selectedNodeController.blur();
+                }
+                this.selectedNodeController = controller;
+                this.selectedBuilding = building;
+                controller.focus();
+            }
+
+            if (mouseEvent.getClickCount() == 2) {
+                try {
+                    this.router.goToBuildingDetail(building.getId());
+                } catch (IOException e) {
+                    this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
+                }
             }
         });
 
@@ -94,5 +117,28 @@ public abstract class DashboardBaseController implements Initializable {
         } catch (Exception ex) {
             this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
+    }
+
+
+    public void nextStatus(ActionEvent actionEvent) {
+        if (this.selectedBuilding == null) {
+            this.dialogService.showInfoDialog(Translations.BUILDING_NOT_SELECTED, Translations.SELECT_BUILDING_AND_CHANGE_STATUS_THEN);
+            return;
+        }
+        this.setStatus(this.selectedBuilding.getStatus().getNext());
+    }
+
+    public void previousStatus(ActionEvent actionEvent) {
+        if (this.selectedBuilding == null) {
+            this.dialogService.showInfoDialog(Translations.BUILDING_NOT_SELECTED, Translations.SELECT_BUILDING_AND_CHANGE_STATUS_THEN);
+            return;
+        }
+        this.setStatus(this.selectedBuilding.getStatus().getPrevious());
+    }
+
+    protected void setStatus(BuildingStatus status) {
+        this.selectedBuilding.setStatus(status);
+        this.buildingsService.update(this.selectedBuilding);
+        this.rerender();
     }
 }

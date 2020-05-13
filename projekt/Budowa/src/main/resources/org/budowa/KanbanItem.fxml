@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="50" prefWidth="132" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="name" prefHeight="28.0" prefWidth="132" text="Label">
+      <Label fx:id="nameText" prefHeight="28.0" prefWidth="132" text="Label">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>

@@ -13,7 +13,6 @@ import java.io.IOException;
 
 public class ManagerDashboardController extends DashboardBaseController {
     private final AuthService authService = AuthService.inject();
-    private final BuildingsService buildingsService = BuildingsService.inject();
     private final SceneManager sceneManager = SceneManager.inject();
     private final SessionManager sessionManager = SessionManager.inject();
 
