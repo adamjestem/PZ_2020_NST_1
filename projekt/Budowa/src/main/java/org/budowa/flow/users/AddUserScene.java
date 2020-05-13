@@ -8,6 +8,7 @@ import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import org.budowa.entities.User;
 import org.budowa.entities.UserRole;
+import org.budowa.exceptions.UserExistsException;
 import org.budowa.router.Route;
 import org.budowa.router.Router;
 import org.budowa.services.DialogService;
@@ -17,6 +18,7 @@ import org.budowa.texts.Translations;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AddUserScene implements Initializable {
@@ -69,8 +71,15 @@ public class AddUserScene implements Initializable {
 					usersService.update(user, !textFieldPassword.getText().isEmpty() || textFieldPassword.getText() != null);
 					dialogService.showInfoDialog("Udało się edytować użytkownika!");
 				} else {
-					usersService.create(user);
-					dialogService.showInfoDialog("Udało się stworzyć użytkownika!");
+					try {
+						usersService.create(user);
+						this.router.goTo(Route.DASHBOARD);
+						dialogService.showInfoDialog("Udało się stworzyć użytkownika!");
+					} catch (UserExistsException ex) {
+						this.setErrorFor(textFieldLogin);
+						this.dialogService.showErrorDialog("Użytkownik o podanym nicku już istnieje!");
+					}
+
 				}
 			}
 		} catch (Exception e) {

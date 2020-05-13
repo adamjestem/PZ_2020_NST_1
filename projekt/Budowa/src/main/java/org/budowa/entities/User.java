@@ -28,7 +28,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "username", nullable = false, length = 45)
+    @Column(name = "username", nullable = false, length = 45, unique = true)
     public String getUsername() {
         return username;
     }

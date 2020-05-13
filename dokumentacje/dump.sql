@@ -6,7 +6,7 @@ use budowa;
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: May 11, 2020 at 04:00 PM
+-- Generation Time: May 13, 2020 at 08:03 PM
 -- Server version: 8.0.19
 -- PHP Version: 7.4.1
 
@@ -86,7 +86,8 @@ ALTER TABLE `buildings`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UK_r43af9ap4edm43mmtq01oddj6` (`username`);
 
 --
 -- Indexes for table `workers_buildings`

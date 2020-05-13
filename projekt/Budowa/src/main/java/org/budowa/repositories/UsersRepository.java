@@ -1,4 +1,5 @@
 package org.budowa.repositories;
+
 import org.budowa.entities.User;
 import org.budowa.entities.UserRole;
 
@@ -29,14 +30,15 @@ public class UsersRepository {
 
     /**
      * find User by Username
+     *
      * @param username
      * @param password
      * @return User
      */
     public User findByUsernameAndPassword(String username, String password) {
         TypedQuery<User> q = em.createQuery(
-            "SELECT b FROM User b WHERE b.username = :username and b.password = :password",
-            User.class
+                "SELECT b FROM User b WHERE b.username = :username and b.password = :password",
+                User.class
         );
         q.setParameter("username", username);
         q.setParameter("password", password);
@@ -45,6 +47,7 @@ public class UsersRepository {
 
     /**
      * Find User by ID
+     *
      * @param id
      * @return User
      */
@@ -63,6 +66,7 @@ public class UsersRepository {
 
     /**
      * Find all User records
+     *
      * @return
      */
     public Collection<User> findAll() {
@@ -72,6 +76,7 @@ public class UsersRepository {
 
     /**
      * Insert new user record
+     *
      * @param user
      * @return userId
      */
@@ -84,6 +89,7 @@ public class UsersRepository {
 
     /**
      * Update user record
+     *
      * @param user
      */
     public void update(User user) {
@@ -94,11 +100,19 @@ public class UsersRepository {
 
     /**
      * Delete user record
+     *
      * @param user
      */
     public void delete(User user) {
         em.getTransaction().begin();
         em.remove(user);
         em.getTransaction().commit();
+    }
+
+    public User findByUsername(String username) {
+        TypedQuery<User> query = em.createQuery("select user from User user where user.username = :username", User.class);
+        query.setParameter("username", username);
+        var result = query.getResultList();
+        return result == null || result.isEmpty() ? null : result.get(0);
     }
 }
