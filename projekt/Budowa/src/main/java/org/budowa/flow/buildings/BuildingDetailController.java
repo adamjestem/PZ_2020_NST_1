@@ -3,6 +3,7 @@ package org.budowa.flow.buildings;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -63,8 +64,12 @@ public class BuildingDetailController implements Initializable {
             this.editButton.setStyle("visibility: visible");
             this.deleteButton.setOnMouseClicked(event -> {
                 try {
-                    this.buildingsService.delete(building);
-                    this.router.goTo(Route.DASHBOARD);
+                    var decision = dialogService.showConfirmDialog("Czy na pewno chcesz usunąć budynek " + building.getName());
+                    if (decision.isPresent() && decision.get() == ButtonType.OK) {
+                        this.buildingsService.delete(building);
+                        dialogService.showInfoDialog("Budynek usunięty");
+                        this.router.goTo(Route.DASHBOARD);
+                    }
                 } catch (IOException exception) {
                     dialogService.showErrorDialog("Coś poszło nie tak");
                 }
