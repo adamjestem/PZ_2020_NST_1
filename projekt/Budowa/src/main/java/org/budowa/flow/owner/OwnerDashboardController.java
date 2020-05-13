@@ -12,7 +12,6 @@ import java.io.IOException;
 
 public class OwnerDashboardController extends DashboardBaseController {
     private final AuthService authService = AuthService.inject();
-    private final BuildingsService buildingsService = BuildingsService.inject();
     private final SceneManager sceneManager = SceneManager.inject();
     private final Router router = Router.inject();
     private final DialogService dialogService = DialogService.inject();

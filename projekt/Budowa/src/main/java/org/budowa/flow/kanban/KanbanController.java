@@ -2,6 +2,7 @@ package org.budowa.flow.kanban;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -14,12 +15,12 @@ import java.util.ResourceBundle;
 public class KanbanController implements Initializable {
 
     @FXML
-    public ListView<Label> toDoList;
-    public ListView<Label> foundationList;
-    public ListView<Label> wallsList;
-    public ListView<Label> ceilingList;
-    public ListView<Label> roofList;
-    public ListView<Label> doneList;
+    public ListView<Node> toDoList;
+    public ListView<Node> foundationList;
+    public ListView<Node> wallsList;
+    public ListView<Node> ceilingList;
+    public ListView<Node> roofList;
+    public ListView<Node> doneList;
     public Label doneLabel;
     public Label roofLabel;
     public Label ceilingLabel;
