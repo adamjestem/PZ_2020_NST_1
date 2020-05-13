@@ -6,6 +6,7 @@ import org.budowa.flow.shared.DashboardBaseController;
 import org.budowa.router.Route;
 import org.budowa.router.Router;
 import org.budowa.services.*;
+import org.budowa.texts.Translations;
 
 import java.io.IOException;
 
@@ -29,7 +30,7 @@ public class OwnerDashboardController extends DashboardBaseController {
         try {
             this.authService.logout();
         } catch (IOException ex) {
-            this.dialogService.showErrorDialog("Coś poszło nie tak");
+            this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
     }
 
@@ -41,16 +42,8 @@ public class OwnerDashboardController extends DashboardBaseController {
         try {
             this.router.goTo(Route.ADD_CONSTRUCTION);
         } catch (IOException exception) {
-            dialogService.showErrorDialog("Coś poszło nie tak");
+            dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
-    }
-
-    public void handleEditBuilding(ActionEvent actionEvent) {
-        // todo: redirect to edit building scene
-    }
-
-    public void handleDeleteBuilding(ActionEvent actionEvent) {
-        // todo: redirect to delete building
     }
 
     public void handleAddUser(ActionEvent actionEvent) {
@@ -58,7 +51,7 @@ public class OwnerDashboardController extends DashboardBaseController {
             this.router.goTo(Route.ADD_USER);
         } catch (IOException exception) {
             exception.printStackTrace();
-            dialogService.showErrorDialog("Coś poszło nie tak");
+            dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
     }
 
@@ -66,7 +59,11 @@ public class OwnerDashboardController extends DashboardBaseController {
         try {
             this.router.goTo(Route.USERS_LIST);
         } catch (IOException exception) {
-            dialogService.showErrorDialog("Coś poszło nie tak");
+            dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
+    }
+
+    public void handleRaportStatus(ActionEvent actionEvent) {
+        super.printRaport("Status pracy");
     }
 }

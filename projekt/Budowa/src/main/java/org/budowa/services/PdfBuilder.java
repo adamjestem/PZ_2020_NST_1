@@ -4,10 +4,11 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -16,14 +17,31 @@ public class PdfBuilder {
         return new PdfBuilder();
     }
 
+    private final SceneManager sceneManager = SceneManager.inject();
+
     private Document document;
 
     public PdfBuilder create(String name) throws FileNotFoundException, DocumentException {
-        this.document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(String.format("%s.pdf", name)));
+        var fileChooser = new FileChooser();
 
-        document.open();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setInitialFileName(addPdfToTheNameIfNotAddedAlready(name));
+
+        File file = fileChooser.showSaveDialog(sceneManager.getStage());
+
+        if (file != null) {
+            var path = file.getAbsolutePath();
+            this.document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(path));
+
+            document.open();
+        }
         return this;
+    }
+
+    private String addPdfToTheNameIfNotAddedAlready(String path) {
+        return path.endsWith(".pdf") ? path : path + ".pdf";
     }
 
     public void save() {
@@ -69,7 +87,12 @@ public class PdfBuilder {
         }));
     }
 
-    public PdfBuilder addNewLine() throws DocumentException {
+    public PdfBuilder addEmptyLine() throws DocumentException {
+        this.document.add(new Paragraph("\n"));
+        return this;
+    }
+
+    public PdfBuilder addParagraph() throws DocumentException {
         this.document.add(new Paragraph());
         return this;
     }
@@ -88,10 +111,10 @@ public class PdfBuilder {
 
     public PdfBuilder addDataBlock(String title, String value) throws DocumentException {
         return this.addText(title)
-                .addNewLine()
+                .addParagraph()
                 .addTab()
                 .addText(value)
-                .addNewLine();
+                .addParagraph();
     }
 
     public PdfBuilder addList(String title, String[] data) throws DocumentException {
@@ -99,12 +122,12 @@ public class PdfBuilder {
 
         if (data.length > 0) {
             for (var d : data) {
-                this.addNewLine().addTab().addText(d);
+                this.addParagraph().addTab().addText(d);
             }
         } else {
-            this.addNewLine().addTab().addText("Brak");
+            this.addParagraph().addTab().addText("Brak");
         }
-        this.addNewLine();
+        this.addParagraph();
 
         return this;
     }

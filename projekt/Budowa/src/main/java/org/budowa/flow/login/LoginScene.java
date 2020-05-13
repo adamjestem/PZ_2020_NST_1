@@ -10,6 +10,7 @@ import org.budowa.router.Route;
 import org.budowa.router.Router;
 import org.budowa.services.AuthService;
 import org.budowa.services.SessionManager;
+import org.budowa.texts.Translations;
 
 import javax.persistence.NoResultException;
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class LoginScene {
         } catch (NoResultException noResultException) {
             displayError("Użytkownik nie insteje lub podano złe dane.");
         } catch (Exception e) {
-            displayError("Coś poszło nie tak");
+            displayError(Translations.SOMETHING_WENT_WRONG);
             e.printStackTrace();
         }
     }

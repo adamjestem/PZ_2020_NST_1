@@ -17,6 +17,11 @@
                                 <MenuItem onAction="#handleClose" mnemonicParsing="false" text="Zamknij" />
                             </items>
                         </Menu>
+                        <Menu mnemonicParsing="false" text="Raporty">
+                            <items>
+                                <MenuItem onAction="#handleRaportStatus" mnemonicParsing="false" text="Przypisane budynki"/>
+                            </items>
+                        </Menu>
                     </menus>
                 </MenuBar>
             </top>

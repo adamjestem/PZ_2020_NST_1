@@ -7,6 +7,7 @@ import org.budowa.services.AuthService;
 import org.budowa.services.BuildingsService;
 import org.budowa.services.SceneManager;
 import org.budowa.services.SessionManager;
+import org.budowa.texts.Translations;
 
 import java.io.IOException;
 
@@ -31,5 +32,9 @@ public class ManagerDashboardController extends DashboardBaseController {
 
     public void handleRefresh(ActionEvent actionEvent) {
         this.setBuildings(this.loadBuildings());
+    }
+
+    public void handleRaportStatus(ActionEvent actionEvent) {
+        super.printRaport(Translations.ASSIGNED_BUILDINGS);
     }
 }
