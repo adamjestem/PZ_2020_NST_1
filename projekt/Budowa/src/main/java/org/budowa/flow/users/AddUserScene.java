@@ -64,14 +64,14 @@ public class AddUserScene implements Initializable {
 			if (isValid()) {
 				user.setFullName(textFieldName.getText());
 				user.setUsername(textFieldLogin.getText());
-				user.setPassword(textFieldPassword.getText());
 				user.setUserRole(choiceBoxRole.getSelectionModel().getSelectedItem());
 
 				if (isEditing) {
-					usersService.update(user, !textFieldPassword.getText().isEmpty() || textFieldPassword.getText() != null);
+					usersService.update(user, !textFieldPassword.getText().isEmpty());
 					dialogService.showInfoDialog("Udało się edytować użytkownika!");
 				} else {
 					try {
+						user.setPassword(textFieldPassword.getText());
 						usersService.create(user);
 						this.router.goTo(Route.DASHBOARD);
 						dialogService.showInfoDialog("Udało się stworzyć użytkownika!");

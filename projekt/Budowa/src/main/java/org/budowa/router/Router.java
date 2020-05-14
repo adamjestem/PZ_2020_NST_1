@@ -77,6 +77,7 @@ public class Router {
             }
 
             case ADD_USER: {
+                AddUserScene.isEditing = false;
                 this.sceneManager.createScene(FlowsRegistry.getFXML(Flow.ADD_USER), Routes.getRouteData(Route.ADD_USER).title);
                 this.currentRoute = Route.ADD_USER;
                 break;
