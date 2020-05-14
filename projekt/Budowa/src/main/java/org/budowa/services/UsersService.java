@@ -2,6 +2,7 @@ package org.budowa.services;
 
 import org.budowa.entities.User;
 import org.budowa.entities.UserRole;
+import org.budowa.exceptions.UserExistsException;
 import org.budowa.repositories.UsersRepository;
 
 import java.lang.reflect.Array;
@@ -25,10 +26,15 @@ public class UsersService {
         return usersRepository.findByRole(role);
     }
 
-    public void create (User user) {
+    public void create (User user) throws UserExistsException {
+        var existingUser = this.usersRepository.findByUsername(user.getUsername());
+        if(existingUser != null) {
+            throw new UserExistsException(existingUser);
+        }
         var encryptedPassword = this.authService.encryptPassword(user.getPassword());
         user.setPassword(encryptedPassword);
-        usersRepository.insert(user); }
+        usersRepository.insert(user);
+    }
 
     public ArrayList<User> getAll() {
         return new ArrayList<>(this.usersRepository.findAll());
