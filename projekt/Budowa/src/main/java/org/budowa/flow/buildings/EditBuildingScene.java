@@ -172,6 +172,12 @@ public class EditBuildingScene implements Initializable {
             isValid = false;
         }
 
+        if (datePickerEndDate.getValue().isBefore(datePickerStartDate.getValue())) {
+            dialogService.showErrorDialog("Invalid Date. End date should be after Start Date");
+            setErrorFor(datePickerEndDate);
+            isValid = false;
+        }
+
         return isValid;
     }
 
