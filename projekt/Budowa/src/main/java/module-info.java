@@ -28,5 +28,5 @@ module org.budowa {
     exports org.budowa;
     exports org.budowa.repositories;
     exports org.budowa.entities;
-
+    exports org.budowa.services;
 }
