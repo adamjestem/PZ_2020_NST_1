@@ -1,1 +1,84 @@
-test
+[karol@karol-x240 KW611]$ cd ~/Desktop
+[karol@karol-x240 KW611]$ git init KW611
+[karol@karol-x240 KW611]$ cd KW611
+[karol@karol-x240 KW611]$ git remote add KW611 git@github.com:adamjestem/PZ_2020_NST_1.git
+[karol@karol-x240 KW611]$ git remote all
+error: Unknown subcommand: all
+usage: git remote [-v | --verbose]
+   or: git remote add [-t <branch>] [-m <master>] [-f] [--tags | --no-tags] [--mirror=<fetch|push>] <name> <url>
+   or: git remote rename <old> <new>
+   or: git remote remove <name>
+   or: git remote set-head <name> (-a | --auto | -d | --delete | <branch>)
+   or: git remote [-v | --verbose] show [-n] <name>
+   or: git remote prune [-n | --dry-run] <name>
+   or: git remote [-v | --verbose] update [-p | --prune] [(<group> | <remote>)...]
+   or: git remote set-branches [--add] <name> <branch>...
+   or: git remote get-url [--push] [--all] <name>
+   or: git remote set-url [--push] <name> <newurl> [<oldurl>]
+   or: git remote set-url --add <name> <newurl>
+   or: git remote set-url --delete <name> <url>
+
+    -v, --verbose         be verbose; must be placed before a subcommand
+
+[karol@karol-x240 KW611]$ git remote list
+error: Unknown subcommand: list
+usage: git remote [-v | --verbose]
+   or: git remote add [-t <branch>] [-m <master>] [-f] [--tags | --no-tags] [--mirror=<fetch|push>] <name> <url>
+   or: git remote rename <old> <new>
+   or: git remote remove <name>
+   or: git remote set-head <name> (-a | --auto | -d | --delete | <branch>)
+   or: git remote [-v | --verbose] show [-n] <name>
+   or: git remote prune [-n | --dry-run] <name>
+   or: git remote [-v | --verbose] update [-p | --prune] [(<group> | <remote>)...]
+   or: git remote set-branches [--add] <name> <branch>...
+   or: git remote get-url [--push] [--all] <name>
+   or: git remote set-url [--push] <name> <newurl> [<oldurl>]
+   or: git remote set-url --add <name> <newurl>
+   or: git remote set-url --delete <name> <url>
+
+    -v, --verbose         be verbose; must be placed before a subcommand
+
+[karol@karol-x240 KW611]$ git remove -v
+git: 'remove' is not a git command. See 'git --help'.
+
+The most similar command is
+        remote
+[karol@karol-x240 KW611]$ git remote -v
+KW611   git@github.com:adamjestem/PZ_2020_NST_1.git (fetch)
+KW611   git@github.com:adamjestem/PZ_2020_NST_1.git (push)
+[karol@karol-x240 KW611]$ git checkout -b BKW611
+Switched to a new branch 'BKW611'
+[karol@karol-x240 KW611]$ echo "test" > konsola.txt
+[karol@karol-x240 KW611]$ git add konsola.txt 
+[karol@karol-x240 KW611]$ git commit -m "Dodanie pliku konsola.txt"
+[BKW611 (root-commit) cce5721] Dodanie pliku konsola.txt
+ 1 file changed, 1 insertion(+)
+ create mode 100644 konsola.txt
+[karol@karol-x240 KW611]$ git push 
+.git/        konsola.txt  
+[karol@karol-x240 KW611]$ git push 
+.git/        konsola.txt  
+[karol@karol-x240 KW611]$ git push KW611 
+fatal: The current branch BKW611 has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream KW611 BKW611
+
+[karol@karol-x240 KW611]$     git push --set-upstream KW611 BKW611
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 236 bytes | 236.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: 
+remote: Create a pull request for 'BKW611' on GitHub by visiting:
+remote:      https://github.com/adamjestem/PZ_2020_NST_1/pull/new/BKW611
+remote: 
+To github.com:adamjestem/PZ_2020_NST_1.git
+ * [new branch]      BKW611 -> BKW611
+Branch 'BKW611' set up to track remote branch 'BKW611' from 'KW611'.
+[karol@karol-x240 KW611]$ git status
+On branch BKW611
+Your branch is up to date with 'KW611/BKW611'.
+
+nothing to commit, working tree clean
+[karol@karol-x240 KW611]$ 
