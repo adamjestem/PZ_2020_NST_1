@@ -1,0 +1,66 @@
+
+DD321
+$ git init
+Initialized empty Git repository in C:.../DD321/.git/
+
+DD321 (master)
+$ git remote add DD321 https://github.com/adamjestem/PZ_2020_NST_1.git
+
+DD321 (master)
+$ git remote -v
+DD321   https://github.com/adamjestem/PZ_2020_NST_1.git (fetch)
+DD321   https://github.com/adamjestem/PZ_2020_NST_1.git (push)
+
+DD321 (master)
+$ git checkout -b BDD321
+Switched to a new branch 'BDD321'
+
+DD321 (BDD321)
+$ git add .
+
+DD321 (BDD321)
+$ git commit -m "Dodanie pliku konsola.txt"
+[BDD321 (root-commit) 2e1b6eb] Dodanie pliku konsola.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 konsola.txt
+
+DD321 (BDD321)
+$ git push
+fatal: No configured push destination.
+Either specify the URL from the command-line or configure a remote repository using
+
+    git remote add <name> <url>
+
+and then push using the remote name
+
+    git push <name>
+
+
+DD321 (BDD321)
+$ git push DD321
+fatal: The current branch BDD321 has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream DD321 BDD321
+
+DD321 (BDD321)
+$ git push --set-upstream DD321 BDD321
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 221 bytes | 221.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'BDD321' on GitHub by visiting:
+remote:      https://github.com/adamjestem/PZ_2020_NST_1/pull/new/BDD321
+remote:
+To https://github.com/adamjestem/PZ_2020_NST_1.git
+ * [new branch]      BDD321 -> BDD321
+Branch 'BDD321' set up to track remote branch 'BDD321' from 'DD321'.
+
+DD321 (BDD321)
+$ git status
+On branch BDD321
+Your branch is up to date with 'DD321/BDD321'.
+
+nothing to commit, working tree clean
+
