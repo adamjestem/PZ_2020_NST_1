@@ -1,0 +1,8 @@
+❯ git clone --single-branch --branch BDS658 git@github.com:adamjestem/PZ_2020_NST_1.git .
+Cloning into '.'...
+remote: Enumerating objects: 9, done.
+remote: Counting objects: 100% (9/9), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 10 (delta 1), reused 9 (delta 1), pack-reused 1
+Receiving objects: 100% (10/10), done.
+Resolving deltas: 100% (1/1), done.
