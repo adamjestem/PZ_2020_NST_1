@@ -22,7 +22,7 @@ public class AuthServiceTest {
     @BeforeAll
     public static void createUser(){
         UsersRepositoryTest UserTest = new UsersRepositoryTest();
-        UserTest.insert();
+//        UserTest.insert();
     }
 
     @Test
@@ -50,7 +50,7 @@ public class AuthServiceTest {
     @AfterAll
     public static void deleteUser(){
         UsersRepositoryTest UserTest = new UsersRepositoryTest();
-        UserTest.delete();
+//        UserTest.delete();
     }
 
 }

@@ -23,7 +23,7 @@ class BuildingsRepositoryTest {
     @Order(1)
     public void createUserManager_ExpectNotNull() {
         User u = new User();
-        u.setUsername("Test1");
+        u.setUsername("Test5");
         u.setPassword("password3834");
         u.setFullName("Adam Kowalski");
         u.setUserRole(UserRole.OWNER);
@@ -46,6 +46,7 @@ class BuildingsRepositoryTest {
         b.setStatus(BuildingStatus.FOUNDATIONS);
         b.setAdditionalNotes("My additional notes!");
         b.setManager(usersRepository.findById(userId));
+        b.setEndDate("2021-01-04");
         b.setName("Test!");
         b.setWorkers(java.util.Collections.singleton(usersRepository.findById(userId)));
         int id = buildingsRepository.insert(b);
