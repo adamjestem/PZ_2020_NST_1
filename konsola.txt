@@ -81,4 +81,38 @@ On branch BKW611
 Your branch is up to date with 'KW611/BKW611'.
 
 nothing to commit, working tree clean
+[karol@karol-x240 KW611]$ git status
+On branch BKW611
+Your branch is up to date with 'KW611/BKW611'.
+
+nothing to commit, working tree clean
+[karol@karol-x240 KW611]$ kate konsola.txt 
+[karol@karol-x240 KW611]$ git add konsola.txt 
+[karol@karol-x240 KW611]$ kate konsola.txt 
+[karol@karol-x240 KW611]$ git add konsola.txt 
+[karol@karol-x240 KW611]$ ls
+konsola.txt
+[karol@karol-x240 KW611]$ git status
+On branch BKW611
+Your branch is up to date with 'KW611/BKW611'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   konsola.txt
+
+[karol@karol-x240 KW611]$ git commit -m "Dodanie zawartości do pliku konsola.txt"[BKW611 dfac361] Dodanie zawartości do pliku konsola.txt
+ 1 file changed, 84 insertions(+), 1 deletion(-)
+ rewrite konsola.txt (100%)
+[karol@karol-x240 KW611]$ git log
+commit dfac361e5424d41dbf81ff51512a1c76e69da03e (HEAD -> BKW611)
+Author: Karol W <kwiniarski97@gmail.com>
+Date:   Sun May 17 12:07:35 2020 +0200
+
+    Dodanie zawartości do pliku konsola.txt
+
+commit cce57217f2e4bd080bbf5e86d934b291d05d9bf0 (KW611/BKW611)
+Author: Karol W <kwiniarski97@gmail.com>
+Date:   Sun May 17 12:02:16 2020 +0200
+
+    Dodanie pliku konsola.txt
 [karol@karol-x240 KW611]$ 
