@@ -3,8 +3,6 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
     <persistence-unit name="Budowa" transaction-type="RESOURCE_LOCAL">
-        <!-- Persistence provider -->
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!-- Entity classes -->
         <class>org.budowa.entities.Building</class>
         <class>org.budowa.entities.User</class>
@@ -15,12 +13,10 @@
             <property name="javax.persistence.jdbc.user" value="root" />
             <property name="javax.persistence.jdbc.password" value="Haslo12." />
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="update" />
-            <property name="hibernate.connection.autocommit" value="false" />
+            <property name="hibernate.dialect.storage_engine" value="innodb"/>
+            <property name="hibernate.globally_quoted_identifiers" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="none" />
             <property name="show_sql" value="false"/>
-            <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
-            <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.use_sql_comments" value="false"/>
         </properties>
     </persistence-unit>
 </persistence>
