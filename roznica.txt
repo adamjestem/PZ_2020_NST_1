@@ -1,0 +1,51 @@
+filips-macbook-pro:FA248 filipalbrycht$ git diff konsola.txt 
+diff --git a/konsola.txt b/konsola.txt
+index 083adba..df45e9b 100644
+--- a/konsola.txt
++++ b/konsola.txt
+@@ -1,31 +1,17 @@
+-filips-macbook-pro:FA248 filipalbrycht$ git remote -v
+-FA248  https://github.com/adamjestem/PZ_2020_NST_1 (fetch)
+-FA248  https://github.com/adamjestem/PZ_2020_NST_1 (push)
+-filips-macbook-pro:FA248 filipalbrycht$ git checkout -b BFA-248
+-Switched to a new branch 'BFA-248'
+-filips-macbook-pro:FA248 filipalbrycht$ touch konsola.txt
+-filips-macbook-pro:FA248 filipalbrycht$ git add konsola.txt 
+-filips-macbook-pro:FA248 filipalbrycht$ git commit -m 'Dodanie pliku konsola.txt'
+-[BFA-248 (root-commit) 0ccfd65] Dodanie pliku konsola.txt
+- 1 file changed, 0 insertions(+), 0 deletions(-)
+- create mode 100644 konsola.txt
+-filips-macbook-pro:FA248 filipalbrycht$ git push --set-upstream FA248 BFA-248
+-Username for 'https://github.com': filip963963@gmail.com
+-Password for 'https://filip963963@gmail.com@github.com': 
+-Enumerating objects: 3, done.
+-Counting objects: 100% (3/3), done.
+-Writing objects: 100% (3/3), 231 bytes | 231.00 KiB/s, done.
+-Total 3 (delta 0), reused 0 (delta 0)
+-remote: 
+-remote: Create a pull request for 'BFA-248' on GitHub by visiting:
+-remote:      https://github.com/adamjestem/PZ_2020_NST_1/pull/new/BFA-248
+-remote: 
+-To https://github.com/adamjestem/PZ_2020_NST_1
+- * [new branch]      BFA-248 -> BFA-248
+-Branch 'BFA-248' set up to track remote branch 'BFA-248' from 'FA248'.
+-filips-macbook-pro:FA248 filipalbrycht$ git status
+-On branch BFA-248
+-Your branch is up to date with 'FA248/BFA-248'.
+ 
+-nothing to commit, working tree clean
++filips-macbook-pro:FA248 filipalbrycht$ git commit . -m 'Dodanie zawartosci do pliku konsola.txt'
++[BFA-248 838e582] Dodanie zawartosci do pliku konsola.txt
++ 1 file changed, 31 insertions(+)
++filips-macbook-pro:FA248 filipalbrycht$ git log
++commit 838e582ed24852ce9eaeaf8907ba871e46a04c3b (HEAD -> BFA-248)
++Author: FilipAlbrycht <filip963963@gmail.com>
++Date:   Sun May 17 12:13:17 2020 +0200
++
++    Dodanie zawartosci do pliku konsola.txt
++
++commit 0ccfd65ee162c6153ebfaf90643eb8bad27ce16d (FA248/BFA-248)
++Author: FilipAlbrycht <filip963963@gmail.com>
++Date:   Sun May 17 12:04:45 2020 +0200
++
++    Dodanie pliku konsola.txt
