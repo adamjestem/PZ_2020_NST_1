@@ -115,4 +115,8 @@ public class Router {
         this.sceneManager.createScene(fxml, routeData.title);
         this.currentRoute = Route.EDIT_USER;
     }
+
+    public Route getCurrentRoute(){
+        return this.currentRoute;
+    }
 }

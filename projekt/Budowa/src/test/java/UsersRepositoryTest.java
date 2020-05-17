@@ -1,6 +1,7 @@
 import org.budowa.entities.User;
 import org.budowa.entities.UserRole;
 import org.budowa.repositories.UsersRepository;
+import org.budowa.services.PasswordEncryptor;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -16,11 +17,21 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class UsersRepositoryTest {
     UsersRepository usersRepository = new UsersRepository();
     private final PasswordEncryptor authService = PasswordEncryptor.inject();
-
     static int insertId;
 
     static final String Username = "Test1";
     static final String Password = "password3834";
+
+
+
+    @Test
+    public void user_repository_crud(){
+        insert();
+        find();
+        update();
+        delete();
+    }
+
 
 
     @Test
