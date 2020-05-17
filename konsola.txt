@@ -64,3 +64,27 @@ Your branch is up to date with 'DD321/BDD321'.
 
 nothing to commit, working tree clean
 
+DD321 (BDD321)
+$ git add .
+DD321 (BDD321)
+$ git commit -m "Dodanie zawartosci pliku konsola.txt"
+[BDD321 e9ef699] Dodanie zawartosci pliku konsola.txt
+ 1 file changed, 66 insertions(+)
+
+droho@DESKTOP-1P5BCCU MINGW64 ~/Documents/DD321 (BDD321)
+$ git log
+commit e9ef6993d2aa46a995baa8988263a175d0d88389 (HEAD -> BDD321)
+Author: drohoo <drohox@gmail.com>
+Date:   Sun May 17 12:09:02 2020 +0200
+
+    Dodanie zawartosci pliku konsola.txt
+
+commit 2e1b6eb26e4510028c2afb4696b6734bd09b2df9 (DD321/BDD321)
+Author: drohoo <drohox@gmail.com>
+Date:   Sun May 17 12:02:12 2020 +0200
+
+    Dodanie pliku konsola.txt
+
+droho@DESKTOP-1P5BCCU MINGW64 ~/Documents/DD321 (BDD321)
+$
+

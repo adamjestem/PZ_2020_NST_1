@@ -1,0 +1,27 @@
+
+DD321 (BDD321)
+$ git diff
+diff --git a/konsola.txt b/konsola.txt
+index 8d5fd6c..b9344d9 100644
+--- a/konsola.txt
++++ b/konsola.txt
+@@ -64,3 +64,27 @@ Your branch is up to date with 'DD321/BDD321'.
+
+ nothing to commit, working tree clean
+
++DD321 (BDD321)
++$ git add .
++DD321 (BDD321)
++$ git commit -m "Dodanie zawartosci pliku konsola.txt"
++[BDD321 e9ef699] Dodanie zawartosci pliku konsola.txt
++ 1 file changed, 66 insertions(+)
++
++DD321 (BDD321)
++$ git log
++commit e9ef6993d2aa46a995baa8988263a175d0d88389 (HEAD -> BDD321)
++Author: drohoo <drohox@gmail.com>
++Date:   Sun May 17 12:09:02 2020 +0200
++
++    Dodanie zawartosci pliku konsola.txt
++
+:
