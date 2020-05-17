@@ -1,0 +1,11 @@
+[karol@karol-x240 KW611]$ git clone git@github.com:adamjestem/PZ_2020_NST_1.git --single-branch --branch BKW611 .
+Cloning into '.'...
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (5/5), done.
+Receiving objects: 100% (10/10), done.
+Resolving deltas: 100% (2/2), done.
+remote: Total 10 (delta 2), reused 10 (delta 2), pack-reused 0
+[karol@karol-x240 KarolW611]$ ls
+konsola.txt  roznica.txt
+[karol@karol-x240 KarolW611]$ 
