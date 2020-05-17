@@ -1,16 +1,16 @@
-import org.budowa.entities.Building;
-import org.budowa.entities.BuildingStatus;
+import org.budowa.entities.*;
 
-import org.budowa.entities.User;
-import org.budowa.entities.UserRole;
 import org.budowa.repositories.BuildingsRepository;
 import org.budowa.repositories.UsersRepository;
 
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+
+import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class BuildingsRepositoryTest {
     BuildingsRepository buildingsRepository = new BuildingsRepository();
     UsersRepository usersRepository = new UsersRepository();
@@ -20,20 +20,8 @@ class BuildingsRepositoryTest {
 
 
     @Test
-    public void building_repository_crud(){
-        create_user_manager();
-
-        insert();
-        find();
-        update();
-        delete();
-
-        deleteUser();
-    }
-
-
-
-    public void create_user_manager() {
+    @Order(1)
+    public void createUserManager_ExpectNotNull() {
         User u = new User();
         u.setUsername("Test1");
         u.setPassword("password3834");
@@ -45,44 +33,78 @@ class BuildingsRepositoryTest {
     }
 
 
-    public void deleteUser(){
-        User user = usersRepository.findById(userId);
-        usersRepository.delete(user);
-
-        User userAfterDelete = usersRepository.findById(userId);
-        assertNull(userAfterDelete);
-    }
-
-
-    public void insert() {
+    @Test
+    @Order(2)
+    public void createBuilidng_ExpectNotNull() {
         Building b = new Building();
         b.setDescription("Testowa budowla");
         b.setStatus(BuildingStatus.CEILING);
+        b.setAddress("Warszawska 20");
+        b.setCustomer("Jerzy Dudek");
+        b.setPriority(BuildingPriority.LOW);
+        b.setStartDate("2021-01-01");
+        b.setStatus(BuildingStatus.FOUNDATIONS);
+        b.setAdditionalNotes("My additional notes!");
         b.setManager(usersRepository.findById(userId));
         b.setName("Test!");
-
+        b.setWorkers(java.util.Collections.singleton(usersRepository.findById(userId)));
         int id = buildingsRepository.insert(b);
         insertId = id;
         assertNotNull(id);
     }
 
-    public void find(){
+    @Test
+    @Order(3)
+    void update_ExpectTrue(){
+        Building building = buildingsRepository.findById(insertId);
+        String changeName = "AfterTest!";
+        building.setName(changeName);
+        buildingsRepository.update(building);
+        Building buildingAfterUpdate = buildingsRepository.findById(insertId);
+        assertSame(buildingAfterUpdate.getName(), changeName);
+    }
+
+    @Test
+    @Order(4)
+    public void find_ExpectNotNull(){
         Building building = buildingsRepository.findById(insertId);
         assertNotNull(building);
     }
 
 
-    void update(){
-        Building building = buildingsRepository.findById(insertId);
-        String changeName = "AfterTest!";
-        building.setName(changeName);
-        buildingsRepository.update(building);
 
-        Building buildingAfterUpdate = buildingsRepository.findById(insertId);
-        assertSame(buildingAfterUpdate.getName(), changeName);
+    @Test
+    @Order(4)
+    void findByManager_ExpectArray(){
+        User user = usersRepository.findById(userId);
+        Collection<Building> building = buildingsRepository.findByManager(user);
+        assertTrue(building.size() > 0);
     }
 
 
+    @Test
+    @Order(3)
+    void findById_ExpectNotNull(){
+        Building build = buildingsRepository.findById(insertId);
+        assertNotNull(build);
+    }
+
+    @Test
+    @Order(4)
+    public void findAll_ExpectNotNull(){
+        Collection<Building> building = buildingsRepository.findAll();
+        assertNotNull(building);
+    }
+
+    @Test
+    @Order(6)
+    public void getWorkerBuildings_ExpectNotNull(){
+        Building [] building = buildingsRepository.getWorkerBuildings(userId);
+        assertNotNull(building);
+    }
+
+
+    @Test
     void delete(){
         Building building = buildingsRepository.findById(insertId);
         buildingsRepository.delete(building);
@@ -92,5 +114,12 @@ class BuildingsRepositoryTest {
     }
 
 
+    @Test
+    public void deleteUser(){
+        User user = usersRepository.findById(userId);
+        usersRepository.delete(user);
+        User userAfterDelete = usersRepository.findById(userId);
+        assertNull(userAfterDelete);
+    }
 
 }
