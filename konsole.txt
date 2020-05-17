@@ -1,2 +1,11 @@
-On branch BDS658
-nothing to commit, working tree clean
+commit 9a571ac5a2b42996786da14e3a0beb882e1dabaa (HEAD -> BDS658, origin/BDS658)
+Author: Monteiro <monteiro@iMac-Monteiro.local>
+Date:   Sun May 17 12:05:32 2020 +0200
+
+    Dodanie zawartosci do pliku konsola.txt
+
+commit 7e51dfb8dec9ec037a65ad7eeec6fff6d7eb65bc
+Author: Monteiro <monteiro@iMac-Monteiro.local>
+Date:   Sun May 17 12:01:14 2020 +0200
+
+    Dodanie pliku konsola.txt
