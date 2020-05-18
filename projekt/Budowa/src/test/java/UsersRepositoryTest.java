@@ -26,10 +26,10 @@ class UsersRepositoryTest {
 
     @Test
     public void user_repository_crud(){
-        insert();
-        find();
-        update();
-        delete();
+//        insert();
+//        find();
+//        update();
+//        delete();
     }
 
 

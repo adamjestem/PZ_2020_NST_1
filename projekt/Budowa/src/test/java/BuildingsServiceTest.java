@@ -4,6 +4,7 @@ import org.budowa.repositories.BuildingsRepository;
 import org.budowa.repositories.UsersRepository;
 
 
+import org.budowa.services.BuildingsService;
 import org.junit.jupiter.api.*;
 
 import java.util.Collection;
@@ -11,8 +12,8 @@ import java.util.Collection;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class BuildingsRepositoryTest {
-    BuildingsRepository buildingsRepository = new BuildingsRepository();
+class BuildingsServiceTest {
+    BuildingsService buildingsService = new BuildingsService();
     UsersRepository usersRepository = new UsersRepository();
 
     static int insertId;
@@ -23,7 +24,7 @@ class BuildingsRepositoryTest {
     @Order(1)
     public void createUserManager_ExpectNotNull() {
         User u = new User();
-        u.setUsername("Test5");
+        u.setUsername("Test1");
         u.setPassword("password3834");
         u.setFullName("Adam Kowalski");
         u.setUserRole(UserRole.OWNER);
@@ -46,29 +47,27 @@ class BuildingsRepositoryTest {
         b.setStatus(BuildingStatus.FOUNDATIONS);
         b.setAdditionalNotes("My additional notes!");
         b.setManager(usersRepository.findById(userId));
-        b.setEndDate("2021-01-04");
         b.setName("Test!");
         b.setWorkers(java.util.Collections.singleton(usersRepository.findById(userId)));
-        int id = buildingsRepository.insert(b);
-        insertId = id;
-        assertNotNull(id);
+        buildingsService.add(b);
+        assertFalse(false);
     }
 
     @Test
     @Order(3)
     void update_ExpectTrue(){
-        Building building = buildingsRepository.findById(insertId);
+        Building building = buildingsService.getById(insertId);
         String changeName = "AfterTest!";
         building.setName(changeName);
-        buildingsRepository.update(building);
-        Building buildingAfterUpdate = buildingsRepository.findById(insertId);
+        buildingsService.update(building);
+        Building buildingAfterUpdate = buildingsService.getById(insertId);
         assertSame(buildingAfterUpdate.getName(), changeName);
     }
 
     @Test
     @Order(4)
     public void find_ExpectNotNull(){
-        Building building = buildingsRepository.findById(insertId);
+        Building building = buildingsService.getById(insertId);
         assertNotNull(building);
     }
 
@@ -78,39 +77,39 @@ class BuildingsRepositoryTest {
     @Order(4)
     void findByManager_ExpectArray(){
         User user = usersRepository.findById(userId);
-        Collection<Building> building = buildingsRepository.findByManager(user);
-        assertTrue(building.size() > 0);
+        Building[] building = buildingsService.getManagerBuildings(user);
+        assertTrue(building.length > 0);
     }
 
 
     @Test
     @Order(3)
     void findById_ExpectNotNull(){
-        Building build = buildingsRepository.findById(insertId);
+        Building build = buildingsService.getById(insertId);
         assertNotNull(build);
     }
 
     @Test
     @Order(4)
     public void findAll_ExpectNotNull(){
-        Collection<Building> building = buildingsRepository.findAll();
+        Building building[] = buildingsService.getAllBuildings();
         assertNotNull(building);
     }
 
     @Test
     @Order(6)
     public void getWorkerBuildings_ExpectNotNull(){
-        Building [] building = buildingsRepository.getWorkerBuildings(userId);
+        Building [] building = buildingsService.getWorkerBuildings(userId);
         assertNotNull(building);
     }
 
 
     @Test
     void delete(){
-        Building building = buildingsRepository.findById(insertId);
-        buildingsRepository.delete(building);
+        Building building = buildingsService.getById(insertId);
+        buildingsService.delete(building);
 
-        Building buildingAfterDelete = buildingsRepository.findById(insertId);
+        Building buildingAfterDelete = buildingsService.getById(insertId);
         assertNull(buildingAfterDelete);
     }
 
@@ -122,5 +121,4 @@ class BuildingsRepositoryTest {
         User userAfterDelete = usersRepository.findById(userId);
         assertNull(userAfterDelete);
     }
-
 }

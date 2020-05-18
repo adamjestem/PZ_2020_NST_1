@@ -1,7 +1,6 @@
 import org.budowa.entities.Building;
 import org.junit.jupiter.api.Test;
 import org.budowa.repositories.BuildingsRepository;
-import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
