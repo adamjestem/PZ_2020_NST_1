@@ -99,6 +99,11 @@ public class EditBuildingScene implements Initializable {
 
     @FXML
     private void addWorkerAction() {
+        if(choiceBoxWorkers.getSelectionModel().getSelectedIndex() < 0) {
+            dialogService.showErrorDialog("Select worker to add!");
+            return ;
+        }
+
         selectedWorkersNames.add(workers.get(choiceBoxWorkers.getSelectionModel().getSelectedIndex()).getFullName());
         selectedWorkers.add(workers.get(choiceBoxWorkers.getSelectionModel().getSelectedIndex()));
         reloadWorkers();
