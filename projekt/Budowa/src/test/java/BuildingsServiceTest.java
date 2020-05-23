@@ -49,7 +49,7 @@ class BuildingsServiceTest {
         b.setManager(usersRepository.findById(userId));
         b.setName("Test!");
         b.setWorkers(java.util.Collections.singleton(usersRepository.findById(userId)));
-        buildingsService.add(b);
+        insertId = buildingsService.add(b);
         assertFalse(false);
     }
 
