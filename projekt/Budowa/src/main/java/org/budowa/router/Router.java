@@ -87,6 +87,12 @@ public class Router {
                 this.sceneManager.createScene(FlowsRegistry.getFXML(Flow.USERS_LIST), Routes.getRouteData(Route.USERS_LIST).title);
                 this.currentRoute = Route.USERS_LIST;
             }
+
+            case WORK_RAPORT_STATUS: {
+                this.sceneManager.createScene(FlowsRegistry.getFXML(Flow.WORK_STATUS_RAPORT), Routes.getRouteData(Route.WORK_RAPORT_STATUS).title);
+                this.currentRoute = Route.WORK_RAPORT_STATUS;
+                break;
+            }
         }
         this.currentRoute = route;
     }
@@ -116,7 +122,7 @@ public class Router {
         this.currentRoute = Route.EDIT_USER;
     }
 
-    public Route getCurrentRoute(){
+    public Route getCurrentRoute() {
         return this.currentRoute;
     }
 }

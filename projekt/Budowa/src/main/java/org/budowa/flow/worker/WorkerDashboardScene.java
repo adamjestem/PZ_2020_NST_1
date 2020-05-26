@@ -3,6 +3,7 @@ package org.budowa.flow.worker;
 import javafx.event.ActionEvent;
 import org.budowa.entities.Building;
 import org.budowa.flow.shared.*;
+import org.budowa.router.Route;
 import org.budowa.services.*;
 import org.budowa.texts.Translations;
 
@@ -44,6 +45,11 @@ public class WorkerDashboardScene extends DashboardBaseController {
     }
 
     public void handleRaportStatus(ActionEvent actionEvent) {
-        super.printRaport(Translations.ASSIGNED_BUILDINGS);
+        try {
+            this.router.goTo(Route.WORK_RAPORT_STATUS);
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
+        }
     }
 }

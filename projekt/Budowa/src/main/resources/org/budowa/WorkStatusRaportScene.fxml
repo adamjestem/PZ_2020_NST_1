@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.budowa.flow.raports.WorkStatusRaportScene">
+   <children>
+      <Label layoutX="136.0" layoutY="46.0" text="Wybierz statusy, które Cię interesują">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ListView fx:id="statusList" layoutX="92.0" layoutY="82.0" prefHeight="251.0" prefWidth="417.0" />
+      <Button onAction="#generateRaport" layoutX="395.0" layoutY="345.0" mnemonicParsing="false" text="Generuj raport" />
+   </children>
+</AnchorPane>

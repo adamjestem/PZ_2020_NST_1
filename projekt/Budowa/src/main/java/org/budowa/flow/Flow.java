@@ -10,5 +10,6 @@ public enum Flow {
     ADD_USER,
     EDIT_BUILDING,
     USERS_LIST,
-    EDIT_USER
+    EDIT_USER,
+    WORK_STATUS_RAPORT
 }

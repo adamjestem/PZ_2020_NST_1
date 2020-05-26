@@ -24,10 +24,10 @@ import java.util.ResourceBundle;
 
 public abstract class DashboardBaseController implements Initializable {
 
-    private final Router router = Router.inject();
-    private final DialogService dialogService = DialogService.inject();
     private final PdfBuilder pdfBuilder = PdfBuilder.inject();
     protected final BuildingsService buildingsService = BuildingsService.inject();
+    protected final Router router = Router.inject();
+    protected final DialogService dialogService = DialogService.inject();
 
     protected KanbanItemController selectedNodeController;
 

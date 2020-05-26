@@ -13,8 +13,6 @@ import java.io.IOException;
 public class OwnerDashboardController extends DashboardBaseController {
     private final AuthService authService = AuthService.inject();
     private final SceneManager sceneManager = SceneManager.inject();
-    private final Router router = Router.inject();
-    private final DialogService dialogService = DialogService.inject();
 
     @Override
     protected Building[] loadBuildings() {
@@ -63,6 +61,11 @@ public class OwnerDashboardController extends DashboardBaseController {
     }
 
     public void handleRaportStatus(ActionEvent actionEvent) {
-        super.printRaport("Status pracy");
+        try {
+            this.router.goTo(Route.WORK_RAPORT_STATUS);
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
+        }
     }
 }
