@@ -2,7 +2,6 @@ package org.budowa.router;
 
 import org.budowa.flow.Flow;
 import org.budowa.flow.FlowsRegistry;
-import org.budowa.flow.buildings.AddBuildingScene;
 import org.budowa.flow.buildings.BuildingDetailController;
 import org.budowa.flow.buildings.EditBuildingScene;
 import org.budowa.flow.users.AddUserScene;
@@ -93,6 +92,11 @@ public class Router {
                 this.currentRoute = Route.WORK_RAPORT_STATUS;
                 break;
             }
+
+            case BUILDINGS_DETAILS_RAPORT:
+                this.sceneManager.createScene(FlowsRegistry.getFXML(Flow.BUILDINGS_DETAILS_RAPORT), Routes.getRouteData(Route.BUILDINGS_DETAILS_RAPORT).title);
+                this.currentRoute = Route.BUILDINGS_DETAILS_RAPORT;
+                break;
         }
         this.currentRoute = route;
     }

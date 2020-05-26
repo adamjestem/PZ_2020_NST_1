@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import org.budowa.entities.Building;
 import org.budowa.flow.shared.DashboardBaseController;
 import org.budowa.router.Route;
-import org.budowa.router.Router;
 import org.budowa.services.*;
 import org.budowa.texts.Translations;
 
@@ -65,6 +64,14 @@ public class OwnerDashboardController extends DashboardBaseController {
             this.router.goTo(Route.WORK_RAPORT_STATUS);
         } catch (IOException exception) {
             exception.printStackTrace();
+            this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
+        }
+    }
+
+    public void handleBuildingDetailsRaport(ActionEvent actionEvent) {
+        try {
+            this.router.goTo(Route.BUILDINGS_DETAILS_RAPORT);
+        } catch (IOException exception) {
             this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
     }

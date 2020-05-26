@@ -34,6 +34,7 @@
                         <Menu mnemonicParsing="false" text="Raporty">
                             <items>
                                 <MenuItem mnemonicParsing="false" onAction="#handleRaportStatus" text="Status pracy"/>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBuildingDetailsRaport" text="Szczegóły budynków"/>
                             </items>
                         </Menu>
                     </menus>

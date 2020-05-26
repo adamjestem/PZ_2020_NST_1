@@ -20,6 +20,7 @@
                         <Menu mnemonicParsing="false" text="Raporty">
                             <items>
                                 <MenuItem onAction="#handleRaportStatus" mnemonicParsing="false" text="Przypisane budynki"/>
+                                <MenuItem mnemonicParsing="false" onAction="#handleBuildingDetailsRaport" text="Szczegóły budynków"/>
                             </items>
                         </Menu>
                     </menus>

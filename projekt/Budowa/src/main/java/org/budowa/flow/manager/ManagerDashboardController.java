@@ -43,4 +43,13 @@ public class ManagerDashboardController extends DashboardBaseController {
             this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
     }
+
+
+    public void handleBuildingDetailsRaport(ActionEvent actionEvent) {
+        try {
+            this.router.goTo(Route.BUILDINGS_DETAILS_RAPORT);
+        } catch (IOException exception) {
+            this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
+        }
+    }
 }
