@@ -30,11 +30,11 @@ public class BuildingsService {
         return this.buildingsRepository.findById(id);
     }
 
-    public void add(Building building) {
-        buildingsRepository.insert(building);
+    public int add(Building building) {
+        return buildingsRepository.insert(building);
     }
 
     public void update(Building building) {
-        buildingsRepository.update(building);
+         buildingsRepository.update(building);
     }
 }
