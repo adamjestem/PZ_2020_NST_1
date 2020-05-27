@@ -52,11 +52,20 @@ public class WorkStatusRaportScene implements Initializable {
                 throw new IllegalStateException("Unexpected value: " + this.sessionManager.getLoggedInUser().getUserRole());
         }
         buildings = Arrays.stream(buildings).filter(b -> includedStatuses.contains(b.getStatus())).toArray(Building[]::new);
-        this.raportService.print(userRole == UserRole.MANAGER ? Translations.WORK_STATUS : Translations.ASSIGNED_BUILDINGS, buildings);
+        this.raportService.print(userRole.equals(UserRole.OWNER) ? Translations.WORK_STATUS : Translations.ASSIGNED_BUILDINGS, buildings);
         try {
             this.router.goTo(Route.DASHBOARD);
         } catch (IOException exception) {
             exception.printStackTrace();
+            this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
+        }
+    }
+
+    public void cancel(ActionEvent actionEvent) {
+        try {
+            this.router.goTo(Route.DASHBOARD);
+        } catch (IOException ex) {
+            ex.printStackTrace();
             this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
     }

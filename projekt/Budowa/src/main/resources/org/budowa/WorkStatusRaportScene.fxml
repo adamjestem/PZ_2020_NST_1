@@ -12,6 +12,7 @@
          </font>
       </Label>
       <ListView fx:id="statusList" layoutX="92.0" layoutY="82.0" prefHeight="251.0" prefWidth="417.0" />
-      <Button onAction="#generateRaport" layoutX="395.0" layoutY="345.0" mnemonicParsing="false" text="Generuj raport" />
+      <Button layoutX="92.0" layoutY="345.0" mnemonicParsing="false" onAction="#cancel" text="Anuluj" />
+      <Button layoutX="395.0" layoutY="345.0" mnemonicParsing="false" onAction="#generateRaport" text="Generuj raport" />
    </children>
 </AnchorPane>

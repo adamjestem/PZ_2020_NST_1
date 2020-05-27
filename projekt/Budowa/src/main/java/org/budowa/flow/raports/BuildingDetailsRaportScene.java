@@ -25,7 +25,7 @@ public class BuildingDetailsRaportScene implements Initializable {
     private final RaportService raportService = RaportService.inject();
     private final Router router = Router.inject();
     private final DialogService dialogService = DialogService.inject();
-    
+
     public ListView<String> buildingsList;
 
     private Building[] buildings;
@@ -62,6 +62,15 @@ public class BuildingDetailsRaportScene implements Initializable {
             this.router.goTo(Route.DASHBOARD);
         } catch (IOException exception) {
             exception.printStackTrace();
+            this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
+        }
+    }
+
+    public void cancel(ActionEvent actionEvent) {
+        try {
+            this.router.goTo(Route.DASHBOARD);
+        } catch (IOException ex) {
+            ex.printStackTrace();
             this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
         }
     }

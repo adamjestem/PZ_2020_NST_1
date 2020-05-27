@@ -16,7 +16,6 @@ public class RaportService {
 
     public void print(String title, Building[] buildings) {
         try {
-
             var builder = this.pdfBuilder.create(title).addText(title).addEmptyLine();
             for (var building : buildings) {
                 builder = builder.addDataBlock("Nazwa:", building.getName())
