@@ -23,6 +23,7 @@ module org.budowa {
     opens org.budowa.flow.users to javafx.fxml;
     opens org.budowa.services to javafx.fxml;
     opens org.budowa.flow.worker to javafx.fxml;
+    opens org.budowa.flow.raports to javafx.fxml;
 
     exports org.budowa;
     exports org.budowa.repositories;

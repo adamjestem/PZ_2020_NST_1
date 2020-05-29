@@ -3,6 +3,8 @@ package org.budowa.flow.manager;
 import javafx.event.ActionEvent;
 import org.budowa.entities.Building;
 import org.budowa.flow.shared.DashboardBaseController;
+import org.budowa.router.Route;
+import org.budowa.router.Router;
 import org.budowa.services.AuthService;
 import org.budowa.services.BuildingsService;
 import org.budowa.services.SceneManager;
@@ -34,6 +36,20 @@ public class ManagerDashboardController extends DashboardBaseController {
     }
 
     public void handleRaportStatus(ActionEvent actionEvent) {
-        super.printRaport(Translations.ASSIGNED_BUILDINGS);
+        try {
+            this.router.goTo(Route.WORK_RAPORT_STATUS);
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
+        }
+    }
+
+
+    public void handleBuildingDetailsRaport(ActionEvent actionEvent) {
+        try {
+            this.router.goTo(Route.BUILDINGS_DETAILS_RAPORT);
+        } catch (IOException exception) {
+            this.dialogService.showErrorDialog(Translations.SOMETHING_WENT_WRONG);
+        }
     }
 }
