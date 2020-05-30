@@ -5,7 +5,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
-          <factory-entry name="Budowa" value="981cdda3-afff-4d40-95e1-2288c8b259db" />
+          <factory-entry name="Budowa" value="c69cf654-7e3d-461a-9fdc-ec2e785c0ec3" />
         </datasource-mapping>
         <naming-strategy-map />
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />

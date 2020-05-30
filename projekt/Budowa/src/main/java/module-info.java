@@ -30,5 +30,6 @@ module org.budowa {
     exports org.budowa.entities;
     exports org.budowa.services;
     exports org.budowa.router;
+    exports org.budowa.exceptions;
 
 }
