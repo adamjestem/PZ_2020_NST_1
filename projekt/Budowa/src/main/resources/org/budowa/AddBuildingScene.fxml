@@ -71,6 +71,6 @@
          </padding></VBox>
       <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButtonAction" text="Powrót" />
       <Button fx:id="addWorkerButton" layoutX="536.0" layoutY="428.0" mnemonicParsing="false" onAction="#addWorkerAction" text="Dodaj Pracownika" AnchorPane.leftAnchor="536.0" />
-      <ListView fx:id="workersList" layoutX="658.0" layoutY="428.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="658.0" AnchorPane.rightAnchor="42.0" />
+      <ListView fx:id="workersList" layoutX="671.0" layoutY="428.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="671.0" AnchorPane.rightAnchor="29.0" />
    </children>
 </AnchorPane>
