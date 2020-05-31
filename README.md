@@ -20,3 +20,8 @@
     ```
 * Wszystkie dane dot. sesji tego, czy user jest zalogowany. Trzymane jest (lub ma być) w klasie SessionManager
 * Jeżeli robi się zmianę w jednym z modeli domenowych TRZEBA zmienić też `dump.sql` i `dane.sql`
+
+## Budowanie pliku JAR
+W folderze /projekt/Budowa wykonujemy polecenie: 
+`mvn package`
+w folderze powstaje `/projekt/Budowa/target/Budowa-1.0-SNAPSHOT.jar`
