@@ -110,7 +110,7 @@ public class EditBuildingScene implements Initializable {
     }
 
     @FXML
-    private void buttonAddAction() {
+    private void buttonEditAction() {
         if (!isValid()) { return; }
         building.setName(textFieldName.getText());
         building.setCustomer(textFieldCustomer.getText());
