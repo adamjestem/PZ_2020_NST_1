@@ -85,6 +85,7 @@ public class Router {
             case USERS_LIST: {
                 this.sceneManager.createScene(FlowsRegistry.getFXML(Flow.USERS_LIST), Routes.getRouteData(Route.USERS_LIST).title);
                 this.currentRoute = Route.USERS_LIST;
+                break;
             }
 
             case WORK_RAPORT_STATUS: {
